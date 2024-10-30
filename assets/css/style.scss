@@ -1,0 +1,29 @@
+
+---
+---
+
+/*
+  If the number of TAB files has changed, the following variable is required.
+  And it must be defined before `@import`.
+*/
+$tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
+
+@import "{{ site.theme }}";
+
+/* append your custom style below */
+
+/* Sidebar Background */
+.sidebar {
+  background: linear-gradient(
+    135deg,
+    #b3e5fc,
+    #aed581
+  ); /* Light blue to green gradient */
+}
+
+/* Content Background */
+.content {
+  background-image: url('/assets/img/light-pattern.jpg'); /* Replace with your pattern image */
+  background-size: cover;
+  background-color: #f0e0e0;
+}

@@ -1,0 +1,32 @@
+---
+---
+
+@import 'main
+{%- if jekyll.environment == ' production
+  ' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+/* Sidebar Background */
+#sidebar {
+  background: linear-gradient(
+    135deg,
+    #b3e5fc,
+    #aed581
+  ); /* Light blue to green gradient */
+}
+
+/* Content Background */
+#main-wrapper,
+#topbar-wrapper,
+#tail-wrapper {
+  background-size: cover;
+  background-color: #cdecee;
+}
+footer {
+  border-top: 0cm;
+  background-size: cover;
+  background-color: #cdecee;
+}
