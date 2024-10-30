@@ -25,8 +25,8 @@ description: >- # used by seo meta and the atom feed
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://iamsukhpreet.github.io"
 
-github:
-  username: iamsukhpreet # change to your GitHub username
+calendly:
+  username: sukhpreetk/60min # change to your GitHub username
 
 instagram:
   username: sukhpreetkaur25.sk # change to your instagram username
@@ -132,7 +132,7 @@ comments:
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:
   self_host:
-    enabled: true
+    enabled: false
     # specify the Jekyll environment, empty means both
     # only works if `assets.self_host.enabled` is 'true'
     env: # [development | production]

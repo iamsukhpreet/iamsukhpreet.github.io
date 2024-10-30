@@ -1,7 +1,7 @@
 #  The contact options.
 
-- type: github
-  icon: "fab fa-github"
+- type: calendly
+  icon: "fa fa-calendar"
 
 - type: instagram
   icon: "fa-brands fa-instagram"
