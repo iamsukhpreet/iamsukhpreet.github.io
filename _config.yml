@@ -223,4 +223,3 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
-favicon: /assets/img/favicons/favicon.webp
