@@ -3,10 +3,10 @@ title: "The Power of Listening: Responding with Calmness over Reacting in Anger"
 date: 2024-10-29 08:00:00 +0000
 categories: [Mental Health, Self-Improvement]
 tags: [calmness, listening, emotional intelligence]
-image: assets/img/calm-beach.jpg 
+image: assets/img/calm.jpg 
 ---
 
-![Calm Beach](image: /assets/img/calm-beach.jpg)
+![Calm Beach](image: assets/img/calm.jpg)
 
 In today’s fast-paced world, emotions can often run high. We’re constantly confronted with situations that can trigger anger or frustration. However, learning to listen and respond thoughtfully rather than react impulsively can greatly enhance our well-being and relationships.
 
