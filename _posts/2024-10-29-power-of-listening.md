@@ -3,7 +3,7 @@ title: "The Power of Listening: Responding with Calmness over Reacting in Anger"
 date: 2024-10-29 08:00:00 +0000
 categories: [Mental Health, Self-Improvement]
 tags: [calmness, listening, emotional intelligence]
-image: /assets/img/calm-beach.jpg 
+image: assets/img/calm-beach.jpg 
 ---
 
 ![Calm Beach](image: /assets/img/calm-beach.jpg)
