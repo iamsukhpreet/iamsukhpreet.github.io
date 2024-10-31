@@ -6,7 +6,7 @@ tags: [calmness, listening, emotional intelligence]
 image: /assets/img/calm.jpg # image
 ---
 
-![Calm Beach](image: /assets/img/calm.jpg)
+![Calm Beach](/assets/img/calm.jpg)
 
 In today’s fast-paced world, emotions can often run high. We’re constantly confronted with situations that can trigger anger or frustration. However, learning to listen and respond thoughtfully rather than react impulsively can greatly enhance our well-being and relationships.
 
