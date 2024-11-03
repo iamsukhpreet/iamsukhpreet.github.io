@@ -25,8 +25,8 @@ description: >- # used by seo meta and the atom feed
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://iamsukhpreet.github.io"
 
-calendly:
-  username: sukhpreetk/60min # change to your GitHub username
+topmate:
+  username: iamsukhpreet # change to your GitHub username
 
 instagram:
   username: sukhpreetkaur25.sk # change to your instagram username
@@ -39,7 +39,7 @@ social:
   links:
     # The first element serves as the copyright owner's link
     - https://www.instagram.com/sukhpreetkaur25.sk/ # change to your Instagram homepage
-    - https://calendly.com/sukhpreetk/60min # change to your Calendly homepage
+    - https://topmate.io/iamsukhpreet/ # change to your topmate homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username

@@ -53,9 +53,13 @@
 
     {% for entry in site.data.contact %}
       {% case entry.type %}
-        {% when 'calendly', 'instagram' %}
+        {% when 'instagram' %}
           {%- capture url -%}
             https://{{ entry.type }}.com/{{ site[entry.type].username }}
+          {%- endcapture -%}
+        {% when 'topmate' %}
+          {%- capture url -%}
+            https://{{ entry.type }}.io/{{ site[entry.type].username }}
           {%- endcapture -%}
         {% when 'email' %}
           {% assign email = site.social.email | split: '@' %}
