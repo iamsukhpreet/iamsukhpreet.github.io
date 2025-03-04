@@ -27,3 +27,6 @@ Sukhpreet has participated in several professional workshops, including a certif
 Sukhpreet is fluent in both Hindi and English, enabling her to connect with a diverse range of clients effectively.
 
 
+### Connect with Me
+[![Google Reviews](https://img.shields.io/badge/Review%20me%20on-Google-blue?style=flat&logo=google)](https://g.page/r/CRNdm_g99obWEBM/review)
+[![Schedule a Call](https://img.shields.io/badge/Schedule%20a%20Call%20on-Calendly-blue?style=flat&logo=calendly)](https://calendly.com/sukhpreetk/60min)
