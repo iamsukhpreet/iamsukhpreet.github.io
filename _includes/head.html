@@ -6,8 +6,45 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta
     name="viewport"
-    content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+    content="width=device-width, user-scalable=yes, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
   >
+  
+  <!-- Accessibility Meta Tags -->
+  <meta name="description" content="Professional psychological counseling services by Sukhpreet Kaur. Specializing in individual therapy, color therapy, and mental health support.">
+  <meta name="keywords" content="psychological counselor, mental health, therapy, anxiety, depression, color therapy, counseling services">
+  <meta name="author" content="Sukhpreet Kaur">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Accessibility: Skip to main content link -->
+  <style>
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: #000;
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      z-index: 1000;
+    }
+    .skip-link:focus {
+      top: 6px;
+    }
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      body { filter: contrast(1.2); }
+    }
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+
+  </style>
 
   {%- capture seo_tags -%}
     {% seo title=false %}
@@ -98,9 +135,7 @@
   {% endif %}
   <!-- JavaScript -->
 
-  {% unless site.theme_mode %}
-    {% include mode-toggle.html %}
-  {% endunless %}
+
 
   {% include metadata-hook.html %}
 </head>

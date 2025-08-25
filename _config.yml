@@ -89,7 +89,7 @@ pageviews:
 #     light — Use the light color scheme
 #     dark — Use the dark color scheme
 #
-theme_mode: light # [light | dark]
+theme_mode: # [light | dark] - Leave empty to enable system preference and manual toggle
 comments: false
 
 # The CDN endpoint for media resources.

@@ -10,9 +10,20 @@
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
 
+- type: phone
+  icon: "fas fa-phone"
+  url: "tel:+917568592988"
+  noblank: true
+
+- type: whatsapp
+  icon: "fa-brands fa-whatsapp"
+  url: "https://wa.me/917568592988"
+  noblank: true
+
 - type: rss
   icon: "fas fa-rss"
   noblank: true
+
 # Uncomment and complete the url below to enable more contact options
 #
 # - type: mastodon
