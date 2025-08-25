@@ -1,0 +1,24 @@
+# English locale for Chirpy theme
+# This file is required for the theme to work properly
+
+tabs:
+  home: Home
+  about: About
+  accessibility: Accessibility
+  privacy: Privacy
+  archives: Archives
+  categories: Categories
+  tags: Tags
+
+post:
+  posted: Posted on
+  updated: Updated on
+  written_by: Written by
+  pageview_measure: pageviews
+
+panel:
+  toc: Table of Contents
+
+copyright:
+  brief: All rights reserved.
+  verbose: This work is published under the MIT License.
