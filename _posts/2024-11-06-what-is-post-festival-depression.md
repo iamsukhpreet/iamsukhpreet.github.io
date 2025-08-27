@@ -1,13 +1,17 @@
 ---
-title: "What is Post-Festival Depression?"
+title: "Post-Festival Depression: Understanding Holiday Blues and How to Overcome Them After Celebrations"
 date: 2024-11-06
 layout: post
 categories: [Wellness, Mental Health]
-tags: [post festival depression, mental health, holiday blues, Diwali]
-image: /assets/img/post-diwali.png
+tags: [post festival depression, mental health, holiday blues, Diwali, emotional well-being, seasonal depression, mental health support, psychological counseling, emotional recovery, festival blues]
+description: "Learn about post-festival depression, holiday blues, and how to cope with emotional lows after celebrations like Diwali. Expert psychological insights and practical strategies for mental health recovery."
+keywords: "post festival depression, holiday blues, Diwali depression, emotional recovery, mental health, seasonal depression, psychological counseling, emotional well-being, festival blues treatment"
+author: Sukhpreet Kaur
+lastmod: 2024-11-06
+image: /assets/img/post-diwali.jpg
 ---
 
-![Post-Diwali Blues](/assets/img/post-diwali-1.png)
+{% include optimized-image.html src="/assets/img/post-diwali-1.jpg" alt="Post-Festival Depression - Understanding holiday blues and emotional recovery" caption="Post-Diwali Blues" %}
 
 ## What is Post-Festival Depression (PFD)?
 

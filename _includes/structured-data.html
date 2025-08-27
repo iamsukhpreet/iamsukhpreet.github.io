@@ -1,0 +1,152 @@
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sukhpreet Kaur",
+  "jobTitle": "Psychological Counselor",
+  "description": "Certified psychological counselor specializing in individual therapy, color therapy, and mental health support",
+  "url": "{{ site.url }}",
+  "image": "{{ site.url }}/assets/img/avatar.jpg",
+  "sameAs": [
+    "https://www.instagram.com/sukhpreetkaur25.sk/",
+    "https://topmate.io/iamsukhpreet/"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN",
+    "addressRegion": "India"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-7568592988",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  },
+  "knowsAbout": [
+    "Psychological Counseling",
+    "Mental Health",
+    "Anxiety Therapy",
+    "Depression Counseling",
+    "Stress Management",
+    "Color Therapy",
+    "Emotional Well-being",
+    "Individual Therapy"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Sukhpreet Kaur Counseling Services"
+  }
+}
+</script>
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Sukhpreet Kaur - Psychological Counseling Services",
+  "url": "{{ site.url }}",
+  "logo": "{{ site.url }}/assets/img/avatar.jpg",
+  "description": "Professional psychological counseling services specializing in mental health, anxiety therapy, depression counseling, and stress management",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-7568592988",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://www.instagram.com/sukhpreetkaur25.sk/",
+    "https://topmate.io/iamsukhpreet/"
+  ]
+}
+</script>
+
+<!-- Website Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}",
+  "description": "{{ site.description }}",
+  "publisher": {
+    "@type": "Person",
+    "name": "Sukhpreet Kaur"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site.url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{% if page.layout == 'post' %}
+<!-- Article Schema for Blog Posts -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ page.title }}",
+  "description": "{{ page.description | default: site.description }}",
+  "image": "{{ page.image | absolute_url }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ page.author | default: site.social.name }}",
+    "url": "{{ site.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}/assets/img/avatar.jpg"
+    }
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.lastmod | default: page.date | date_to_xmlschema }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  },
+  "keywords": "{{ page.keywords | default: site.keywords }}",
+  "articleSection": "{{ page.categories | first }}",
+  "inLanguage": "en-US"
+}
+</script>
+{% endif %}
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.url }}"
+    }
+    {% if page.layout == 'post' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "{{ site.url }}/archives/"
+    }
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.title }}",
+      "item": "{{ page.url | absolute_url }}"
+    }
+    {% endif %}
+  ]
+}
+</script>

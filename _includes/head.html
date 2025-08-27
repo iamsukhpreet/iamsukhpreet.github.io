@@ -9,11 +9,76 @@
     content="width=device-width, user-scalable=yes, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
   >
   
-  <!-- Accessibility Meta Tags -->
-  <meta name="description" content="Professional psychological counseling services by Sukhpreet Kaur. Specializing in individual therapy, color therapy, and mental health support.">
-  <meta name="keywords" content="psychological counselor, mental health, therapy, anxiety, depression, color therapy, counseling services">
-  <meta name="author" content="Sukhpreet Kaur">
-  <meta name="robots" content="index, follow">
+  <!-- Additional SEO Meta Tags (complementing theme's built-in SEO) -->
+  <meta name="geo.region" content="IN">
+  <meta name="geo.placename" content="India">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="distribution" content="global">
+  <meta name="rating" content="general">
+  <meta name="coverage" content="worldwide">
+  <meta name="target" content="all">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="format-detection" content="telephone=no">
+  
+  <!-- Structured Data for SEO (complementing theme's SEO) -->
+  {% include structured-data.html %}
+  
+  <!-- Google Analytics -->
+  {% include google-analytics.html %}
+  
+  <!-- Image optimization and lazy loading -->
+  <script>
+    // Lazy loading for images and picture elements
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('img[data-src]');
+      const pictureSources = document.querySelectorAll('source[data-srcset]');
+      
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            
+            if (element.tagName === 'IMG') {
+              element.src = element.dataset.src;
+              element.classList.remove('lazy');
+            } else if (element.tagName === 'SOURCE') {
+              element.srcset = element.dataset.srcset;
+              element.classList.remove('lazy');
+            }
+            
+            imageObserver.unobserve(element);
+          }
+        });
+      });
+      
+      images.forEach(img => imageObserver.observe(img));
+      pictureSources.forEach(source => imageObserver.observe(source));
+    });
+  </script>
+  
+  <!-- Preload critical images -->
+  <link rel="preload" as="image" href="{{ site.avatar | absolute_url }}">
+  
+  <!-- Image optimization CSS -->
+  <style>
+    .lazy {
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .lazy.loaded {
+      opacity: 1;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    .optimized-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  </style>
   
   <!-- Accessibility: Skip to main content link -->
   <style>

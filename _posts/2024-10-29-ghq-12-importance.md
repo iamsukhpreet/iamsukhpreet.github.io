@@ -1,12 +1,16 @@
 ---
-title: "Understanding the GHQ-12: A Key Tool for Mental Health Screening"
+title: "GHQ-12 Mental Health Screening: Complete Guide to Psychological Assessment and Well-being Evaluation"
 date: 2024-10-29 08:00:00 +0000
 categories: [Mental Health, Self-Improvement]
-tags: [GHQ-12, mental health, screening, well-being]
-image: /assets/img/survey.jpg  # Replace with your image path for preview and top of post
+tags: [GHQ-12, mental health, screening, well-being, psychological assessment, mental health evaluation, anxiety screening, depression test, psychological counseling, mental health support]
+description: "Complete guide to GHQ-12 mental health screening tool. Learn how to assess your psychological well-being, understand mental health evaluation, and when to seek professional counseling support."
+keywords: "GHQ-12, mental health screening, psychological assessment, anxiety test, depression screening, mental health evaluation, psychological counseling, well-being assessment, mental health support"
+author: Sukhpreet Kaur
+lastmod: 2024-10-29
+image: /assets/img/survey.jpg
 ---
 
-![GHQ-12 Mental Health Screening](/assets/img/survey.jpg) <!-- Replace with the correct image path -->
+{% include optimized-image.html src="/assets/img/survey.jpg" alt="GHQ-12 Mental Health Screening - Psychological assessment and well-being evaluation" caption="GHQ-12 Mental Health Screening" %} <!-- Replace with the correct image path -->
 
 ## What is the GHQ-12?
 

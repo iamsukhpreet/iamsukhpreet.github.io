@@ -1,11 +1,15 @@
 ---
-title: "Breaking Down Phobias: Why We Fear and How to Overcome It?"
+title: "Breaking Down Phobias: Understanding Fear, Anxiety Disorders, and Effective Treatment Methods"
 date: 2024-11-09
-image: /assets/img/phobia.png
+image: /assets/img/phobia.jpg
 categories: ["Mental Health", "Psychology"]
-tags: ["mental health", "phobia", "anxiety", "fear", "psychology", "therapy"]
+tags: ["mental health", "phobia", "anxiety", "fear", "psychology", "therapy", "social anxiety", "agoraphobia", "specific phobias", "anxiety treatment", "psychological counseling", "mental health support"]
+description: "Comprehensive guide to understanding phobias, anxiety disorders, and fear responses. Learn about different types of phobias, symptoms, causes, and effective treatment methods for overcoming irrational fears and anxiety."
+keywords: "phobias, anxiety disorders, fear treatment, social anxiety, agoraphobia, specific phobias, anxiety symptoms, psychological therapy, mental health counseling, fear management"
+author: Sukhpreet Kaur
+lastmod: 2024-11-09
 ---
-![Understanding Phobia](/assets/img/phobia.png)
+{% include optimized-image.html src="/assets/img/phobia.jpg" alt="Understanding Phobias - Types of anxiety disorders and fear responses" caption="Understanding Phobia" %}
 
 ## Phobia
 

@@ -1,0 +1,40 @@
+<!-- Google Analytics -->
+{% if site.analytics.google %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google.id }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.analytics.google.id }}', {
+    'page_title': '{{ page.title | default: site.title }}',
+    'page_location': '{{ page.url | absolute_url }}',
+    'custom_map': {
+      'dimension1': 'author',
+      'dimension2': 'category',
+      'dimension3': 'tags'
+    }
+  });
+  
+  {% if page.author %}
+  gtag('set', 'author', '{{ page.author }}');
+  {% endif %}
+  
+  {% if page.categories %}
+  gtag('set', 'category', '{{ page.categories | first }}');
+  {% endif %}
+  
+  {% if page.tags %}
+  gtag('set', 'tags', '{{ page.tags | join: ", " }}');
+  {% endif %}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','{{ site.analytics.google.id }}');</script>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.analytics.google.id }}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager -->
+{% endif %}
