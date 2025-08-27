@@ -11,7 +11,7 @@ lastmod: 2024-11-06
 image: /assets/img/post-diwali.jpg
 ---
 
-{% include optimized-image.html src="/assets/img/post-diwali-1.jpg" alt="Post-Festival Depression - Understanding holiday blues and emotional recovery" caption="Post-Diwali Blues" %}
+![Post-Festival Depression - Understanding holiday blues and emotional recovery](/assets/img/post-diwali-1.jpg)
 
 ## What is Post-Festival Depression (PFD)?
 

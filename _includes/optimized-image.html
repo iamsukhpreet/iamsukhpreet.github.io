@@ -5,21 +5,18 @@
 
 <picture>
   <source 
-    data-srcset="{{ include.src | replace: '.jpg', '.webp' | replace: '.png', '.webp' | absolute_url }}"
+    srcset="{{ include.src | replace: '.jpg', '.webp' | replace: '.png', '.webp' | absolute_url }}"
     type="image/webp"
-    class="lazy"
   >
   <img 
-    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-    data-src="{{ include.src | absolute_url }}"
+    src="{{ include.src | absolute_url }}"
     alt="{{ include.alt | default: 'Image' }}"
-    class="lazy optimized-image"
+    class="optimized-image"
     loading="lazy"
     width="{{ include.width | default: 'auto' }}"
     height="{{ include.height | default: 'auto' }}"
     {% if include.caption %}
     title="{{ include.caption }}"
     {% endif %}
-    onload="this.classList.add('loaded')"
   >
 </picture>

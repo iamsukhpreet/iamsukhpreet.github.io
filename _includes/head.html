@@ -27,33 +27,30 @@
   <!-- Google Analytics -->
   {% include google-analytics.html %}
   
-  <!-- Image optimization and lazy loading -->
+  <!-- Image optimization and performance enhancements -->
   <script>
-    // Lazy loading for images and picture elements
+    // Performance optimizations for images
     document.addEventListener('DOMContentLoaded', function() {
-      const images = document.querySelectorAll('img[data-src]');
-      const pictureSources = document.querySelectorAll('source[data-srcset]');
+      // Add loading animation for images
+      const images = document.querySelectorAll('img.optimized-image');
       
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const element = entry.target;
-            
-            if (element.tagName === 'IMG') {
-              element.src = element.dataset.src;
-              element.classList.remove('lazy');
-            } else if (element.tagName === 'SOURCE') {
-              element.srcset = element.dataset.srcset;
-              element.classList.remove('lazy');
-            }
-            
-            imageObserver.unobserve(element);
-          }
+      images.forEach(img => {
+        img.addEventListener('load', function() {
+          this.style.opacity = '1';
         });
+        
+        // Set initial opacity for smooth loading
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.3s ease-in-out';
       });
       
-      images.forEach(img => imageObserver.observe(img));
-      pictureSources.forEach(source => imageObserver.observe(source));
+      // Preload critical images
+      const criticalImages = document.querySelectorAll('img[loading="eager"]');
+      criticalImages.forEach(img => {
+        if (img.complete) {
+          img.style.opacity = '1';
+        }
+      });
     });
   </script>
   
@@ -62,13 +59,6 @@
   
   <!-- Image optimization CSS -->
   <style>
-    .lazy {
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .lazy.loaded {
-      opacity: 1;
-    }
     img {
       max-width: 100%;
       height: auto;
@@ -77,6 +67,11 @@
       width: 100%;
       height: auto;
       object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .optimized-image[src] {
+      opacity: 1;
     }
   </style>
   

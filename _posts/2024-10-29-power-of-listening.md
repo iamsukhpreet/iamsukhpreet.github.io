@@ -10,7 +10,7 @@ lastmod: 2024-10-29
 image: /assets/img/calm.jpg
 ---
 
-{% include optimized-image.html src="/assets/img/calm.jpg" alt="Calm Beach - The power of listening and emotional intelligence" caption="Calm Beach" %}
+![Calm Beach - The power of listening and emotional intelligence](/assets/img/calm.jpg)
 
 In today’s fast-paced world, emotions can often run high. We’re constantly confronted with situations that can trigger anger or frustration. However, learning to listen and respond thoughtfully rather than react impulsively can greatly enhance our well-being and relationships.
 

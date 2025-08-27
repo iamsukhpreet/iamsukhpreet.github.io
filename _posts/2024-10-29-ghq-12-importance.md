@@ -10,7 +10,7 @@ lastmod: 2024-10-29
 image: /assets/img/survey.jpg
 ---
 
-{% include optimized-image.html src="/assets/img/survey.jpg" alt="GHQ-12 Mental Health Screening - Psychological assessment and well-being evaluation" caption="GHQ-12 Mental Health Screening" %} <!-- Replace with the correct image path -->
+![GHQ-12 Mental Health Screening - Psychological assessment and well-being evaluation](/assets/img/survey.jpg) <!-- Replace with the correct image path -->
 
 ## What is the GHQ-12?
 

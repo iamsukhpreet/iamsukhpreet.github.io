@@ -9,7 +9,7 @@ keywords: "phobias, anxiety disorders, fear treatment, social anxiety, agoraphob
 author: Sukhpreet Kaur
 lastmod: 2024-11-09
 ---
-{% include optimized-image.html src="/assets/img/phobia.jpg" alt="Understanding Phobias - Types of anxiety disorders and fear responses" caption="Understanding Phobia" %}
+![Understanding Phobias - Types of anxiety disorders and fear responses](/assets/img/phobia.jpg)
 
 ## Phobia
 
