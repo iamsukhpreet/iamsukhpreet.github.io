@@ -1,1 +1,745 @@
-<!-- Empty comments file to fix Liquid error -->
+{% comment %}
+  Local Comment System for Jekyll
+  Stores comments in browser localStorage and syncs with a JSON file
+{% endcomment %}
+
+{% if page.layout == 'post' %}
+<div id="comments-section" class="mt-5">
+  <h3 id="comments" class="mb-4">
+    <span class="me-2">Comments</span>
+    <span class="comment-count text-muted">(0)</span>
+  </h3>
+
+           <!-- Comment Form -->
+         <div class="comment-form mb-4">
+           <form id="comment-form" class="needs-validation" novalidate>
+             <div class="row">
+               <div class="col-md-6 mb-3">
+                 <label for="comment-name" class="form-label">Name *</label>
+                 <input type="text" class="form-control" id="comment-name" required>
+                 <div class="invalid-feedback">
+                   Please provide your name.
+                 </div>
+               </div>
+               <div class="col-md-6 mb-3">
+                 <label for="comment-email" class="form-label">Email *</label>
+                 <input type="email" class="form-control" id="comment-email" required>
+                 <div class="invalid-feedback">
+                   Please provide a valid email address.
+                 </div>
+               </div>
+             </div>
+             <div class="mb-3">
+               <label for="comment-content" class="form-label">Comment *</label>
+               <textarea class="form-control" id="comment-content" rows="4" required></textarea>
+               <div class="invalid-feedback">
+                 Please provide your comment.
+               </div>
+             </div>
+             <div class="d-flex gap-2">
+               <button type="submit" class="btn btn-primary">
+                 <i class="fas fa-paper-plane me-2"></i>Post Comment
+               </button>
+               <button type="button" class="btn btn-outline-secondary" id="set-email-btn" style="display: none;">
+                 <i class="fas fa-envelope me-2"></i>Set Email for Likes
+               </button>
+             </div>
+           </form>
+         </div>
+
+  <!-- Comments List -->
+  <div id="comments-list" class="comments-list">
+    <!-- Comments will be loaded here -->
+  </div>
+
+           <!-- Comment Template (hidden) -->
+         <template id="comment-template">
+           <div class="comment-item border-start border-3 border-primary ps-3 mb-3">
+             <div class="comment-header d-flex justify-content-between align-items-start mb-2">
+               <div>
+                 <strong class="comment-author"></strong>
+                 <small class="text-muted ms-2 comment-date"></small>
+               </div>
+               <div class="d-flex align-items-center">
+                 <button class="btn btn-sm btn-outline-primary like-button me-2" data-comment-id="">
+                   <i class="fas fa-heart like-icon"></i>
+                   <span class="like-count">0</span>
+                 </button>
+                 <button class="btn btn-sm btn-outline-danger delete-comment" style="display: none;">
+                   <i class="fas fa-trash"></i>
+                 </button>
+               </div>
+             </div>
+             <div class="comment-content"></div>
+           </div>
+         </template>
+
+         <!-- Email Modal for Likes -->
+         <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-dialog-centered">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title" id="emailModalLabel">
+                   <i class="fas fa-heart text-danger me-2"></i>Like Comments
+                 </h5>
+                 <button type="button" class="btn-close" onclick="closeEmailModal()" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                 <p class="text-muted mb-3">Enter your email to like comments. This helps us track your likes across sessions.</p>
+                 <div class="mb-3">
+                   <label for="like-email" class="form-label">Email Address</label>
+                   <input type="email" class="form-control" id="like-email" placeholder="your@email.com" required>
+                   <div class="form-text">We'll remember this email for future likes.</div>
+                 </div>
+               </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" onclick="closeEmailModal()">Cancel</button>
+                 <button type="button" class="btn btn-primary" id="save-email-btn">
+                   <i class="fas fa-save me-2"></i>Save Email
+                 </button>
+               </div>
+             </div>
+           </div>
+         </div>
+</div>
+
+<!-- Comment System JavaScript -->
+<script>
+class CommentSystem {
+  constructor() {
+    this.postId = '{{ page.url }}';
+    this.comments = [];
+    this.storageKey = `comments_${this.postId}`;
+    this.init();
+  }
+
+  init() {
+    this.loadComments();
+    this.setupEventListeners();
+    this.renderComments();
+    this.updateEmailButton();
+  }
+
+  setupEventListeners() {
+    const form = document.getElementById('comment-form');
+    if (form) {
+      form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+
+    // Auto-save form data
+    const inputs = ['comment-name', 'comment-email'];
+    inputs.forEach(id => {
+      const input = document.getElementById(id);
+      if (input) {
+        input.addEventListener('input', () => this.saveFormData());
+        this.loadFormData(); // Load saved data
+      }
+    });
+
+    // Email modal event listeners
+    const saveEmailBtn = document.getElementById('save-email-btn');
+    if (saveEmailBtn) {
+      saveEmailBtn.addEventListener('click', () => this.saveEmailForLikes());
+    }
+
+    // Handle Enter key in email modal
+    const likeEmailInput = document.getElementById('like-email');
+    if (likeEmailInput) {
+      likeEmailInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          this.saveEmailForLikes();
+        }
+      });
+    }
+
+    // Set email button
+    const setEmailBtn = document.getElementById('set-email-btn');
+    if (setEmailBtn) {
+      setEmailBtn.addEventListener('click', () => this.showEmailModal());
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    
+    if (!this.validateForm()) {
+      return;
+    }
+
+    const comment = {
+      id: this.generateId(),
+      author: document.getElementById('comment-name').value.trim(),
+      email: document.getElementById('comment-email').value.trim(),
+      content: document.getElementById('comment-content').value.trim(),
+      date: new Date().toISOString(),
+      postId: this.postId
+    };
+
+    this.addComment(comment);
+    this.saveFormData(); // Save form data for future use
+    e.target.reset();
+  }
+
+  validateForm() {
+    const form = document.getElementById('comment-form');
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
+      return false;
+    }
+    return true;
+  }
+
+  generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  }
+
+  addComment(comment) {
+    // Add likes array to new comments
+    comment.likes = [];
+    comment.likesCount = 0;
+    
+    this.comments.unshift(comment);
+    this.saveComments();
+    this.renderComments();
+    this.showNotification('Comment posted successfully!', 'success');
+  }
+
+  deleteComment(commentId) {
+    if (confirm('Are you sure you want to delete this comment?')) {
+      this.comments = this.comments.filter(c => c.id !== commentId);
+      this.saveComments();
+      this.renderComments();
+      this.showNotification('Comment deleted successfully!', 'success');
+    }
+  }
+
+  toggleLike(commentId) {
+    const comment = this.comments.find(c => c.id === commentId);
+    if (!comment) return;
+
+    // Initialize likes array if it doesn't exist (for old comments)
+    if (!comment.likes) {
+      comment.likes = [];
+      comment.likesCount = 0;
+    }
+
+    const currentEmail = localStorage.getItem('comment-email');
+    
+    if (!currentEmail) {
+      // Show email modal
+      this.showEmailModal(commentId);
+      return;
+    }
+
+    this.processLike(commentId, currentEmail);
+  }
+
+  showEmailModal(commentId) {
+    // Store the comment ID for later use
+    this.pendingLikeCommentId = commentId;
+    
+    // Show the modal
+    const modalElement = document.getElementById('emailModal');
+    if (modalElement) {
+      // Try Bootstrap modal first
+      if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+      } else {
+        // Fallback: show modal manually
+        modalElement.style.display = 'block';
+        modalElement.classList.add('show');
+        document.body.classList.add('modal-open');
+        
+        // Add backdrop
+        const backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop fade show';
+        backdrop.id = 'emailModalBackdrop';
+        document.body.appendChild(backdrop);
+      }
+      
+      // Focus on email input
+      setTimeout(() => {
+        const emailInput = document.getElementById('like-email');
+        if (emailInput) emailInput.focus();
+      }, 500);
+    }
+  }
+
+  processLike(commentId, email) {
+    const comment = this.comments.find(c => c.id === commentId);
+    if (!comment) return;
+
+    const likeIndex = comment.likes.indexOf(email);
+    
+    if (likeIndex > -1) {
+      // Unlike
+      comment.likes.splice(likeIndex, 1);
+      comment.likesCount = comment.likes.length;
+      this.showNotification('Comment unliked!', 'info');
+    } else {
+      // Like
+      comment.likes.push(email);
+      comment.likesCount = comment.likes.length;
+      this.showNotification('Comment liked!', 'success');
+    }
+
+    this.saveComments();
+    this.renderComments();
+  }
+
+  saveEmailForLikes() {
+    const emailInput = document.getElementById('like-email');
+    const email = emailInput.value.trim();
+    
+    if (!email) {
+      this.showNotification('Please enter a valid email address', 'warning');
+      return;
+    }
+    
+    if (!this.isValidEmail(email)) {
+      this.showNotification('Please enter a valid email address', 'warning');
+      return;
+    }
+
+    // Save email to localStorage
+    localStorage.setItem('comment-email', email);
+    
+    // Close modal
+    const modalElement = document.getElementById('emailModal');
+    if (modalElement) {
+      if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        if (modal) {
+          modal.hide();
+        }
+      } else {
+        // Fallback: hide modal manually
+        modalElement.style.display = 'none';
+        modalElement.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        
+        // Remove backdrop
+        const backdrop = document.getElementById('emailModalBackdrop');
+        if (backdrop) {
+          backdrop.remove();
+        }
+      }
+    }
+    
+    // Clear input
+    emailInput.value = '';
+    
+    // Process the pending like
+    if (this.pendingLikeCommentId) {
+      this.processLike(this.pendingLikeCommentId, email);
+      this.pendingLikeCommentId = null;
+    }
+    
+    this.showNotification('Email saved! You can now like comments.', 'success');
+    
+    // Update the email button visibility
+    this.updateEmailButton();
+  }
+
+  isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  updateEmailButton() {
+    const setEmailBtn = document.getElementById('set-email-btn');
+    const currentEmail = localStorage.getItem('comment-email');
+    
+    if (setEmailBtn) {
+      if (currentEmail) {
+        setEmailBtn.style.display = 'none';
+      } else {
+        setEmailBtn.style.display = 'inline-block';
+      }
+    }
+  }
+
+  loadComments() {
+    try {
+      const stored = localStorage.getItem(this.storageKey);
+      this.comments = stored ? JSON.parse(stored) : [];
+    } catch (error) {
+      console.error('Error loading comments:', error);
+      this.comments = [];
+    }
+  }
+
+  saveComments() {
+    try {
+      localStorage.setItem(this.storageKey, JSON.stringify(this.comments));
+      this.updateCommentCount();
+    } catch (error) {
+      console.error('Error saving comments:', error);
+    }
+  }
+
+  renderComments() {
+    const container = document.getElementById('comments-list');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    if (this.comments.length === 0) {
+      container.innerHTML = '<p class="text-muted">No comments yet. Be the first to comment!</p>';
+      return;
+    }
+
+    const template = document.getElementById('comment-template');
+    if (!template) return;
+
+    this.comments.forEach(comment => {
+      const clone = template.content.cloneNode(true);
+      
+      clone.querySelector('.comment-author').textContent = comment.author;
+      clone.querySelector('.comment-date').textContent = this.formatDate(comment.date);
+      clone.querySelector('.comment-content').textContent = comment.content;
+      
+      // Handle likes
+      const likeBtn = clone.querySelector('.like-button');
+      const likeIcon = clone.querySelector('.like-icon');
+      const likeCount = clone.querySelector('.like-count');
+      
+      // Set comment ID for like button
+      likeBtn.setAttribute('data-comment-id', comment.id);
+      
+      // Initialize likes if not present (for old comments)
+      if (!comment.likes) {
+        comment.likes = [];
+        comment.likesCount = 0;
+      }
+      
+      // Update like count
+      likeCount.textContent = comment.likesCount || 0;
+      
+      // Check if current user has liked this comment
+      const currentEmail = localStorage.getItem('comment-email');
+      if (currentEmail && comment.likes && comment.likes.includes(currentEmail)) {
+        likeBtn.classList.remove('btn-outline-primary');
+        likeBtn.classList.add('btn-primary');
+        likeIcon.classList.add('text-white');
+      } else {
+        likeBtn.classList.remove('btn-primary');
+        likeBtn.classList.add('btn-outline-primary');
+        likeIcon.classList.remove('text-white');
+      }
+      
+      // Add like button event listener
+      likeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.toggleLike(comment.id);
+      });
+      
+      // Show delete button for comments by the same email (simple ownership check)
+      const deleteBtn = clone.querySelector('.delete-comment');
+      if (currentEmail && comment.email === currentEmail) {
+        deleteBtn.style.display = 'block';
+        deleteBtn.addEventListener('click', () => this.deleteComment(comment.id));
+      }
+
+      container.appendChild(clone);
+    });
+  }
+
+  formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  }
+
+  updateCommentCount() {
+    const countElement = document.querySelector('.comment-count');
+    if (countElement) {
+      countElement.textContent = `(${this.comments.length})`;
+    }
+  }
+
+  saveFormData() {
+    const formData = {
+      name: document.getElementById('comment-name')?.value || '',
+      email: document.getElementById('comment-email')?.value || ''
+    };
+    localStorage.setItem('comment-form-data', JSON.stringify(formData));
+  }
+
+  loadFormData() {
+    try {
+      const formData = JSON.parse(localStorage.getItem('comment-form-data') || '{}');
+      if (formData.name) {
+        document.getElementById('comment-name').value = formData.name;
+      }
+      if (formData.email) {
+        document.getElementById('comment-email').value = formData.email;
+      }
+    } catch (error) {
+      console.error('Error loading form data:', error);
+    }
+  }
+
+  showNotification(message, type = 'info') {
+    // Create a simple notification
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type === 'success' ? 'success' : 'info'} alert-dismissible fade show position-fixed`;
+    notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    notification.innerHTML = `
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 3 seconds
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.remove();
+      }
+    }, 3000);
+  }
+
+  // Export comments for backup
+  exportComments() {
+    const dataStr = JSON.stringify(this.comments, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `comments_${this.postId.replace(/[^a-zA-Z0-9]/g, '_')}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // Import comments from backup
+  importComments(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const importedComments = JSON.parse(e.target.result);
+        this.comments = importedComments;
+        this.saveComments();
+        this.renderComments();
+        this.showNotification('Comments imported successfully!', 'success');
+      } catch (error) {
+        this.showNotification('Error importing comments. Please check the file format.', 'error');
+      }
+    };
+    reader.readAsText(file);
+  }
+}
+
+       // Initialize comment system when DOM is loaded
+       document.addEventListener('DOMContentLoaded', () => {
+         new CommentSystem();
+       });
+
+       // Global function to close email modal
+       function closeEmailModal() {
+         const modalElement = document.getElementById('emailModal');
+         if (modalElement) {
+           if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+             const modal = bootstrap.Modal.getInstance(modalElement);
+             if (modal) {
+               modal.hide();
+             }
+           } else {
+             // Fallback: hide modal manually
+             modalElement.style.display = 'none';
+             modalElement.classList.remove('show');
+             document.body.classList.remove('modal-open');
+             
+             // Remove backdrop
+             const backdrop = document.getElementById('emailModalBackdrop');
+             if (backdrop) {
+               backdrop.remove();
+             }
+           }
+         }
+       }
+</script>
+
+<!-- Comment System CSS -->
+<style>
+.comments-list {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.comment-item {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.comment-item:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.comment-header {
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+.comment-author {
+  color: #495057;
+  font-weight: 600;
+}
+
+.comment-date {
+  font-size: 0.85em;
+}
+
+.comment-content {
+  margin-top: 10px;
+  line-height: 1.6;
+  color: #212529;
+}
+
+.delete-comment {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.delete-comment:hover {
+  opacity: 1;
+}
+
+#comment-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Like button animations */
+.like-button {
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  z-index: 10;
+  position: relative;
+}
+
+.like-button:hover {
+  transform: scale(1.05);
+}
+
+.like-button:active {
+  transform: scale(0.95);
+}
+
+.like-button.btn-primary {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.like-button.btn-primary:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.like-icon {
+  transition: all 0.3s ease;
+}
+
+.like-button.btn-primary .like-icon {
+  animation: heartBeat 0.3s ease;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.like-count {
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+/* Email Modal Styling */
+#emailModal .modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+#emailModal .modal-header {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border-radius: 12px 12px 0 0;
+}
+
+#emailModal .modal-title {
+  font-weight: 600;
+}
+
+#emailModal .btn-close {
+  filter: invert(1);
+}
+
+#emailModal .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#emailModal .btn-primary {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+}
+
+#emailModal .btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3, #004085);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .comment-item {
+    padding: 10px;
+  }
+  
+  #comment-form {
+    padding: 15px;
+  }
+  
+  .like-button {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+</style>
+{% endif %}

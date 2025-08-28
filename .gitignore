@@ -28,3 +28,7 @@ assets/js/dist
 .DS_Store
 assets/.DS_Store
 assets/img/.DS_Store
+
+# Backup files
+backups/
+tools/cron.log
