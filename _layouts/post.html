@@ -6,7 +6,7 @@ panel_includes:
 tail_includes:
   - related-posts
   - post-nav
-  - comments
+  - disqus
 ---
 {% include lang.html %}
 
@@ -91,6 +91,13 @@ tail_includes:
 
           <!-- read time -->
           {% include read-time.html content=content prompt=true lang=lang %}
+          
+          <!-- comment count -->
+          <span class="ms-3">
+            <i class="fas fa-comments fa-fw"></i>
+            <span class="disqus-comment-count" data-disqus-url="{{ page.url | absolute_url }}">0</span>
+            comments
+          </span>
         </div>
       </div>
     </div>
