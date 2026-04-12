@@ -1,0 +1,71 @@
+section_title: Counseling Games and Activities
+section_intro: >
+  Use this section to offer guided psychological games and therapeutic activities.
+  Add, remove, or edit any activity below based on client needs.
+
+activities:
+  - title: Emotion Color Mapping
+    type: Activity
+    goal: Help clients identify and express emotions visually using colors.
+    duration: 15-20 minutes
+    audience: Teens and Adults
+    materials:
+      - Colored pens or pencils
+      - Blank paper
+    steps:
+      - Ask the client to list 3 to 5 emotions they currently feel.
+      - For each emotion, choose a color that represents it.
+      - Draw simple color blocks or a mood circle.
+      - Discuss why each color was chosen and what it means to the client.
+    therapist_notes: Use this as a warm-up before deeper emotional processing.
+    cta_label: Book a Session
+    cta_url: https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session
+
+  - title: Thought Reframing Challenge
+    type: Game
+    goal: Build cognitive flexibility by reframing negative automatic thoughts.
+    duration: 20-25 minutes
+    audience: Adults
+    materials:
+      - Notebook or worksheet
+    steps:
+      - Write one stressful thought.
+      - Rate belief strength from 1 to 10.
+      - Create one balanced alternative thought.
+      - Rate belief strength again after reframing.
+      - Repeat for 2 to 3 thoughts.
+    therapist_notes: Works well with CBT-focused counseling sessions.
+
+  - title: Grounding Through Five Senses
+    type: Activity
+    goal: Reduce anxiety and bring attention back to the present moment.
+    duration: 5-10 minutes
+    audience: All clients
+    materials:
+      - No materials required
+    steps:
+      - Name 5 things you can see.
+      - Name 4 things you can feel.
+      - Name 3 things you can hear.
+      - Name 2 things you can smell.
+      - Name 1 thing you can taste.
+    therapist_notes: Useful during panic, overwhelm, or high stress moments.
+
+  - title: CBT Thought Record
+    type: Game
+    goal: Identify unhelpful thoughts and replace them with balanced alternatives.
+    duration: 20-30 minutes
+    audience: Teens and Adults
+    materials:
+      - Thought record worksheet or notebook
+      - Pen
+    steps:
+      - Describe a recent stressful situation in one sentence.
+      - Write the automatic thought that came up.
+      - Rate emotion intensity from 1 to 10.
+      - List evidence supporting and not supporting the thought.
+      - Write a more balanced replacement thought.
+      - Re-rate emotion intensity and discuss the change.
+    therapist_notes: One of the most widely used CBT activities in counseling sessions.
+    cta_label: Book a Session
+    cta_url: https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session
