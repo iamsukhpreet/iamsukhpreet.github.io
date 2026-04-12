@@ -53,6 +53,41 @@
       });
     });
   </script>
+
+  <script>
+    // iOS/mobile fallback for sidebar toggling.
+    // Some mobile Safari setups may not trigger the theme's click handler reliably.
+    document.addEventListener('DOMContentLoaded', function() {
+      const isMobile = () => window.matchMedia('(max-width: 849px)').matches;
+      const trigger = document.getElementById('sidebar-trigger');
+      const mask = document.getElementById('mask');
+
+      const openSidebar = () => document.body.setAttribute('sidebar-display', '');
+      const closeSidebar = () => document.body.removeAttribute('sidebar-display');
+
+      const onTrigger = function(event) {
+        if (!isMobile()) return;
+        event.preventDefault();
+        event.stopPropagation();
+        document.body.hasAttribute('sidebar-display') ? closeSidebar() : openSidebar();
+      };
+
+      const onMask = function(event) {
+        if (!isMobile() || !document.body.hasAttribute('sidebar-display')) return;
+        event.preventDefault();
+        event.stopPropagation();
+        closeSidebar();
+      };
+
+      if (trigger) {
+        trigger.addEventListener('touchend', onTrigger, { capture: true, passive: false });
+      }
+
+      if (mask) {
+        mask.addEventListener('touchend', onMask, { capture: true, passive: false });
+      }
+    });
+  </script>
   
   <!-- Preload critical images -->
   <link rel="preload" as="image" href="{{ site.avatar | absolute_url }}">
