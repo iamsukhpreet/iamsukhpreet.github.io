@@ -56,7 +56,7 @@
 
   <script>
     // iOS/mobile fallback for sidebar toggling.
-    // Some mobile Safari setups may not trigger the theme's click handler reliably.
+    // Keep this minimal so it does not interfere with normal taps.
     document.addEventListener('DOMContentLoaded', function() {
       const isMobile = () => window.matchMedia('(max-width: 849px)').matches;
       const trigger = document.getElementById('sidebar-trigger');
@@ -67,24 +67,24 @@
 
       const onTrigger = function(event) {
         if (!isMobile()) return;
-        event.preventDefault();
-        event.stopPropagation();
+        // Let normal click behavior continue; this only ensures touch support.
         document.body.hasAttribute('sidebar-display') ? closeSidebar() : openSidebar();
       };
 
       const onMask = function(event) {
         if (!isMobile() || !document.body.hasAttribute('sidebar-display')) return;
-        event.preventDefault();
-        event.stopPropagation();
         closeSidebar();
       };
 
+      // Reset stale overlay state after back/forward cache restores.
+      closeSidebar();
+
       if (trigger) {
-        trigger.addEventListener('touchend', onTrigger, { capture: true, passive: false });
+        trigger.addEventListener('touchend', onTrigger, { passive: true });
       }
 
       if (mask) {
-        mask.addEventListener('touchend', onMask, { capture: true, passive: false });
+        mask.addEventListener('touchend', onMask, { passive: true });
       }
     });
   </script>
@@ -183,6 +183,14 @@
       margin-bottom: 0.75rem;
     }
 
+    /* Prevent hidden mask from blocking taps on mobile. */
+    #mask {
+      pointer-events: none;
+    }
+    [sidebar-display] #mask {
+      pointer-events: auto;
+    }
+
     #mobile-booking-cta {
       display: none;
     }
@@ -223,14 +231,23 @@
       const storageKey = 'site_lang';
       const supported = ['en', 'hi'];
       const getSaved = () => {
-        const stored = localStorage.getItem(storageKey);
+        let stored = null;
+        try {
+          stored = localStorage.getItem(storageKey);
+        } catch (e) {
+          stored = null;
+        }
         return supported.includes(stored) ? stored : 'en';
       };
 
       const applyLanguage = (lang) => {
         const active = supported.includes(lang) ? lang : 'en';
         document.documentElement.setAttribute('data-site-lang', active);
-        localStorage.setItem(storageKey, active);
+        try {
+          localStorage.setItem(storageKey, active);
+        } catch (e) {
+          // Ignore storage restrictions (e.g. private mode).
+        }
 
         document.querySelectorAll('[data-lang]').forEach((node) => {
           node.hidden = node.getAttribute('data-lang') !== active;
@@ -243,15 +260,28 @@
         });
       };
 
-      document.addEventListener('DOMContentLoaded', function() {
-        applyLanguage(getSaved());
-      });
+      const getButtonFromEvent = (event) => {
+        const target = event.target;
+        if (!target) return null;
+        if (target.nodeType === 1) return target.closest('[data-set-language]');
+        if (target.parentElement) return target.parentElement.closest('[data-set-language]');
+        return null;
+      };
 
-      document.addEventListener('click', function(event) {
-        const btn = event.target.closest('[data-set-language]');
+      const activateFromEvent = (event) => {
+        const btn = getButtonFromEvent(event);
         if (!btn) return;
         event.preventDefault();
         applyLanguage(btn.getAttribute('data-set-language'));
+      };
+
+      document.addEventListener('DOMContentLoaded', function() {
+        applyLanguage(getSaved());
+
+        document.querySelectorAll('[data-set-language]').forEach((btn) => {
+          btn.addEventListener('click', activateFromEvent);
+          btn.addEventListener('touchend', activateFromEvent, { passive: false });
+        });
       });
     })();
   </script>
