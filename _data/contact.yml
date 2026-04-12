@@ -1,7 +1,8 @@
 #  The contact options.
 
-- type: topmate
+- type: booking
   icon: "fa fa-calendar"
+  url: "https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session"
 
 - type: instagram
   icon: "fa-brands fa-instagram"

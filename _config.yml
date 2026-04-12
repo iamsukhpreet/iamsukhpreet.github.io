@@ -40,7 +40,7 @@ social:
   links:
     # The first element serves as the copyright owner's link
     - https://www.instagram.com/sukhpreetkaur25.sk/ # change to your Instagram homepage
-    - https://topmate.io/iamsukhpreet/ # change to your topmate homepage
+    - https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session # booking link
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -93,7 +93,6 @@ pageviews:
 #     dark — Use the dark color scheme
 #
 theme_mode: # [light | dark] - Leave empty to enable system preference and manual toggle
-comments: false
 
 # The CDN endpoint for media resources.
 # Notice that once it is assigned, the CDN url
