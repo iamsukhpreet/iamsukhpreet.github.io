@@ -5,6 +5,8 @@ order: 1
 ---
 ## About Sukhpreet Kaur
 
+{% include language-toggle.html %}
+
 Sukhpreet Kaur is a dedicated and compassionate Psychological Counsellor with a strong background in clinical psychology. She holds a Master’s degree in Psychology from Vardhaman Mahaveer Open University and a Bachelor’s degree in Psychology from the University of Kota. With experience in individual counseling and expressive therapies, she is committed to helping clients overcome personal challenges, manage mental health symptoms, and achieve their goals.
 
 ### Professional Experience
@@ -32,3 +34,5 @@ Sukhpreet is fluent in both Hindi and English, enabling her to connect with a di
 [![Schedule a Call](https://img.shields.io/badge/Schedule%20a%20Call-blue?style=flat&logo=google-calendar)](https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session)
 ## 📞 Need Expert Counselling  ? 
 **Call Now:**  [Call: +91 75685 92988 or 82091 76371](tel:+918209176371)
+
+{% include crisis-support.html %}

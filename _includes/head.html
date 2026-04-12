@@ -141,6 +141,121 @@
 
   </style>
 
+  <style>
+    .lang-toggle {
+      display: inline-flex;
+      gap: 0.35rem;
+      padding: 0.2rem;
+      border: 1px solid #d7dce3;
+      border-radius: 999px;
+      background: #fff;
+      margin-bottom: 1rem;
+    }
+    .lang-toggle-btn {
+      border: 0;
+      background: transparent;
+      color: #334155;
+      border-radius: 999px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.85rem;
+      line-height: 1.2;
+    }
+    .lang-toggle-btn.active {
+      background: #1f2937;
+      color: #fff;
+    }
+
+    .crisis-support {
+      margin-top: 2rem;
+      border: 1px solid #f4b4b4;
+      background: #fff5f5;
+      border-radius: 0.8rem;
+      padding: 1rem;
+      color: #2f1b1b;
+    }
+    .crisis-support h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      color: #9f1239;
+      font-size: 1.1rem;
+    }
+    .crisis-support ul {
+      margin-bottom: 0.75rem;
+    }
+
+    #mobile-booking-cta {
+      display: none;
+    }
+    @media (max-width: 849px) {
+      body {
+        padding-bottom: 4.8rem;
+      }
+      #mobile-booking-cta {
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1200;
+        padding: 0.55rem 0.75rem;
+        background: rgba(255, 255, 255, 0.96);
+        border-top: 1px solid #dbe1ea;
+        backdrop-filter: blur(6px);
+      }
+      #mobile-booking-cta a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: #0f766e;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 0.65rem;
+        font-weight: 700;
+        font-size: 0.96rem;
+        padding: 0.75rem;
+      }
+    }
+  </style>
+
+  <script>
+    // Lightweight bilingual switch (English/Hindi) for marked content blocks.
+    (function() {
+      const storageKey = 'site_lang';
+      const supported = ['en', 'hi'];
+      const getSaved = () => {
+        const stored = localStorage.getItem(storageKey);
+        return supported.includes(stored) ? stored : 'en';
+      };
+
+      const applyLanguage = (lang) => {
+        const active = supported.includes(lang) ? lang : 'en';
+        document.documentElement.setAttribute('data-site-lang', active);
+        localStorage.setItem(storageKey, active);
+
+        document.querySelectorAll('[data-lang]').forEach((node) => {
+          node.hidden = node.getAttribute('data-lang') !== active;
+        });
+
+        document.querySelectorAll('[data-set-language]').forEach((button) => {
+          const isActive = button.getAttribute('data-set-language') === active;
+          button.classList.toggle('active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+      };
+
+      document.addEventListener('DOMContentLoaded', function() {
+        applyLanguage(getSaved());
+      });
+
+      document.addEventListener('click', function(event) {
+        const btn = event.target.closest('[data-set-language]');
+        if (!btn) return;
+        event.preventDefault();
+        applyLanguage(btn.getAttribute('data-set-language'));
+      });
+    })();
+  </script>
+
   {%- capture seo_tags -%}
     {% seo title=false %}
   {%- endcapture -%}
