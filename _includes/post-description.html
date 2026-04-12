@@ -1,0 +1,2 @@
+{% assign _description = post.description | default: post.excerpt %}
+{{ _description | markdownify | strip_html | normalize_whitespace | truncate: 200 }}
