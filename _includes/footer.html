@@ -29,7 +29,11 @@
   </p>
 </footer>
 
-<div id="mobile-booking-cta" aria-label="Mobile booking call to action">
+<div id="mobile-booking-cta" aria-label="Mobile booking call to action" class="d-flex flex-column gap-2">
+  <a href="{{ site.social.links[2] | default: 'https://booking.iamsukhpreet.com/sukhpreet-kaur/discovery-call' }}" class="btn-discovery">
+    <span data-lang="en">Book a Discovery Call</span>
+    <span data-lang="hi">डिस्कवरी कॉल बुक करें</span>
+  </a>
   <a href="{{ site.social.links[1] | default: 'https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session' }}">
     <span data-lang="en">Book a Counseling Session</span>
     <span data-lang="hi">काउंसलिंग सेशन बुक करें</span>

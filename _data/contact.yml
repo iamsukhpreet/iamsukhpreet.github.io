@@ -4,6 +4,10 @@
   icon: "fa fa-calendar"
   url: "https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session"
 
+- type: discovery
+  icon: "fa-solid fa-phone-volume"
+  url: "https://booking.iamsukhpreet.com/sukhpreet-kaur/discovery-call"
+
 - type: instagram
   icon: "fa-brands fa-instagram"
 
