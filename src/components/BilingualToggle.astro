@@ -1,0 +1,67 @@
+---
+---
+
+<div
+  class="lang-toggle mb-8 flex justify-end gap-2"
+  role="group"
+  aria-label="Language switcher"
+>
+  <button
+    type="button"
+    class="lang-toggle-btn rounded border border-border px-3 py-1 text-sm font-medium transition-all hover:border-accent hover:text-accent aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-background"
+    data-set-language="en"
+    aria-pressed="true"
+  >
+    English
+  </button>
+  <button
+    type="button"
+    class="lang-toggle-btn rounded border border-border px-3 py-1 text-sm font-medium transition-all hover:border-accent hover:text-accent aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-background"
+    data-set-language="hi"
+    aria-pressed="false"
+  >
+    हिंदी
+  </button>
+</div>
+
+<script is:inline>
+  function updateLanguageVisibility(lang) {
+    const elements = document.querySelectorAll("[data-lang]");
+    elements.forEach(el => {
+      if (el.getAttribute("data-lang") === lang) {
+        el.classList.remove("hidden");
+      } else {
+        el.classList.add("hidden");
+      }
+    });
+
+    const buttons = document.querySelectorAll("[data-set-language]");
+    buttons.forEach(btn => {
+      const btnLang = btn.getAttribute("data-set-language");
+      const isPressed = btnLang === lang;
+      btn.setAttribute("aria-pressed", isPressed);
+    });
+
+    document.documentElement.setAttribute("data-site-lang", lang);
+    localStorage.setItem("site-lang", lang);
+  }
+
+  function initLanguage() {
+    const savedLang = localStorage.getItem("site-lang") || "en";
+    updateLanguageVisibility(savedLang);
+
+    const buttons = document.querySelectorAll("[data-set-language]");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.getAttribute("data-set-language");
+        updateLanguageVisibility(lang);
+      });
+    });
+  }
+
+  // Initialize on page load
+  initLanguage();
+
+  // Re-initialize after Astro page swaps (View Transitions)
+  document.addEventListener("astro:after-swap", initLanguage);
+</script>

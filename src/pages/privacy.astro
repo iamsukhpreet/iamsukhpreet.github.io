@@ -1,0 +1,102 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/components/Main.astro";
+import BilingualToggle from "@/components/BilingualToggle.astro";
+import CrisisSupport from "@/components/CrisisSupport.astro";
+import { SITE } from "@/config";
+---
+
+<Layout title={`Privacy Policy | ${SITE.title}`}>
+  <Header activeNav="privacy" />
+  <Main pageTitle="Privacy Policy" pageDesc="Privacy Policy & Data Protection for Sukhpreet Kaur's Psychological Counseling Services">
+    <BilingualToggle />
+    
+    <div class="prose dark:prose-invert max-w-none mt-8">
+      <h2>Your Privacy Matters</h2>
+      <p>
+        At Sukhpreet Kaur's Psychological Counseling Services, we understand that privacy is especially important when seeking mental health support. This policy explains how we collect, use, and protect your information.
+      </p>
+
+      <h2>Information We Collect</h2>
+
+      <h3>Information You Provide</h3>
+      <ul>
+        <li><strong>Contact Information:</strong> Name, email, phone number</li>
+        <li><strong>Appointment Requests:</strong> Preferred times, session type</li>
+        <li><strong>Health Information:</strong> Only what you choose to share during sessions</li>
+        <li><strong>Feedback:</strong> Comments, reviews, testimonials (with your consent)</li>
+      </ul>
+
+      <h3>Information We Collect Automatically</h3>
+      <ul>
+        <li><strong>Website Usage:</strong> Pages visited, time spent on site</li>
+        <li><strong>Technical Data:</strong> Browser type, device information, IP address</li>
+        <li><strong>Cookies:</strong> To improve website functionality and accessibility</li>
+      </ul>
+
+      <h2>How We Use Your Information</h2>
+
+      <h3>Primary Uses</h3>
+      <ul>
+        <li><strong>Providing Services:</strong> Scheduling appointments, conducting sessions</li>
+        <li><strong>Communication:</strong> Responding to inquiries, sending appointment reminders</li>
+        <li><strong>Website Improvement:</strong> Enhancing accessibility and user experience</li>
+        <li><strong>Legal Compliance:</strong> Meeting regulatory requirements</li>
+      </ul>
+
+      <h3>We Do NOT</h3>
+      <ul>
+        <li>Sell your personal information</li>
+        <li>Share your health information without consent</li>
+        <li>Use your data for marketing without permission</li>
+        <li>Track your browsing outside our website</li>
+      </ul>
+
+      <h2>Data Protection & Security</h2>
+
+      <h3>Security Measures</h3>
+      <ul>
+        <li><strong>Encrypted Communications:</strong> All sensitive data is encrypted</li>
+        <li><strong>Secure Storage:</strong> Information is stored using industry-standard security</li>
+        <li><strong>Access Controls:</strong> Limited access to personal information</li>
+        <li><strong>Regular Audits:</strong> Security practices are regularly reviewed</li>
+      </ul>
+
+      <h3>Mental Health Data Protection</h3>
+      <ul>
+        <li><strong>Confidentiality:</strong> All session information is strictly confidential</li>
+        <li><strong>Legal Protections:</strong> Your rights under mental health privacy laws</li>
+        <li><strong>Emergency Exceptions:</strong> Only when required by law or for safety</li>
+      </ul>
+
+      <h2>Your Rights</h2>
+
+      <h3>Access and Control</h3>
+      <ul>
+        <li><strong>View Your Data:</strong> Request a copy of information we have about you</li>
+        <li><strong>Update Information:</strong> Correct or update your personal details</li>
+        <li><strong>Delete Data:</strong> Request deletion of your information (with limitations)</li>
+        <li><strong>Opt-Out:</strong> Choose not to receive certain communications</li>
+      </ul>
+
+      <h2>Third-Party Services</h2>
+      <ul>
+        <li><strong>Website Hosting:</strong> GitHub Pages (basic analytics only)</li>
+        <li><strong>Contact Forms:</strong> Secure, encrypted form processing</li>
+        <li><strong>Appointment Booking:</strong> Topmate (secure platform)</li>
+      </ul>
+
+      <h2>Contact Us About Privacy</h2>
+      <ul>
+        <li><strong>Email:</strong> support@iamsukhpreet.com</li>
+        <li><strong>Phone:</strong> +91-7568592988</li>
+        <li><strong>Response Time:</strong> Within 48 hours</li>
+      </ul>
+    </div>
+
+    <CrisisSupport />
+  </Main>
+  <Footer />
+</Layout>

@@ -1,0 +1,168 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/components/Main.astro";
+import BilingualToggle from "@/components/BilingualToggle.astro";
+import CrisisSupport from "@/components/CrisisSupport.astro";
+import { SITE } from "@/config";
+---
+
+<Layout title={`Self-Check Tools | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="Self-Check Tools" pageDesc="Free non-diagnostic check-ins to understand your current stress or anxiety level.">
+    <BilingualToggle />
+    
+    <div class="prose dark:prose-invert max-w-none mt-8">
+      <p data-lang="en">Use these quick non-diagnostic check-ins to understand your current stress or anxiety level. If your score is high, book a session for personalized support.</p>
+      <p data-lang="hi" hidden>अपने वर्तमान तनाव या चिंता स्तर को समझने के लिए ये त्वरित (गैर-नैदानिक) सेल्फ-चेक उपयोग करें। यदि स्कोर अधिक हो, तो व्यक्तिगत सहायता के लिए सेशन बुक करें।</p>
+
+      <h3><span data-lang="en">1) Stress Check (Last 2 Weeks)</span><span data-lang="hi" hidden>1) तनाव जांच (पिछले 2 सप्ताह)</span></h3>
+
+      <form id="stress-check-form" class="bg-muted/30 p-6 rounded-lg border border-muted">
+        <ol class="space-y-4">
+          <li class="flex flex-col gap-2">
+            <label for="s1"><span data-lang="en">I felt mentally exhausted at the end of the day.</span><span data-lang="hi" hidden>दिन के अंत में मैं मानसिक रूप से बहुत थका हुआ/थकी हुई महसूस करता/करती हूं।</span></label>
+            <select id="s1" name="s1" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+          <li class="flex flex-col gap-2">
+            <label for="s2"><span data-lang="en">I struggled to relax even in free time.</span><span data-lang="hi" hidden>खाली समय में भी मुझे आराम करने में कठिनाई हुई।</span></label>
+            <select id="s2" name="s2" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+          <li class="flex flex-col gap-2">
+            <label for="s3"><span data-lang="en">I had trouble sleeping because of worries.</span><span data-lang="hi" hidden>चिंता के कारण मेरी नींद प्रभावित हुई।</span></label>
+            <select id="s3" name="s3" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+          <li class="flex flex-col gap-2">
+            <label for="s4"><span data-lang="en">I felt irritated or overwhelmed by small issues.</span><span data-lang="hi" hidden>छोटी बातों से चिड़चिड़ापन या ओवरवेल्म महसूस हुआ।</span></label>
+            <select id="s4" name="s4" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+          <li class="flex flex-col gap-2">
+            <label for="s5"><span data-lang="en">My stress affected work/study or relationships.</span><span data-lang="hi" hidden>तनाव का असर काम/पढ़ाई या रिश्तों पर पड़ा।</span></label>
+            <select id="s5" name="s5" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+        </ol>
+
+        <button type="button" id="stress-submit" class="mt-6 px-4 py-2 bg-accent text-white rounded hover:opacity-90">
+          <span data-lang="en">Get Stress Result</span><span data-lang="hi" hidden>तनाव परिणाम देखें</span>
+        </button>
+        <p id="stress-result" class="mt-4 font-bold text-accent"></p>
+      </form>
+
+      <hr class="my-12 border-dashed" />
+
+      <h3><span data-lang="en">2) Anxiety Check (Last 2 Weeks)</span><span data-lang="hi" hidden>2) चिंता जांच (पिछले 2 सप्ताह)</span></h3>
+
+      <form id="anxiety-check-form" class="bg-muted/30 p-6 rounded-lg border border-muted">
+        <ol class="space-y-4">
+          <li class="flex flex-col gap-2">
+            <label for="a1"><span data-lang="en">I felt nervous or on edge most days.</span><span data-lang="hi" hidden>अधिकतर दिनों में मैं घबराहट या बेचैनी महसूस करता/करती रहा/रही।</span></label>
+            <select id="a1" name="a1" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+          <li class="flex flex-col gap-2">
+            <label for="a2"><span data-lang="en">I could not stop worrying once it started.</span><span data-lang="hi" hidden>चिंता शुरू होने के बाद उसे रोकना मुश्किल लगा।</span></label>
+            <select id="a2" name="a2" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+          <li class="flex flex-col gap-2">
+            <label for="a3"><span data-lang="en">I had physical symptoms (restlessness, fast heartbeat, sweating).</span><span data-lang="hi" hidden>मुझे शारीरिक लक्षण महसूस हुए (बेचैनी, धड़कन तेज, पसीना)।</span></label>
+            <select id="a3" name="a3" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+          <li class="flex flex-col gap-2">
+            <label for="a4"><span data-lang="en">I avoided places or situations due to fear.</span><span data-lang="hi" hidden>डर के कारण मैंने कुछ जगहों या स्थितियों से बचाव किया।</span></label>
+            <select id="a4" name="a4" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+          <li class="flex flex-col gap-2">
+            <label for="a5"><span data-lang="en">My anxiety affected daily functioning.</span><span data-lang="hi" hidden>मेरी चिंता ने दैनिक कार्यक्षमता को प्रभावित किया।</span></label>
+            <select id="a5" name="a5" required class="bg-background border border-muted p-2 rounded max-w-xs">
+              <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            </select>
+          </li>
+        </ol>
+
+        <button type="button" id="anxiety-submit" class="mt-6 px-4 py-2 bg-accent text-white rounded hover:opacity-90">
+          <span data-lang="en">Get Anxiety Result</span><span data-lang="hi" hidden>चिंता परिणाम देखें</span>
+        </button>
+        <p id="anxiety-result" class="mt-4 font-bold text-accent"></p>
+      </form>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="https://booking.iamsukhpreet.com/sukhpreet-kaur/discovery-call" class="px-4 py-2 bg-teal-600 text-white rounded hover:opacity-90 no-underline">
+          <span data-lang="en">Book a Free Discovery Call</span><span data-lang="hi" hidden>मुफ्त डिस्कवरी कॉल बुक करें</span>
+        </a>
+        <a href="https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session" class="px-4 py-2 bg-blue-600 text-white rounded hover:opacity-90 no-underline">
+          <span data-lang="en">Book a Personalized Session</span><span data-lang="hi" hidden>व्यक्तिगत सेशन बुक करें</span>
+        </a>
+      </div>
+    </div>
+
+    <CrisisSupport />
+  </Main>
+  <Footer />
+</Layout>
+
+<script is:inline>
+  (function() {
+    const byId = (id) => document.getElementById(id);
+
+    function sumFormValues(prefix) {
+      let total = 0;
+      for (let i = 1; i <= 5; i++) {
+        total += Number(byId(prefix + i).value || 0);
+      }
+      return total;
+    }
+
+    function levelText(score, lang) {
+      if (score <= 4) {
+        return lang === 'hi' ? 'कम स्तर। अभी भी self-care जारी रखें।' : 'Low level. Keep up your self-care routine.';
+      }
+      if (score <= 8) {
+        return lang === 'hi' ? 'मध्यम स्तर। सहायक रणनीतियाँ अपनाएँ और निगरानी रखें।' : 'Moderate level. Use coping strategies and monitor closely.';
+      }
+      return lang === 'hi' ? 'उच्च स्तर। प्रोफेशनल सपोर्ट लेने की सलाह दी जाती है।' : 'High level. Professional support is recommended.';
+    }
+
+    function currentLang() {
+      return document.documentElement.getAttribute('data-site-lang') === 'hi' ? 'hi' : 'en';
+    }
+
+    function showResult(targetId, score) {
+      const lang = currentLang();
+      const prefix = lang === 'hi' ? 'स्कोर: ' : 'Score: ';
+      byId(targetId).textContent = prefix + score + '/15 - ' + levelText(score, lang);
+    }
+
+    const stressBtn = byId('stress-submit');
+    const anxietyBtn = byId('anxiety-submit');
+
+    if (stressBtn) {
+      stressBtn.addEventListener('click', function() {
+        showResult('stress-result', sumFormValues('s'));
+      });
+    }
+
+    if (anxietyBtn) {
+      anxietyBtn.addEventListener('click', function() {
+        showResult('anxiety-result', sumFormValues('a'));
+      });
+    }
+  })();
+</script>

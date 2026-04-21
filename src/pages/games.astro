@@ -1,0 +1,131 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/components/Main.astro";
+import BilingualToggle from "@/components/BilingualToggle.astro";
+import CrisisSupport from "@/components/CrisisSupport.astro";
+import { SITE } from "@/config";
+
+const activities = [
+  {
+    title: "Emotion Color Mapping",
+    type: "Activity",
+    goal: "Help clients identify and express emotions visually using colors.",
+    duration: "15-20 minutes",
+    audience: "Teens and Adults",
+    materials: ["Colored pens or pencils", "Blank paper"],
+    steps: [
+      "Ask the client to list 3 to 5 emotions they currently feel.",
+      "For each emotion, choose a color that represents it.",
+      "Draw simple color blocks or a mood circle.",
+      "Discuss why each color was chosen and what it means to the client.",
+    ],
+    therapist_notes: "Use this as a warm-up before deeper emotional processing.",
+    cta_label: "Book a Session",
+    cta_url: "https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session",
+  },
+  {
+    title: "Thought Reframing Challenge",
+    type: "Game",
+    goal: "Build cognitive flexibility by reframing negative automatic thoughts.",
+    duration: "20-25 minutes",
+    audience: "Adults",
+    materials: ["Notebook or worksheet"],
+    steps: [
+      "Write one stressful thought.",
+      "Rate belief strength from 1 to 10.",
+      "Create one balanced alternative thought.",
+      "Rate belief strength again after reframing.",
+      "Repeat for 2 to 3 thoughts.",
+    ],
+    therapist_notes: "Works well with CBT-focused counseling sessions.",
+  },
+  {
+    title: "Grounding Through Five Senses",
+    type: "Activity",
+    goal: "Reduce anxiety and bring attention back to the present moment.",
+    duration: "5-10 minutes",
+    audience: "All clients",
+    materials: ["No materials required"],
+    steps: [
+      "Name 5 things you can see.",
+      "Name 4 things you can feel.",
+      "Name 3 things you can hear.",
+      "Name 2 things you can smell.",
+      "Name 1 thing you can taste.",
+    ],
+    therapist_notes: "Useful during panic, overwhelm, or high stress moments.",
+  },
+  {
+    title: "CBT Thought Record",
+    type: "Game",
+    goal: "Identify unhelpful thoughts and replace them with balanced alternatives.",
+    duration: "20-30 minutes",
+    audience: "Teens and Adults",
+    materials: ["Thought record worksheet or notebook", "Pen"],
+    steps: [
+      "Describe a recent stressful situation in one sentence.",
+      "Write the automatic thought that came up.",
+      "Rate emotion intensity from 1 to 10.",
+      "List evidence supporting and not supporting the thought.",
+      "Write a more balanced replacement thought.",
+      "Re-rate emotion intensity and discuss the change.",
+    ],
+    therapist_notes: "One of the most widely used CBT activities in counseling sessions.",
+    cta_label: "Book a Session",
+    cta_url: "https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session",
+  },
+];
+---
+
+<Layout title={`Therapeutic Games | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="Counseling Games and Activities" pageDesc="Guided psychological games and therapeutic activities.">
+    <BilingualToggle />
+    
+    <div class="prose dark:prose-invert max-w-none mt-8">
+      <p data-lang="en">Use this section to explore guided psychological games and therapeutic activities designed to support mental well-being.</p>
+      <p data-lang="hi" hidden>इस सेक्शन में आप काउंसलिंग के लिए मनोवैज्ञानिक गेम्स और गतिविधियाँ साझा कर सकते हैं।</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 not-prose">
+        {activities.map(activity => (
+          <div class="border border-muted p-6 rounded-lg bg-muted/20 flex flex-col h-full">
+            <h3 class="text-xl font-bold text-accent mb-4">{activity.title}</h3>
+            
+            <div class="space-y-2 text-sm opacity-90 mb-4">
+              <p><strong><span data-lang="en">Type:</span><span data-lang="hi" hidden>प्रकार:</span></strong> {activity.type}</p>
+              <p><strong><span data-lang="en">Goal:</span><span data-lang="hi" hidden>उद्देश्य:</span></strong> {activity.goal}</p>
+              <p><strong><span data-lang="en">Duration:</span><span data-lang="hi" hidden>समय:</span></strong> {activity.duration}</p>
+              <p><strong><span data-lang="en">Audience:</span><span data-lang="hi" hidden>किसके लिए:</span></strong> {activity.audience}</p>
+            </div>
+
+            <div class="mb-4">
+              <p class="font-bold mb-2"><span data-lang="en">Steps:</span><span data-lang="hi" hidden>कदम:</span></p>
+              <ul class="list-disc pl-5 space-y-1 text-sm">
+                {activity.steps.map(step => (
+                  <li>{step}</li>
+                ))}
+              </ul>
+            </div>
+
+            {activity.therapist_notes && (
+              <p class="text-xs italic mt-auto pt-4 border-t border-muted/50">
+                <strong><span data-lang="en">Therapist Notes:</span><span data-lang="hi" hidden>थेरेपिस्ट नोट्स:</span></strong> {activity.therapist_notes}
+              </p>
+            )}
+
+            {activity.cta_label && (
+              <a href={activity.cta_url} class="mt-4 inline-block px-4 py-2 bg-accent text-white text-center rounded hover:opacity-90 no-underline">
+                {activity.cta_label}
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <CrisisSupport />
+  </Main>
+  <Footer />
+</Layout>

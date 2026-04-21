@@ -1,0 +1,71 @@
+---
+export interface Props {
+  url: string;
+  title: string;
+  shortname?: string;
+}
+
+const { url, title, shortname = "iamsukhpreet" } = Astro.props;
+---
+
+<div id="disqus_thread" class="mt-8"></div>
+
+<!-- Disqus Diagnostic Info -->
+<div
+  class="alert alert-info mt-4 hidden rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800 dark:border-blue-900/30 dark:bg-blue-900/10 dark:text-blue-200"
+  id="disqus-diagnostic"
+>
+  <strong class="text-base">Disqus Status:</strong>
+  <ul class="mt-2 list-inside list-disc">
+    <li>Shortname: {shortname}</li>
+    <li>Page URL: {url}</li>
+    <li>Page Title: {title}</li>
+    <li>Page Identifier: {url}</li>
+  </ul>
+  <p class="mt-2"><strong>If comments don't appear:</strong></p>
+  <ol class="mt-1 list-inside list-decimal">
+    <li>
+      Go to <a
+        href="https://disqus.com/admin/"
+        target="_blank"
+        class="font-semibold underline underline-offset-4 decoration-dashed hover:decoration-solid">Disqus Admin</a
+      >
+    </li>
+    <li>Select your site: <strong>{shortname}</strong></li>
+    <li>Go to Settings → General</li>
+    <li>Add your domain: <strong>iamsukhpreet.github.io</strong></li>
+    <li>Save and wait 5-10 minutes</li>
+  </ol>
+</div>
+
+<script is:inline define:vars={{ url, title, shortname }}>
+  window.disqus_config = function () {
+    this.page.url = url;
+    this.page.identifier = url;
+    this.page.title = title;
+  };
+
+  // Show diagnostic info after 3 seconds if Disqus doesn't load
+  setTimeout(function () {
+    if (!document.querySelector("#disqus_thread iframe")) {
+      const diagnostic = document.getElementById("disqus-diagnostic");
+      if (diagnostic) diagnostic.classList.remove("hidden");
+    }
+  }, 3000);
+
+  (function () {
+    var d = document,
+      s = d.createElement("script");
+    s.src = `https://${shortname}.disqus.com/embed.js`;
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a
+    href="https://disqus.com/?ref_noscript"
+    class="underline decoration-dashed underline-offset-4 hover:decoration-solid"
+  >
+    comments powered by Disqus.
+  </a>
+</noscript>

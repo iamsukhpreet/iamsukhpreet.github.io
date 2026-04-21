@@ -1,0 +1,67 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/components/Main.astro";
+import BilingualToggle from "@/components/BilingualToggle.astro";
+import CrisisSupport from "@/components/CrisisSupport.astro";
+import { SITE } from "@/config";
+---
+
+<Layout title={`About | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="About" pageDesc="About Sukhpreet Kaur">
+    <BilingualToggle />
+    
+    <div class="prose dark:prose-invert max-w-none mt-8">
+      <p>
+        Sukhpreet Kaur is a dedicated and compassionate Psychological Counsellor with a strong background in clinical psychology. She holds a Master’s degree in Psychology from Vardhaman Mahaveer Open University and a Bachelor’s degree in Psychology from the University of Kota. With experience in individual counseling and expressive therapies, she is committed to helping clients overcome personal challenges, manage mental health symptoms, and achieve their goals.
+      </p>
+
+      <h3>Professional Experience</h3>
+      <p>
+        Sukhpreet has worked as a Psychological Counsellor at Vibrant Academy (India) Pvt. Ltd. in Kota, where she conducted individual counseling sessions and utilized evidence-based therapeutic techniques to support students in overcoming personal and academic challenges. She also developed specialized tools such as a questionnaire on student suicide causes and conducted surveys on mood disorders, providing critical insights into mental health patterns among young people.
+      </p>
+
+      <h3>Specialization</h3>
+      <ul>
+        <li><strong>Individual Counseling:</strong> Sukhpreet specializes in one-on-one counseling sessions tailored to each client’s unique needs, creating personalized treatment plans and maintaining detailed progress records.</li>
+        <li><strong>Expressive Therapies (Color Therapy):</strong> She employs color psychology to aid clients in understanding and expressing their emotions, offering custom color therapy plans that align with each individual’s goals and emotional needs.</li>
+      </ul>
+
+      <h3>Relevant Skills and Knowledge</h3>
+      <p>
+        Sukhpreet's knowledge spans a range of psychological disciplines, including General Psychology, Social Psychology, and Abnormal Psychology. Her expertise extends to treating Anxiety Disorders such as Phobias, Generalized Anxiety Disorder (GAD), and Obsessive-Compulsive Disorder (OCD). Additionally, she is skilled in psychotherapy, behavior therapy, cognitive behavior therapy (CBT), and client-centered therapy.
+      </p>
+
+      <h3>Certifications and Professional Development</h3>
+      <p>
+        Sukhpreet has participated in several professional workshops, including a certification on "Psycho-cultural Instabilities Amongst Students" and a one-day workshop on counseling skills conducted by the Dr. Bhabha Multipurpose Welfare Society. She has also completed a month-long practical training in clinical counseling techniques.
+      </p>
+      <p>
+        Sukhpreet is fluent in both Hindi and English, enabling her to connect with a diverse range of clients effectively.
+      </p>
+
+      <h3>Connect with Me</h3>
+      <div class="flex flex-wrap gap-4 mt-4">
+        <a href="https://g.page/r/CRNdm_g99obWEBM/review" target="_blank" rel="noopener noreferrer" class="no-underline">
+          <img src="https://img.shields.io/badge/Review%20me%20on-Google-blue?style=flat&logo=google" alt="Google Reviews" />
+        </a>
+        <a href="https://booking.iamsukhpreet.com/sukhpreet-kaur/discovery-call" target="_blank" rel="noopener noreferrer" class="no-underline">
+          <img src="https://img.shields.io/badge/Free%20Discovery%20Call-teal?style=flat&logo=google-calendar" alt="Discovery Call" />
+        </a>
+        <a href="https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session" target="_blank" rel="noopener noreferrer" class="no-underline">
+          <img src="https://img.shields.io/badge/Schedule%20a%20Full%20Session-blue?style=flat&logo=google-calendar" alt="Schedule a Full Session" />
+        </a>
+      </div>
+
+      <h2 class="mt-12">📞 Need Expert Counselling?</h2>
+      <p>
+        <strong>Call Now:</strong> <a href="tel:+918209176371" class="text-accent underline">+91 75685 92988 or 82091 76371</a>
+      </p>
+    </div>
+
+    <CrisisSupport />
+  </Main>
+  <Footer />
+</Layout>
