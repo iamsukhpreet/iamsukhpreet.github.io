@@ -53,41 +53,6 @@
       });
     });
   </script>
-
-  <script>
-    // iOS/mobile fallback for sidebar toggling.
-    // Keep this minimal so it does not interfere with normal taps.
-    document.addEventListener('DOMContentLoaded', function() {
-      const isMobile = () => window.matchMedia('(max-width: 849px)').matches;
-      const trigger = document.getElementById('sidebar-trigger');
-      const mask = document.getElementById('mask');
-
-      const openSidebar = () => document.body.setAttribute('sidebar-display', '');
-      const closeSidebar = () => document.body.removeAttribute('sidebar-display');
-
-      const onTrigger = function(event) {
-        if (!isMobile()) return;
-        // Let normal click behavior continue; this only ensures touch support.
-        document.body.hasAttribute('sidebar-display') ? closeSidebar() : openSidebar();
-      };
-
-      const onMask = function(event) {
-        if (!isMobile() || !document.body.hasAttribute('sidebar-display')) return;
-        closeSidebar();
-      };
-
-      // Reset stale overlay state after back/forward cache restores.
-      closeSidebar();
-
-      if (trigger) {
-        trigger.addEventListener('touchend', onTrigger, { passive: true });
-      }
-
-      if (mask) {
-        mask.addEventListener('touchend', onMask, { passive: true });
-      }
-    });
-  </script>
   
   <!-- Preload critical images -->
   <link rel="preload" as="image" href="{{ site.avatar | absolute_url }}">
@@ -181,14 +146,6 @@
     }
     .crisis-support ul {
       margin-bottom: 0.75rem;
-    }
-
-    /* Prevent hidden mask from blocking taps on mobile. */
-    #mask {
-      pointer-events: none;
-    }
-    [sidebar-display] #mask {
-      pointer-events: auto;
     }
 
     #mobile-booking-cta {
