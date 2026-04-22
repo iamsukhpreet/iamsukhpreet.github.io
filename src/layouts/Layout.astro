@@ -163,7 +163,7 @@ const structuredData = {
       )
     }
 
-    <ClientRouter />
+    <ClientRouter fallback="swap" />
 
     <!-- Minimal inline script to prevent FOUC - sets theme immediately -->
     <script is:inline>
@@ -179,19 +179,25 @@ const structuredData = {
             : "light";
         }
 
-        const themeValue = getPreferTheme();
+        function setTheme() {
+          const themeValue = getPreferTheme();
+          // Set theme immediately to prevent flash
+          document.firstElementChild?.setAttribute("data-theme", themeValue);
 
-        // Set theme immediately to prevent flash
-        document.firstElementChild?.setAttribute("data-theme", themeValue);
+          // Export minimal API for external script
+          window.theme = {
+            themeValue: themeValue,
+            getTheme: () => window.theme.themeValue,
+            setTheme: val => {
+              window.theme.themeValue = val;
+            },
+          };
+        }
 
-        // Export minimal API for external script
-        window.theme = {
-          themeValue: themeValue,
-          getTheme: () => window.theme.themeValue,
-          setTheme: val => {
-            window.theme.themeValue = val;
-          },
-        };
+        setTheme();
+
+        // Re-apply theme after view transition swap
+        document.addEventListener("astro:after-swap", setTheme);
       })();
     </script>
   </head>
