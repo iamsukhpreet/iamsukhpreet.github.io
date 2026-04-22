@@ -22,6 +22,9 @@ export const SITE: Site = {
   dir: "ltr",
   lang: "en",
   timezone: "Asia/Calcutta",
+  googleAnalyticsId: "G-62E20D6G9M",
+  googleSiteVerification: "LLGibveIoIEyyQjVma4GyzbSvg25D5w2NO7OdRV0epU",
+  keywords: "psychological counselor, mental health expert, anxiety therapy, depression counseling, stress management, color therapy, online counseling, mental health support, psychological counseling India, emotional well-being, therapy sessions, mental health professional",
 } as const;
 
 export const LOCALE = {

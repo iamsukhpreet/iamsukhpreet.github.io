@@ -72,6 +72,7 @@ const structuredData = {
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
+    {SITE.keywords && <meta name="keywords" content={SITE.keywords} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph / Facebook -->
@@ -112,6 +113,32 @@ const structuredData = {
       set:html={JSON.stringify(structuredData)}
     />
 
+    <!-- Google Analytics -->
+    {
+      SITE.googleAnalyticsId && (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${SITE.googleAnalyticsId}`}
+          />
+          <script is:inline define:vars={{ id: SITE.googleAnalyticsId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", id);
+
+            document.addEventListener("astro:page-load", () => {
+              gtag("config", id, {
+                page_path: window.location.pathname,
+              });
+            });
+          </script>
+        </>
+      )
+    }
+
     <!-- Enable RSS feed auto-discovery  -->
     <!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery -->
     <link
@@ -127,10 +154,10 @@ const structuredData = {
       // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
       // include google-site-verification tag in the heading
       // Learn more: https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag
-      PUBLIC_GOOGLE_SITE_VERIFICATION && (
+      (PUBLIC_GOOGLE_SITE_VERIFICATION || SITE.googleSiteVerification) && (
         <meta
           name="google-site-verification"
-          content={PUBLIC_GOOGLE_SITE_VERIFICATION}
+          content={PUBLIC_GOOGLE_SITE_VERIFICATION || SITE.googleSiteVerification}
         />
       )
     }

@@ -20,6 +20,9 @@ export type Site = {
   dir?: string;
   lang?: string;
   timezone?: string;
+  googleAnalyticsId?: string;
+  googleSiteVerification?: string;
+  keywords?: string;
 };
 
 export type SocialObjects = {
