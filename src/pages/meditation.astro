@@ -1,0 +1,113 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import BilingualToggle from "@/components/BilingualToggle.astro";
+import CrisisSupport from "@/components/CrisisSupport.astro";
+import { SITE } from "@/config";
+
+const meditationTools = [
+  {
+    title: "4-7-8 Breathing Technique",
+    category: "Meditation",
+    description: "A rhythmic breathing pattern that acts as a natural tranquilizer for the nervous system.",
+    steps: [
+      "Exhale completely through your mouth.",
+      "Close your mouth and inhale quietly through your nose to a count of 4.",
+      "Hold your breath for a count of 7.",
+      "Exhale completely through your mouth, making a whoosh sound to a count of 8."
+    ],
+    benefit: "Reduces anxiety and helps with sleep."
+  },
+  {
+    title: "Daily Mood Tracker",
+    category: "Tooling",
+    description: "A simple reflective tool to identify patterns in your emotional well-being.",
+    steps: [
+      "Morning: Rate your energy level (1-10).",
+      "Afternoon: Note one primary emotion felt.",
+      "Evening: Identify one thing you are grateful for.",
+      "End of day: Rate overall mood."
+    ],
+    benefit: "Helps identify emotional triggers over time."
+  },
+  {
+    title: "Grounding (5-4-3-2-1)",
+    category: "Meditation",
+    description: "A sensory technique to pull you away from spinning thoughts or panic.",
+    steps: [
+      "Identify 5 things you see around you.",
+      "Identify 4 things you can touch.",
+      "Identify 3 things you hear.",
+      "Identify 2 things you can smell.",
+      "Identify 1 thing you can taste."
+    ],
+    benefit: "Instantly brings focus back to the present moment."
+  }
+];
+---
+
+<Layout title={`Meditation & Tooling | ${SITE.title}`}>
+  <Header activeNav="meditation" />
+  <Main pageTitle="Meditation & Tooling" pageDesc="Practical techniques and tools to support your daily mental health journey.">
+    <BilingualToggle />
+
+    <div class="prose dark:prose-invert max-w-none mt-8">
+      <p data-lang="en">
+        Explore these curated meditation techniques and psychological tools. These are designed to be used in between counseling sessions to help you maintain emotional balance and mindfulness.
+      </p>
+      <p data-lang="hi" hidden>
+        इन चुनिंदा ध्यान तकनीकों और मनोवैज्ञानिक उपकरणों का अन्वेषण करें। इन्हें काउंसलिंग सत्रों के बीच आपकी मदद करने के लिए डिज़ाइन किया गया है।
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 not-prose mt-12">
+        {meditationTools.map(tool => (
+          <div class="border border-muted p-6 rounded-xl bg-muted/20 hover:bg-muted/30 transition-colors border-l-4 border-l-accent">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-bold text-accent">{tool.title}</h3>
+              <span class="text-xs font-bold uppercase tracking-widest bg-accent/10 text-accent px-2 py-1 rounded">
+                {tool.category}
+              </span>
+            </div>
+            
+            <p class="text-sm opacity-90 mb-6 italic">
+              "{tool.description}"
+            </p>
+
+            <div class="space-y-3 mb-6">
+              <p class="font-bold text-sm">Steps to follow:</p>
+              <ul class="space-y-2">
+                {tool.steps.map((step, index) => (
+                  <li class="text-sm flex gap-3">
+                    <span class="text-accent font-bold">{index + 1}.</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-muted/50">
+              <p class="text-xs">
+                <strong>Core Benefit:</strong> {tool.benefit}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-16 bg-accent/5 p-8 rounded-2xl border border-accent/20">
+        <h3 class="text-2xl font-bold mb-4">Self-Reflective Journaling</h3>
+        <p>Try these prompts this week to explore your inner thoughts:</p>
+        <ul class="list-disc pl-5 space-y-2 mt-4">
+          <li>"What is one thing I am holding onto that no longer serves me?"</li>
+          <li>"How did I show myself kindness today?"</li>
+          <li>"What does my 'inner peace' look and feel like right now?"</li>
+        </ul>
+      </div>
+    </div>
+
+    <CrisisSupport />
+  </Main>
+  <Footer />
+</Layout>
