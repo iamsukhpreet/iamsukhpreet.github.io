@@ -1,7 +1,7 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://iamsukhpreet.github.io/",
+  website: "https://iamsukhpreet.com/",
   author: "Sukhpreet Kaur",
   profile: "https://iamsukhpreet.github.io/",
   desc: "Certified psychological counselor specializing in individual therapy, color therapy, and mental health support. Expert in anxiety, depression, stress management, and emotional well-being.",
