@@ -33,38 +33,62 @@ const { url, title, shortname = "iamsukhpreet" } = Astro.props;
     </li>
     <li>Select your site: <strong>{shortname}</strong></li>
     <li>Go to Settings → General</li>
-    <li>Add your domain: <strong>iamsukhpreet.github.io</strong></li>
+    <li>Add your domain: <strong>iamsukhpreet.com</strong></li>
     <li>Save and wait 5-10 minutes</li>
   </ol>
 </div>
 
 <script is:inline define:vars={{ url, title, shortname }}>
-  window.disqus_config = function () {
-    this.page.url = url;
-    this.page.identifier = url;
-    this.page.title = title;
-  };
+  /**
+   * Loads Disqus comments.
+   * Handles both initial load and Astro View Transitions.
+   */
+  function loadDisqus() {
+    const d = document;
+    const thread = d.getElementById("disqus_thread");
 
-  // Show diagnostic info after 3 seconds if Disqus doesn't load
-  setTimeout(function () {
-    if (!document.querySelector("#disqus_thread iframe")) {
-      const diagnostic = document.getElementById("disqus-diagnostic");
-      if (diagnostic) diagnostic.classList.remove("hidden");
+    if (!thread) return;
+
+    window.disqus_config = function () {
+      this.page.url = url;
+      this.page.identifier = url;
+      this.page.title = title;
+    };
+
+    if (typeof DISQUS !== "undefined") {
+      // If Disqus is already loaded, reset it for the new page
+      DISQUS.reset({
+        reload: true,
+        config: window.disqus_config,
+      });
+    } else {
+      // Otherwise, load the script for the first time
+      const s = d.createElement("script");
+      s.src = `https://${shortname}.disqus.com/embed.js`;
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
     }
-  }, 3000);
 
-  (function () {
-    var d = document,
-      s = d.createElement("script");
-    s.src = `https://${shortname}.disqus.com/embed.js`;
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
+    // Show diagnostic info after 5 seconds if Disqus doesn't load
+    setTimeout(function () {
+      if (!document.querySelector("#disqus_thread iframe")) {
+        const diagnostic = document.getElementById("disqus-diagnostic");
+        if (diagnostic) diagnostic.classList.remove("hidden");
+      }
+    }, 5000);
+  }
+
+  // Initial load
+  loadDisqus();
+
+  // Handle Astro View Transitions
+  document.addEventListener("astro:page-load", loadDisqus);
 </script>
+
 <noscript>
   Please enable JavaScript to view the <a
     href="https://disqus.com/?ref_noscript"
-    class="underline decoration-dashed underline-offset-4 hover:decoration-solid"
+    class="underline underline-offset-4 decoration-dashed hover:decoration-solid"
   >
     comments powered by Disqus.
   </a>
