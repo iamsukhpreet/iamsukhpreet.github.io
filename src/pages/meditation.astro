@@ -7,103 +7,251 @@ import BilingualToggle from "@/components/BilingualToggle.astro";
 import CrisisSupport from "@/components/CrisisSupport.astro";
 import { SITE } from "@/config";
 
-const meditationTools = [
+const toolkits = [
   {
-    title: "4-7-8 Breathing Technique",
-    category: "Meditation",
-    description: "A rhythmic breathing pattern that acts as a natural tranquilizer for the nervous system.",
-    steps: [
-      "Exhale completely through your mouth.",
-      "Close your mouth and inhale quietly through your nose to a count of 4.",
-      "Hold your breath for a count of 7.",
-      "Exhale completely through your mouth, making a whoosh sound to a count of 8."
+    number: "1",
+    title: "Breath-Based Reset",
+    subtitle: "Fastest Calm Tool",
+    emoji: "🌿",
+    whenToUse: ["Anxiety spike", "Overthinking", "Before an important meeting"],
+    techniqueName: "Box Breathing (2–5 minutes)",
+    techniqueSteps: [
+      "Inhale for 4 seconds",
+      "Hold for 4 seconds",
+      "Exhale for 4 seconds",
+      "Hold for 4 seconds",
+      "Repeat 5–10 cycles"
     ],
-    benefit: "Reduces anxiety and helps with sleep."
+    tools: ["Insight Timer", "Breathwrk"],
+    keyIdea: "Your breath is the fastest way to 'hack' your nervous system."
   },
   {
-    title: "Daily Mood Tracker",
-    category: "Tooling",
-    description: "A simple reflective tool to identify patterns in your emotional well-being.",
-    steps: [
-      "Morning: Rate your energy level (1-10).",
-      "Afternoon: Note one primary emotion felt.",
-      "Evening: Identify one thing you are grateful for.",
-      "End of day: Rate overall mood."
+    number: "2",
+    title: "Guided Meditation",
+    subtitle: "Beginner Friendly",
+    emoji: "🧘",
+    whenToUse: ["Daily routine", "Trouble focusing", "Emotional overwhelm"],
+    techniqueName: "How to start (10 mins daily)",
+    techniqueSteps: [
+      "Sit comfortably",
+      "Play a guided session",
+      "Just follow instructions (no need to 'do it perfectly')"
     ],
-    benefit: "Helps identify emotional triggers over time."
+    tools: ["Headspace", "Calm", "Waking Up"],
+    keyIdea: "Consistency > perfection. Even 5 minutes daily works."
   },
   {
-    title: "Grounding (5-4-3-2-1)",
-    category: "Meditation",
-    description: "A sensory technique to pull you away from spinning thoughts or panic.",
-    steps: [
-      "Identify 5 things you see around you.",
-      "Identify 4 things you can touch.",
-      "Identify 3 things you hear.",
-      "Identify 2 things you can smell.",
-      "Identify 1 thing you can taste."
+    number: "3",
+    title: "Thought Dump / Journaling",
+    subtitle: "Clarity Tool",
+    emoji: "✍️",
+    whenToUse: ["Racing thoughts", "Stress before sleep", "Confusion or decision-making"],
+    techniqueName: "Method: Brain Dump (5–10 mins)",
+    techniqueSteps: [
+      "Write everything in your mind",
+      "No structure, no editing",
+      "Don't reread immediately"
     ],
-    benefit: "Instantly brings focus back to the present moment."
+    tools: ["Day One", "Notion"],
+    keyIdea: "Clarity comes from getting thoughts out of your head."
+  },
+  {
+    number: "4",
+    title: "Mindful Movement",
+    subtitle: "Shift Mental State",
+    emoji: "🚶",
+    whenToUse: ["Feeling stuck or low energy", "Mild anxiety", "Long screen time"],
+    techniqueName: "Activities",
+    techniqueSteps: [
+      "10–20 min walk (no phone)",
+      "Light stretching or yoga",
+      "Focus on surroundings (sounds, textures)"
+    ],
+    tools: ["Nike Training Club", "Down Dog"],
+    keyIdea: "Movement shifts mental state faster than thinking."
+  },
+  {
+    number: "5",
+    title: "Sleep Reset Routine",
+    subtitle: "Better Recovery",
+    emoji: "😴",
+    whenToUse: ["Poor sleep", "Overthinking at night", "Burnout"],
+    techniqueName: "Routine (30 mins before sleep)",
+    techniqueSteps: [
+      "No screens",
+      "Dim lights",
+      "Light reading or meditation",
+      "Same sleep time daily"
+    ],
+    tools: ["Sleep Cycle", "Noisli"],
+    keyIdea: "Mental health improves dramatically with good sleep."
+  },
+  {
+    number: "6",
+    title: "Cognitive Reframing",
+    subtitle: "Advanced but Powerful",
+    emoji: "🧠",
+    whenToUse: ["Negative self-talk", "Anxiety loops", "Fear-based thinking"],
+    techniqueName: "Method",
+    techniqueSteps: [
+      "Identify: 'I’ll fail this'",
+      "Challenge: 'What evidence supports this?'",
+      "Replace: 'I’ve prepared well; I’ll try my best'"
+    ],
+    tools: ["CBT Thought Diary", "Woebot"],
+    keyIdea: "Thoughts are not facts—they’re interpretations."
   }
+];
+
+const decisionMatrix = [
+  { situation: "Immediate stress", tool: "Breathing" },
+  { situation: "Daily stability", tool: "Meditation" },
+  { situation: "Overthinking", tool: "Journaling" },
+  { situation: "Low mood", tool: "Movement" },
+  { situation: "Sleep issues", tool: "Sleep routine" },
+  { situation: "Negative thinking", tool: "CBT reframing" },
+  { situation: "Deep issues", tool: "Therapy" }
 ];
 ---
 
-<Layout title={`Meditation & Tooling | ${SITE.title}`}>
+<Layout title={`Mental Wellness Toolkit | ${SITE.title}`}>
   <Header activeNav="meditation" />
-  <Main pageTitle="Meditation & Tooling" pageDesc="Practical techniques and tools to support your daily mental health journey.">
+  <Main pageTitle="🧠 Mental Wellness Toolkit" pageDesc="A practical guide to meditation, calming techniques, and daily mental health tools.">
     <BilingualToggle />
 
     <div class="prose dark:prose-invert max-w-none mt-8">
-      <p data-lang="en">
-        Explore these curated meditation techniques and psychological tools. These are designed to be used in between counseling sessions to help you maintain emotional balance and mindfulness.
-      </p>
-      <p data-lang="hi" hidden>
-        इन चुनिंदा ध्यान तकनीकों और मनोवैज्ञानिक उपकरणों का अन्वेषण करें। इन्हें काउंसलिंग सत्रों के बीच आपकी मदद करने के लिए डिज़ाइन किया गया है।
+      <p class="text-lg opacity-90 italic border-l-4 border-accent pl-4">
+        "Mental health isn’t one big solution—it’s small tools used consistently."
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 not-prose mt-12">
-        {meditationTools.map(tool => (
-          <div class="border border-muted p-6 rounded-xl bg-muted/20 hover:bg-muted/30 transition-colors border-l-4 border-l-accent">
-            <div class="flex justify-between items-start mb-4">
-              <h3 class="text-xl font-bold text-accent">{tool.title}</h3>
-              <span class="text-xs font-bold uppercase tracking-widest bg-accent/10 text-accent px-2 py-1 rounded">
-                {tool.category}
-              </span>
+        {toolkits.map(tool => (
+          <div class="group border border-muted p-6 rounded-2xl bg-muted/20 hover:bg-muted/30 transition-all flex flex-col h-full shadow-sm">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="text-4xl">{tool.emoji}</span>
+              <div>
+                <h3 class="text-xl font-bold text-accent">{tool.number}. {tool.title}</h3>
+                <p class="text-xs uppercase tracking-widest font-semibold opacity-70">{tool.subtitle}</p>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <p class="text-xs font-bold uppercase mb-2 text-accent/80">🧩 When to use</p>
+              <ul class="flex flex-wrap gap-2">
+                {tool.whenToUse.map(trigger => (
+                  <li class="text-[10px] bg-background border border-muted px-2 py-1 rounded-md">{trigger}</li>
+                ))}
+              </ul>
             </div>
             
-            <p class="text-sm opacity-90 mb-6 italic">
-              "{tool.description}"
-            </p>
-
-            <div class="space-y-3 mb-6">
-              <p class="font-bold text-sm">Steps to follow:</p>
+            <div class="bg-background/50 p-4 rounded-xl mb-6 flex-grow">
+              <p class="font-bold text-sm mb-3">🛠️ {tool.techniqueName}</p>
               <ul class="space-y-2">
-                {tool.steps.map((step, index) => (
+                {tool.techniqueSteps.map((step, index) => (
                   <li class="text-sm flex gap-3">
-                    <span class="text-accent font-bold">{index + 1}.</span>
+                    <span class="text-accent/50 font-bold">{index + 1}.</span>
                     <span>{step}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div class="pt-4 border-t border-muted/50">
-              <p class="text-xs">
-                <strong>Core Benefit:</strong> {tool.benefit}
-              </p>
+            <div class="flex flex-col gap-4">
+              <div>
+                <p class="text-[10px] font-bold uppercase mb-2 opacity-60">🔧 Recommended Tools</p>
+                <p class="text-xs">{tool.tools.join(" • ")}</p>
+              </div>
+              <div class="pt-4 border-t border-muted/50">
+                <p class="text-xs italic opacity-80">
+                  <strong>💡 Key idea:</strong> {tool.keyIdea}
+                </p>
+              </div>
             </div>
           </div>
         ))}
+
+        {/* Toolkit 7: Human Support */}
+        <div class="group border border-accent/30 p-6 rounded-2xl bg-accent/5 hover:bg-accent/10 transition-all flex flex-col h-full shadow-sm">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="text-4xl">🧩</span>
+              <div>
+                <h3 class="text-xl font-bold text-accent">7. Human Support</h3>
+                <p class="text-xs uppercase tracking-widest font-semibold opacity-70">When you need more</p>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <p class="text-xs font-bold uppercase mb-2 text-accent/80">🧩 When to use</p>
+              <ul class="flex flex-wrap gap-2">
+                <li class="text-[10px] bg-background border border-muted px-2 py-1 rounded-md">Persistent anxiety or sadness</li>
+                <li class="text-[10px] bg-background border border-muted px-2 py-1 rounded-md">Relationship issues</li>
+                <li class="text-[10px] bg-background border border-muted px-2 py-1 rounded-md">Trauma or burnout</li>
+              </ul>
+            </div>
+            
+            <div class="bg-background/50 p-4 rounded-xl mb-6 flex-grow">
+              <p class="font-bold text-sm mb-3">🛠️ Options</p>
+              <ul class="space-y-2">
+                <li class="text-sm flex gap-3">• 1:1 Professional Counselling</li>
+                <li class="text-sm flex gap-3">• Group therapy sessions</li>
+                <li class="text-sm flex gap-3">• Specialized online therapy</li>
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-accent/20">
+                <a href="/booking" class="text-xs font-bold text-accent underline underline-offset-4">
+                  Book a session with Sukhpreet Kaur →
+                </a>
+            </div>
+          </div>
       </div>
 
-      <div class="mt-16 bg-accent/5 p-8 rounded-2xl border border-accent/20">
-        <h3 class="text-2xl font-bold mb-4">Self-Reflective Journaling</h3>
-        <p>Try these prompts this week to explore your inner thoughts:</p>
-        <ul class="list-disc pl-5 space-y-2 mt-4">
-          <li>"What is one thing I am holding onto that no longer serves me?"</li>
-          <li>"How did I show myself kindness today?"</li>
-          <li>"What does my 'inner peace' look and feel like right now?"</li>
-        </ul>
+      <h2 class="mt-20 flex items-center gap-3">
+        <span class="text-2xl">🧭</span> How to Choose the Right Tool
+      </h2>
+      <div class="overflow-x-auto mt-8">
+        <table class="w-full text-left border-collapse border border-muted rounded-xl overflow-hidden">
+          <thead class="bg-muted/30">
+            <tr>
+              <th class="p-4 border border-muted font-bold">Situation</th>
+              <th class="p-4 border border-muted font-bold text-accent">Best Tool</th>
+            </tr>
+          </thead>
+          <tbody>
+            {decisionMatrix.map(item => (
+              <tr class="hover:bg-muted/10 transition-colors">
+                <td class="p-4 border border-muted">{item.situation}</td>
+                <td class="p-4 border border-muted font-semibold">{item.tool}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-20 bg-accent/5 p-8 rounded-3xl border border-accent/20">
+        <h2 class="mt-0 flex items-center gap-3">
+            <span class="text-2xl">⚡</span> Suggested Daily Routine
+        </h2>
+        <p class="opacity-80">A simple and realistic approach to maintaining stability throughout the day:</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 not-prose">
+            <div class="bg-background p-4 rounded-xl border border-muted shadow-sm">
+                <p class="text-[10px] font-bold text-accent uppercase tracking-widest mb-1">Morning</p>
+                <p class="text-sm font-semibold">5 min breathing</p>
+            </div>
+            <div class="bg-background p-4 rounded-xl border border-muted shadow-sm">
+                <p class="text-[10px] font-bold text-accent uppercase tracking-widest mb-1">Afternoon</p>
+                <p class="text-sm font-semibold">10 min walk</p>
+            </div>
+            <div class="bg-background p-4 rounded-xl border border-muted shadow-sm">
+                <p class="text-[10px] font-bold text-accent uppercase tracking-widest mb-1">Evening</p>
+                <p class="text-sm font-semibold">10 min meditation</p>
+            </div>
+            <div class="bg-background p-4 rounded-xl border border-muted shadow-sm">
+                <p class="text-[10px] font-bold text-accent uppercase tracking-widest mb-1">Night</p>
+                <p class="text-sm font-semibold">5 min journaling</p>
+            </div>
+        </div>
       </div>
     </div>
 
