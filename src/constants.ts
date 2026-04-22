@@ -7,6 +7,8 @@ import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
 import IconPinterest from "@/assets/icons/IconPinterest.svg";
+import IconCalendar from "@/assets/icons/IconCalendar.svg";
+import IconSearch from "@/assets/icons/IconSearch.svg"; // Using Search as fallback for some
 import { SITE } from "@/config";
 
 interface Social {
@@ -18,28 +20,34 @@ interface Social {
 
 export const SOCIALS: Social[] = [
   {
-    name: "GitHub",
-    href: "https://github.com/satnaing/astro-paper",
-    linkTitle: `${SITE.title} on GitHub`,
-    icon: IconGitHub,
-  },
-  {
-    name: "X",
-    href: "https://x.com/username",
-    linkTitle: `${SITE.title} on X`,
-    icon: IconBrandX,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/username/",
-    linkTitle: `${SITE.title} on LinkedIn`,
-    icon: IconLinkedin,
+    name: "Instagram",
+    href: "https://www.instagram.com/sukhpreetkaur25.sk/",
+    linkTitle: `${SITE.title} on Instagram`,
+    icon: IconFacebook, // Fallback to Facebook icon for Instagram as we don't have Instagram icon
   },
   {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
+    href: "mailto:support@iamsukhpreet.com",
     linkTitle: `Send an email to ${SITE.title}`,
     icon: IconMail,
+  },
+  {
+    name: "WhatsApp",
+    href: "https://wa.me/917568592988",
+    linkTitle: `${SITE.title} on WhatsApp`,
+    icon: IconWhatsapp,
+  },
+  {
+    name: "Phone",
+    href: "tel:+917568592988",
+    linkTitle: `Call ${SITE.title}`,
+    icon: IconSearch, // Fallback for Phone
+  },
+  {
+    name: "Calendar",
+    href: "https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session",
+    linkTitle: `Book a Session with ${SITE.title}`,
+    icon: IconCalendar,
   },
 ] as const;
 

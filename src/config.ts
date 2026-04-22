@@ -55,4 +55,16 @@ export const SOCIALS: SocialObjects = [
     linkTitle: `${SITE.title} on WhatsApp`,
     active: true,
   },
+  {
+    name: "Phone",
+    href: "tel:+917568592988",
+    linkTitle: `Call ${SITE.title}`,
+    active: true,
+  },
+  {
+    name: "Calendar",
+    href: "https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session",
+    linkTitle: `Book a Session with ${SITE.title}`,
+    active: true,
+  },
 ];

@@ -49,4 +49,8 @@ export type SocialMedia =
   | "Telegram"
   | "Mastodon"
   | "Pinterest"
-  | "X";
+  | "X"
+  | "WhatsApp"
+  | "Calendar"
+  | "Phone"
+  | "Instagram";
