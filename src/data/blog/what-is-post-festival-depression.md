@@ -17,10 +17,10 @@ tags:
   - emotional recovery
   - festival blues
 description: "Learn about post-festival depression, holiday blues, and how to cope with emotional lows after celebrations like Diwali. Expert psychological insights and practical strategies for mental health recovery."
-ogImage: /assets/img/post-diwali.jpg
+ogImage: ../../assets/img/post-diwali.jpg
 ---
 
-![Post-Festival Depression - Understanding holiday blues and emotional recovery](/assets/img/post-diwali-1.jpg)
+![Post-Festival Depression - Understanding holiday blues and emotional recovery](../../assets/img/post-diwali-1.jpg)
 
 ## What is Post-Festival Depression (PFD)?
 

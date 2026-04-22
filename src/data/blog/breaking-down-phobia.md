@@ -19,9 +19,9 @@ tags:
   - psychological counseling
   - mental health support
 description: "Comprehensive guide to understanding phobias, anxiety disorders, and fear responses. Learn about different types of phobias, symptoms, causes, and effective treatment methods for overcoming irrational fears and anxiety."
-ogImage: /assets/img/phobia.jpg
+ogImage: ../../assets/img/phobia.jpg
 ---
-![Understanding Phobias - Types of anxiety disorders and fear responses](/assets/img/phobia.jpg)
+![Understanding Phobias - Types of anxiety disorders and fear responses](../../assets/img/phobia.jpg)
 
 ## Phobia
 

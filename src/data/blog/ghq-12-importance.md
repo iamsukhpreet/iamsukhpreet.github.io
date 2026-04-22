@@ -17,10 +17,10 @@ tags:
   - psychological counseling
   - mental health support
 description: "Complete guide to GHQ-12 mental health screening tool. Learn how to assess your psychological well-being, understand mental health evaluation, and when to seek professional counseling support."
-ogImage: /assets/img/survey.jpg
+ogImage: ../../assets/img/survey.jpg
 ---
 
-![GHQ-12 Mental Health Screening - Psychological assessment and well-being evaluation](/assets/img/survey.jpg) <!-- Replace with the correct image path -->
+![GHQ-12 Mental Health Screening - Psychological assessment and well-being evaluation](../../assets/img/survey.jpg) <!-- Replace with the correct image path -->
 
 ## What is the GHQ-12?
 

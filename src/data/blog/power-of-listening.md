@@ -17,10 +17,10 @@ tags:
   - stress management
   - relationship therapy
 description: "Learn the power of active listening and how to respond with calmness instead of reacting in anger. Expert psychological techniques for better communication, emotional intelligence, and mental health improvement."
-ogImage: /assets/img/calm.jpg
+ogImage: ../../assets/img/calm.jpg
 ---
 
-![Calm Beach - The power of listening and emotional intelligence](/assets/img/calm.jpg)
+![Calm Beach - The power of listening and emotional intelligence](../../assets/img/calm.jpg)
 
 In today’s fast-paced world, emotions can often run high. We’re constantly confronted with situations that can trigger anger or frustration. However, learning to listen and respond thoughtfully rather than react impulsively can greatly enhance our well-being and relationships.
 

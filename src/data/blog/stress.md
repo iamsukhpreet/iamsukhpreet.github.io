@@ -17,10 +17,10 @@ tags:
   - stress management techniques
   - psychological counseling
 description: "Comprehensive guide to understanding stress, conflict theory, and psychological reactions. Learn effective stress management techniques and how to improve your mental health with expert psychological insights."
-ogImage: /assets/img/stress_image.jpg
+ogImage: ../../assets/img/stress_image.jpg
 ---
 
-![Stress Management - Understanding psychological stress and conflict theory](/assets/img/stress_image.jpg)  
+![Stress Management - Understanding psychological stress and conflict theory](../../assets/img/stress_image.jpg)  
 
 ## Stress  
 
