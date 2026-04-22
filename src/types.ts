@@ -11,7 +11,7 @@ export type Site = {
   scheduledPostMargin: number;
   showArchives?: boolean;
   showBackButton?: boolean;
-  editPost?: {
+  editPost: {
     enabled: boolean;
     text: string;
     url: string;
