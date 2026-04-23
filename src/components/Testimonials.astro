@@ -1,19 +1,22 @@
 ---
 const testimonials = [
   {
-    text: "The online sessions were incredibly helpful. Sukhpreet created a safe space where I felt heard and understood from day one.",
-    author: "A.R.",
-    role: "Working Professional",
+    text: "People call her Sukhpreet kaur, but for me she is my mental health buddy. She has been an incredible help in guiding me through some of my toughest times. Her approach is compassionate, professional, and truly understanding.",
+    author: "Anshul Gupta",
+    role: "Client",
+    stars: 5,
   },
   {
-    text: "I was struggling with anxiety for months. The breathing techniques and tools shared here have become part of my daily routine. Highly recommended.",
-    author: "S.M.",
-    role: "Student",
+    text: "Very understanding, professional, empathetic, and easy to talk to. Highly recommended!",
+    author: "Sakshi Priya",
+    role: "Client",
+    stars: 5,
   },
   {
-    text: "Professional, compassionate, and 100% confidential. I found the expressive therapy approach very effective for my emotional well-being.",
-    author: "P.K.",
-    role: "Entrepreneur",
+    text: "Sukhpreet is an incredible counsellor. She is kind, understanding, and makes you feel comfortable from the very first session. She truly listens and offers helpful advice that makes a big difference.",
+    author: "Ankush Bisht",
+    role: "Local Guide",
+    stars: 5,
   },
 ];
 ---
@@ -22,8 +25,7 @@ const testimonials = [
   <div class="text-center mb-12">
     <h2 class="text-3xl font-bold text-accent mb-4">What Clients Say</h2>
     <p class="text-sm opacity-70 max-w-2xl mx-auto">
-      Helping individuals navigate their mental health journey with compassion and clinical expertise. 
-      Read feedback from those who have experienced our therapeutic sessions.
+      Real feedback from individuals who have found support and growth through our counseling sessions.
     </p>
   </div>
 
@@ -36,7 +38,14 @@ const testimonials = [
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017C11.4647 12 11.017 11.5523 11.017 11V9C11.017 7.34315 12.3601 6 14.017 6H19.017C20.6738 6 22.017 7.34315 22.017 9V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.01693 21L5.01693 18C5.01693 16.8954 5.91236 16 7.01693 16H10.0169C10.5692 16 11.0169 15.5523 11.0169 15V9C11.0169 8.44772 10.5692 8 10.0169 8H6.01693C5.46464 8 5.01693 8.44772 5.01693 9V11C5.01693 11.5523 4.56921 12 4.01693 12H3.01693C2.46464 12 2.01693 11.5523 2.01693 11V9C2.01693 7.34315 3.36008 6 5.01693 6H10.0169C11.6738 6 13.0169 7.34315 13.0169 9V15C13.0169 18.3137 10.3306 21 7.01693 21H5.01693Z"/></svg>
           </div>
 
-          <blockquote class="mt-4 mb-6 flex-grow italic opacity-90 leading-relaxed text-sm">
+          <!-- Stars -->
+          <div class="flex gap-0.5 mb-4 text-yellow-500">
+            {Array.from({ length: testimonial.stars }).map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            ))}
+          </div>
+
+          <blockquote class="mb-6 flex-grow italic opacity-90 leading-relaxed text-sm">
             "{testimonial.text}"
           </blockquote>
 
