@@ -1,0 +1,35 @@
+---
+import IconSearch from "@/assets/icons/IconSearch.svg"; // Fallback icons
+import IconCalendar from "@/assets/icons/IconCalendar.svg";
+---
+
+<div class="not-prose w-full py-8 border-b border-border bg-muted/5">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center text-center">
+    <!-- Item 1: Confidential -->
+    <div class="flex flex-col items-center gap-2 group">
+      <div class="size-12 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <span class="font-bold text-sm uppercase tracking-wider opacity-90">100% Confidential</span>
+      <p class="text-xs opacity-60 px-4">Your privacy is my highest priority.</p>
+    </div>
+
+    <!-- Item 2: Certified -->
+    <div class="flex flex-col items-center gap-2 group">
+      <div class="size-12 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap round="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <span class="font-bold text-sm uppercase tracking-wider opacity-90">Certified Psychologist</span>
+      <p class="text-xs opacity-60 px-4">Master's degree with clinical expertise.</p>
+    </div>
+
+    <!-- Item 3: Online -->
+    <div class="flex flex-col items-center gap-2 group">
+      <div class="size-12 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></svg>
+      </div>
+      <span class="font-bold text-sm uppercase tracking-wider opacity-90">Online Sessions</span>
+      <p class="text-xs opacity-60 px-4">Flexible therapy from your own home.</p>
+    </div>
+  </div>
+</div>

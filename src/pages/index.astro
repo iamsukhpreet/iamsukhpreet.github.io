@@ -6,6 +6,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Socials from "@/components/Socials.astro";
 import LinkButton from "@/components/LinkButton.astro";
+import TrustBar from "@/components/TrustBar.astro";
 import Card from "@/components/Card.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import IconRss from "@/assets/icons/IconRss.svg";
@@ -74,6 +75,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         />
       </div>
     </section>
+
+    <TrustBar />
 
     {
       featuredPosts.length > 0 && (
