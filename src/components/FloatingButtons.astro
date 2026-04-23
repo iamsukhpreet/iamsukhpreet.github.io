@@ -1,0 +1,32 @@
+---
+import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
+import IconCalendar from "@/assets/icons/IconCalendar.svg";
+---
+
+<div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+    <!-- Booking FAB -->
+    <a 
+        href="/booking" 
+        class="group relative flex items-center justify-center size-14 bg-accent text-white rounded-full shadow-xl hover:scale-110 active:scale-95 transition-all duration-300"
+        aria-label="Book a Session"
+    >
+        <IconCalendar class="size-6 stroke-[2.5]" />
+        <span class="absolute right-16 px-3 py-1.5 bg-background border border-muted text-foreground text-xs font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-sm pointer-events-none">
+            Book a Session
+        </span>
+    </a>
+
+    <!-- WhatsApp FAB -->
+    <a 
+        href="https://wa.me/917568592988" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="group relative flex items-center justify-center size-14 bg-[#25D366] text-white rounded-full shadow-xl hover:scale-110 active:scale-95 transition-all duration-300"
+        aria-label="Chat on WhatsApp"
+    >
+        <IconWhatsapp class="size-7 fill-white" />
+        <span class="absolute right-16 px-3 py-1.5 bg-background border border-muted text-foreground text-xs font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-sm pointer-events-none">
+            Chat with me
+        </span>
+    </a>
+</div>

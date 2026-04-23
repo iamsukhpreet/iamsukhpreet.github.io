@@ -3,6 +3,7 @@ import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
+import FloatingButtons from "@/components/FloatingButtons.astro";
 import "@/styles/global.css";
 
 type Props = {
@@ -203,6 +204,8 @@ const structuredData = {
   </head>
   <body>
     <slot />
+
+    <FloatingButtons />
 
     <!-- Load full theme logic -->
     <script src="../scripts/theme.ts"></script>
