@@ -1,0 +1,68 @@
+---
+const testimonials = [
+  {
+    text: "The online sessions were incredibly helpful. Sukhpreet created a safe space where I felt heard and understood from day one.",
+    author: "A.R.",
+    role: "Working Professional",
+  },
+  {
+    text: "I was struggling with anxiety for months. The breathing techniques and tools shared here have become part of my daily routine. Highly recommended.",
+    author: "S.M.",
+    role: "Student",
+  },
+  {
+    text: "Professional, compassionate, and 100% confidential. I found the expressive therapy approach very effective for my emotional well-being.",
+    author: "P.K.",
+    role: "Entrepreneur",
+  },
+];
+---
+
+<section id="testimonials" class="not-prose py-16 border-b border-border">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-bold text-accent mb-4">What Clients Say</h2>
+    <p class="text-sm opacity-70 max-w-2xl mx-auto">
+      Helping individuals navigate their mental health journey with compassion and clinical expertise. 
+      Read feedback from those who have experienced our therapeutic sessions.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {
+      testimonials.map(testimonial => (
+        <div class="relative bg-muted/10 border border-muted p-8 rounded-2xl flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
+          <!-- Quote Icon -->
+          <div class="absolute -top-4 left-6 bg-accent text-white p-2 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017C11.4647 12 11.017 11.5523 11.017 11V9C11.017 7.34315 12.3601 6 14.017 6H19.017C20.6738 6 22.017 7.34315 22.017 9V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.01693 21L5.01693 18C5.01693 16.8954 5.91236 16 7.01693 16H10.0169C10.5692 16 11.0169 15.5523 11.0169 15V9C11.0169 8.44772 10.5692 8 10.0169 8H6.01693C5.46464 8 5.01693 8.44772 5.01693 9V11C5.01693 11.5523 4.56921 12 4.01693 12H3.01693C2.46464 12 2.01693 11.5523 2.01693 11V9C2.01693 7.34315 3.36008 6 5.01693 6H10.0169C11.6738 6 13.0169 7.34315 13.0169 9V15C13.0169 18.3137 10.3306 21 7.01693 21H5.01693Z"/></svg>
+          </div>
+
+          <blockquote class="mt-4 mb-6 flex-grow italic opacity-90 leading-relaxed text-sm">
+            "{testimonial.text}"
+          </blockquote>
+
+          <div class="flex items-center gap-3 pt-4 border-t border-muted/50 mt-auto">
+            <div class="size-10 rounded-full bg-accent/20 flex items-center justify-center font-bold text-accent text-xs">
+              {testimonial.author[0]}
+            </div>
+            <div>
+              <p class="text-sm font-bold text-accent">{testimonial.author}</p>
+              <p class="text-[10px] uppercase tracking-widest opacity-60 font-medium">{testimonial.role}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="text-center mt-12">
+    <a 
+      href="https://g.page/r/CRNdm_g99obWEBM/review" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 text-xs font-bold text-accent hover:underline underline-offset-4"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="mb-0.5"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-2.21 5.39-7.84 5.39-4.84 0-8.79-4.01-8.79-8.94s3.95-8.94 8.79-8.94c2.75 0 4.59 1.17 5.64 2.18l2.58-2.48c-1.66-1.55-3.81-2.49-8.22-2.49-5.52 0-10 4.48-10 10s4.48 10 10 10c5.77 0 9.6-4.06 9.6-9.77 0-.66-.07-1.16-.16-1.63h-9.44z"/></svg>
+      Read more Google Reviews
+    </a>
+  </div>
+</section>

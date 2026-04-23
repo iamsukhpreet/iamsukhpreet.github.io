@@ -7,6 +7,7 @@ import Footer from "@/components/Footer.astro";
 import Socials from "@/components/Socials.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import TrustBar from "@/components/TrustBar.astro";
+import Testimonials from "@/components/Testimonials.astro";
 import Card from "@/components/Card.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import IconRss from "@/assets/icons/IconRss.svg";
@@ -77,6 +78,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     </section>
 
     <TrustBar />
+
+    <Testimonials />
 
     {
       featuredPosts.length > 0 && (
