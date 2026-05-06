@@ -66,7 +66,7 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "Calendar",
-    href: "https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session",
+    href: "https://hellosukh.com/sukhpreet-kaur/book-a-session",
     linkTitle: `Book a Session with ${SITE.title}`,
     active: true,
   },

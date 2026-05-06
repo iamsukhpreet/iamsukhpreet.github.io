@@ -99,10 +99,10 @@ order: 7
 </form>
 
 <p class="mt-4 d-flex flex-wrap gap-2">
-  <a class="btn btn-info" href="https://booking.iamsukhpreet.com/sukhpreet-kaur/discovery-call">
+  <a class="btn btn-info" href="https://hellosukh.com/sukhpreet-kaur/discovery-call">
     <span data-lang="en">Book a Free Discovery Call</span><span data-lang="hi">मुफ्त डिस्कवरी कॉल बुक करें</span>
   </a>
-  <a class="btn btn-success" href="https://booking.iamsukhpreet.com/sukhpreet-kaur/book-a-session">
+  <a class="btn btn-success" href="https://hellosukh.com/sukhpreet-kaur/book-a-session">
     <span data-lang="en">Book a Personalized Session</span><span data-lang="hi">व्यक्तिगत सेशन बुक करें</span>
   </a>
 </p>
