@@ -4,7 +4,7 @@ export const SITE: Site = {
   website: "https://iamsukhpreet.com/",
   author: "Sukhpreet Kaur",
   profile: "https://iamsukhpreet.github.io/",
-  desc: "Certified psychological counselor specializing in individual therapy, color therapy, and mental health support. Expert in anxiety, depression, stress management, and emotional well-being.",
+  desc: "Expert online psychological counseling and therapy by Sukhpreet Kaur. Certified psychologist specializing in anxiety, depression, stress management, and emotional well-being. Book a safe, confidential session today.",
   title: "Sukhpreet Kaur",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
@@ -24,7 +24,7 @@ export const SITE: Site = {
   timezone: "Asia/Calcutta",
   googleAnalyticsId: "G-62E20D6G9M",
   googleSiteVerification: "LLGibveIoIEyyQjVma4GyzbSvg25D5w2NO7OdRV0epU",
-  keywords: "psychological counselor, mental health expert, anxiety therapy, depression counseling, stress management, color therapy, online counseling, mental health support, psychological counseling India, emotional well-being, therapy sessions, mental health professional",
+  keywords: "online counseling, psychological therapy, mental health professional, Sukhpreet Kaur, anxiety counseling, depression therapy, stress management expert, certified psychologist India, emotional support, online therapy sessions, color therapy, psychological support for students, mental health counseling",
 } as const;
 
 export const LOCALE = {
