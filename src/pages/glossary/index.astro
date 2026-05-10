@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import { SITE } from "@/config";
+
+const terms = await getCollection("glossary");
+const sortedTerms = terms.sort((a, b) => a.data.term.localeCompare(b.data.term));
+---
+
+<Layout title={`Mental Health Glossary | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="Mental Health Glossary" pageDesc="A plain-English guide to psychological terms and concepts.">
+    
+    <div class="mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sortedTerms.map(item => (
+                <a href={`/glossary/${item.id}`} class="group p-6 border border-muted rounded-2xl hover:border-accent hover:shadow-lg transition-all bg-muted/5">
+                    <h2 class="text-xl font-bold text-accent group-hover:underline mb-2">{item.data.term}</h2>
+                    <p class="text-sm opacity-70 line-clamp-2">{item.data.description}</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        {item.data.tags.map(tag => (
+                            <span class="text-[10px] bg-muted px-2 py-1 rounded-full opacity-60 uppercase font-bold tracking-tighter">{tag}</span>
+                        ))}
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+
+  </Main>
+  <Footer />
+</Layout>

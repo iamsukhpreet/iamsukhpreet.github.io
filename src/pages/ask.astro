@@ -1,0 +1,54 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import { SITE } from "@/config";
+---
+
+<Layout title={`Ask Anonymously | Am I Normal? | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="Ask Anonymously" pageDesc="Submit your mental health questions. Your identity is 100% protected.">
+    
+    <div class="mt-12 max-w-2xl mx-auto">
+        <div class="prose dark:prose-invert mb-12">
+            <p>Ever wondered if what you're feeling is "normal"? You're not alone. Submit your question below. We select the most common and impactful questions to answer publicly on our <a href="/community-qa">Community Board</a>.</p>
+            <ul>
+                <li><strong>Anonymous</strong>: We don't collect names or emails.</li>
+                <li><strong>Professional</strong>: Every answer is written by a certified counselor.</li>
+                <li><strong>Safe</strong>: This is a judgment-free space.</li>
+            </ul>
+        </div>
+
+        <form action="https://formspree.io/f/xoqgzpny" method="POST" class="space-y-6 bg-muted/20 p-8 rounded-[2rem] border border-muted">
+            <div>
+                <label for="question" class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-70">Your Question</label>
+                <textarea 
+                    id="question" 
+                    name="question" 
+                    required 
+                    placeholder="e.g., Is it normal to feel lonely even when I'm with friends?"
+                    class="w-full h-40 bg-background border border-muted rounded-2xl p-4 focus:border-accent outline-none transition-all resize-none"
+                ></textarea>
+            </div>
+
+            <div>
+                <label for="context" class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-70">A bit more context (Optional)</label>
+                <textarea 
+                    id="context" 
+                    name="context" 
+                    placeholder="Provide some details if you'd like a more specific perspective..."
+                    class="w-full h-32 bg-background border border-muted rounded-2xl p-4 focus:border-accent outline-none transition-all resize-none"
+                ></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-accent text-white font-bold rounded-full hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-accent/20">
+                Submit Question
+            </button>
+            <p class="text-[10px] text-center opacity-40 uppercase font-bold tracking-tighter">By submitting, you agree that your question (anonymized) may be published.</p>
+        </form>
+    </div>
+
+  </Main>
+  <Footer />
+</Layout>

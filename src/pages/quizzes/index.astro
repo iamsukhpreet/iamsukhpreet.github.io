@@ -1,0 +1,54 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import { SITE } from "@/config";
+
+const quizzes = [
+  {
+    title: "Coping Style Assessment",
+    desc: "How do you naturally handle stress? Discover your primary coping mechanism.",
+    href: "/quizzes/coping-style",
+    emoji: "🛡️",
+    time: "3 mins"
+  },
+  {
+    title: "Burnout Check",
+    desc: "Are you just tired, or is it burnout? Get clarity on your exhaustion levels.",
+    href: "/self-check-tools",
+    emoji: "🔥",
+    time: "2 mins"
+  }
+];
+---
+
+<Layout title={`Mental Health Quizzes | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="Wellness Quizzes" pageDesc="Discover insights about your mental well-being through our interactive assessments.">
+    
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {quizzes.map(quiz => (
+            <a href={quiz.href} class="group p-8 border border-muted rounded-[2.5rem] bg-muted/10 hover:border-accent hover:shadow-xl transition-all flex flex-col items-center text-center">
+                <span class="text-6xl mb-6 group-hover:scale-110 transition-transform">{quiz.emoji}</span>
+                <h2 class="text-2xl font-bold mb-3 group-hover:text-accent transition-colors">{quiz.title}</h2>
+                <p class="opacity-70 text-sm mb-6 max-w-xs">{quiz.desc}</p>
+                <div class="mt-auto flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-40">
+                    <span>⏱️ {quiz.time}</span>
+                    <span>•</span>
+                    <span>Self-Discovery</span>
+                </div>
+            </a>
+        ))}
+    </div>
+
+    <div class="mt-24 p-12 bg-accent/5 border border-accent/20 rounded-[3rem] text-center">
+        <h3 class="text-2xl font-bold mb-4">Why take these quizzes?</h3>
+        <p class="max-w-2xl mx-auto opacity-80 leading-relaxed">
+            While these are not diagnostic tools, they are designed to provide a starting point for self-reflection. Understanding your patterns is the first step toward meaningful change.
+        </p>
+    </div>
+
+  </Main>
+  <Footer />
+</Layout>

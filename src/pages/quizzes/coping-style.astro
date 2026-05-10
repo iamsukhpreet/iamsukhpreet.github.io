@@ -1,0 +1,167 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import { SITE } from "@/config";
+
+const questions = [
+  {
+    id: 1,
+    text: "When a stressful situation arises, my first reaction is usually to:",
+    options: [
+      { text: "Make a plan and take action immediately.", score: "active" },
+      { text: "Talk to a friend or family member about it.", score: "social" },
+      { text: "Avoid thinking about it until I absolutely have to.", score: "avoidant" },
+      { text: "Focus on managing my emotions and staying calm.", score: "emotional" }
+    ]
+  },
+  {
+    id: 2,
+    text: "How do you usually feel after a long, difficult day?",
+    options: [
+      { text: "Like I need to tick off everything on my to-do list.", score: "active" },
+      { text: "Like I need to call someone and vent.", score: "social" },
+      { text: "Like I want to distract myself with a show or game.", score: "avoidant" },
+      { text: "Like I need to meditate or do some deep breathing.", score: "emotional" }
+    ]
+  },
+  {
+    id: 3,
+    text: "When facing a major life change, I tend to:",
+    options: [
+      { text: "Research everything and get organized.", score: "active" },
+      { text: "Seek out others who have gone through it.", score: "social" },
+      { text: "Feel paralyzed and try to maintain my old routine.", score: "avoidant" },
+      { text: "Try to find the 'meaning' or growth in the situation.", score: "emotional" }
+    ]
+  }
+];
+
+const results = {
+  active: {
+    title: "The Problem Solver",
+    desc: "You tend to tackle stress head-on with logic and planning. You thrive on control and action.",
+    emoji: "📋"
+  },
+  social: {
+    title: "The Connector",
+    desc: "You process stress through relationship and community. Sharing your burden is your superpower.",
+    emoji: "🤝"
+  },
+  avoidant: {
+    title: "The Protector",
+    desc: "You use distraction or avoidance to keep yourself safe from overwhelm. It's okay to take a break, but don't stay hidden too long.",
+    emoji: "🛡️"
+  },
+  emotional: {
+    title: "The Alchemist",
+    desc: "You focus on the internal experience, using mindfulness or emotional regulation to stay centered.",
+    emoji: "🧘"
+  }
+};
+---
+
+<Layout title={`Coping Style Quiz | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="Coping Style Quiz" pageDesc="How do you naturally handle stress? Answer these 3 questions to find out.">
+    
+    <div id="quiz-container" class="mt-12 max-w-2xl mx-auto min-h-[400px]">
+        
+        <!-- Progress Bar -->
+        <div class="w-full bg-muted/20 h-1.5 rounded-full mb-12 overflow-hidden">
+            <div id="progress" class="bg-accent h-full w-0 transition-all duration-500"></div>
+        </div>
+
+        {questions.map((q, idx) => (
+            <div class={`quiz-step ${idx !== 0 ? 'hidden' : ''}`} data-step={idx}>
+                <h2 class="text-2xl font-bold mb-8">{q.text}</h2>
+                <div class="grid gap-4">
+                    {q.options.map(opt => (
+                        <button class="option-btn p-6 text-left border border-muted rounded-2xl hover:border-accent hover:bg-accent/5 transition-all font-medium" data-score={opt.score}>
+                            {opt.text}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        ))}
+
+        <!-- Result Section -->
+        <div id="result-section" class="hidden text-center animate-fade-in">
+            <div class="p-12 border border-accent/20 rounded-[3rem] bg-accent/5">
+                <span id="res-emoji" class="text-8xl mb-6 block"></span>
+                <h2 class="text-sm font-bold uppercase tracking-[0.2em] opacity-40 mb-2">Your Primary Style</h2>
+                <h3 id="res-title" class="text-4xl font-black text-accent mb-6"></h3>
+                <p id="res-desc" class="text-lg opacity-80 leading-relaxed mb-10 max-w-md mx-auto"></p>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button id="share-btn" class="px-8 py-3 bg-accent text-white font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-accent/20">
+                        Share My Result
+                    </button>
+                    <a href="https://hellosukh.com/sukhpreet-kaur/book-a-session" class="px-8 py-3 border border-muted font-bold rounded-full hover:bg-muted/10 transition-all">
+                        Talk About It
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  </Main>
+  <Footer />
+</Layout>
+
+<script is:inline define:vars={{ results, totalSteps: questions.length }}>
+    const steps = document.querySelectorAll('.quiz-step');
+    const progressBar = document.getElementById('progress');
+    const resultSection = document.getElementById('result-section');
+    const scores = { active: 0, social: 0, avoidant: 0, emotional: 0 };
+    let currentStep = 0;
+
+    document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const scoreKey = btn.dataset.score;
+            scores[scoreKey]++;
+
+            if (currentStep < totalSteps - 1) {
+                // Next Step
+                steps[currentStep].classList.add('hidden');
+                currentStep++;
+                steps[currentStep].classList.remove('hidden');
+                progressBar.style.width = `${((currentStep) / totalSteps) * 100}%`;
+            } else {
+                // Show Result
+                progressBar.style.width = '100%';
+                showResult();
+            }
+        });
+    });
+
+    function showResult() {
+        steps.forEach(s => s.classList.add('hidden'));
+        
+        // Find top score
+        const winnerKey = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+        const result = results[winnerKey];
+
+        document.getElementById('res-emoji').textContent = result.emoji;
+        document.getElementById('res-title').textContent = result.title;
+        document.getElementById('res-desc').textContent = result.desc;
+        
+        resultSection.classList.remove('hidden');
+    }
+
+    document.getElementById('share-btn').addEventListener('click', () => {
+        const title = document.getElementById('res-title').textContent;
+        const text = `I just discovered my coping style is "${title}"! Take the quiz on Sukhpreet Kaur's mental health platform.`;
+        const url = window.location.href;
+
+        if (navigator.share) {
+            navigator.share({ title, text, url });
+        } else {
+            // Fallback: Copy to clipboard
+            navigator.clipboard.writeText(`${text} ${url}`);
+            alert("Result link copied! Share it on your favorite platform.");
+        }
+    });
+</script>

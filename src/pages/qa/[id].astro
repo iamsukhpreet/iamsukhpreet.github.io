@@ -1,0 +1,55 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import { SITE } from "@/config";
+
+export async function getStaticPaths() {
+  const qa = await getCollection("qa");
+  return qa.map(item => ({
+    params: { id: item.id },
+    props: { item },
+  }));
+}
+
+interface Props {
+  item: CollectionEntry<"qa">;
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+
+<Layout title={`${item.data.question} | Community Q&A | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="Am I Normal?" pageDesc={item.data.question}>
+    
+    <div class="mt-12 bg-muted/10 border border-muted p-8 md:p-12 rounded-[2.5rem]">
+        <div class="flex items-start gap-6 mb-12">
+            <span class="text-5xl">👤</span>
+            <div>
+                <h2 class="text-2xl md:text-3xl font-bold italic">"{item.data.question}"</h2>
+                <p class="mt-4 text-xs font-bold uppercase tracking-widest opacity-40">Anonymous Question</p>
+            </div>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none border-t border-muted/50 pt-12">
+            <Content />
+        </div>
+    </div>
+
+    <div class="mt-16 text-center">
+        <hr class="border-muted mb-16" />
+        <h3 class="text-2xl font-bold mb-4">Have a similar concern?</h3>
+        <p class="opacity-80 mb-8 max-w-xl mx-auto">Every situation is unique. While these answers provide general guidance, a personalized session can help you navigate your specific feelings.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="/ask" class="px-8 py-3 border border-accent text-accent font-bold rounded-full hover:bg-accent hover:text-white transition-all">Ask Your Own</a>
+            <a href="https://hellosukh.com/sukhpreet-kaur/book-a-session" class="px-8 py-3 bg-accent text-white font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-accent/20">Book a Session</a>
+        </div>
+    </div>
+
+  </Main>
+  <Footer />
+</Layout>

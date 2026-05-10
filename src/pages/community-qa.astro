@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import { SITE } from "@/config";
+
+const qaItems = await getCollection("qa");
+const sortedQA = qaItems.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<Layout title={`Community Q&A | Am I Normal? | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="Am I Normal?" pageDesc="Anonymous questions from the community, answered by Sukhpreet Kaur.">
+    
+    <div class="mt-12 space-y-8">
+        <div class="p-8 bg-accent/5 border border-accent/20 rounded-[2rem] text-center mb-16">
+            <h2 class="text-2xl font-bold mb-4">Have a question?</h2>
+            <p class="opacity-70 mb-6">Submit your question anonymously. We select common concerns to answer here publicly.</p>
+            <a href="/ask" class="inline-block px-8 py-3 bg-accent text-white font-bold rounded-full hover:scale-105 transition-all shadow-lg shadow-accent/20">
+                Ask Anonymously
+            </a>
+        </div>
+
+        <div class="grid gap-6">
+            {sortedQA.map(item => (
+                <a href={`/qa/${item.id}`} class="block p-8 border border-muted rounded-3xl hover:border-accent transition-all bg-muted/5 group">
+                    <div class="flex items-start gap-4">
+                        <span class="text-3xl grayscale group-hover:grayscale-0 transition-all">❓</span>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{item.data.question}</h3>
+                            <p class="text-sm opacity-70 italic">{item.data.summary}</p>
+                            <div class="mt-4 text-[10px] font-bold uppercase tracking-widest opacity-40">
+                                Answered on {item.data.pubDate.toLocaleDateString()}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+
+  </Main>
+  <Footer />
+</Layout>

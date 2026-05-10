@@ -1,0 +1,141 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { SITE } from "@/config";
+
+// Minimal page for emergency grounding
+---
+
+<Layout 
+  title={`Immediate Panic & Anxiety Relief | ${SITE.title}`}
+  description="Grounding tools and breathing exercises for immediate panic attack relief. Use the 5-4-3-2-1 technique and interactive box breathing to find calm now."
+>
+  <Header activeNav="" />
+  
+  <main id="main-content" class="min-h-screen bg-slate-900 text-slate-100 selection:bg-teal-500/30">
+    <div class="max-w-2xl mx-auto px-6 py-12 md:py-24">
+        
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-black tracking-tight mb-4 text-teal-400">Panic Relief</h1>
+            <p class="text-lg opacity-80">You are safe. This will pass. Let's focus on your breath.</p>
+        </div>
+
+        <!-- Tool 1: The Breath -->
+        <section class="mb-24 text-center">
+            <div class="relative size-64 md:size-80 mx-auto mb-12 flex items-center justify-center">
+                <div id="p-circle" class="absolute size-32 bg-teal-500 rounded-full opacity-20 transition-all duration-[4000ms] ease-in-out"></div>
+                <div id="p-text" class="relative z-10 text-3xl font-bold text-teal-300">Ready?</div>
+            </div>
+            <button id="p-start" class="px-10 py-4 bg-teal-500 text-slate-900 text-xl font-black rounded-full hover:scale-105 active:scale-95 transition-all shadow-xl shadow-teal-500/20">
+                Tap to Start Breathing
+            </button>
+        </section>
+
+        <!-- Tool 2: 5-4-3-2-1 Grounding -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-center mb-8 border-b border-slate-800 pb-4">Ground Yourself</h2>
+            
+            <div class="grid gap-4">
+                <div class="g-step group" data-step="5">
+                    <span class="text-4xl font-black opacity-20 group-hover:opacity-100 transition-opacity">5</span>
+                    <p class="text-lg font-medium">Things you can <span class="text-teal-400">SEE</span></p>
+                </div>
+                <div class="g-step group" data-step="4">
+                    <span class="text-4xl font-black opacity-20 group-hover:opacity-100 transition-opacity">4</span>
+                    <p class="text-lg font-medium">Things you can <span class="text-teal-400">FEEL</span></p>
+                </div>
+                <div class="g-step group" data-step="3">
+                    <span class="text-4xl font-black opacity-20 group-hover:opacity-100 transition-opacity">3</span>
+                    <p class="text-lg font-medium">Things you can <span class="text-teal-400">HEAR</span></p>
+                </div>
+                <div class="g-step group" data-step="2">
+                    <span class="text-4xl font-black opacity-20 group-hover:opacity-100 transition-opacity">2</span>
+                    <p class="text-lg font-medium">Things you can <span class="text-teal-400">SMELL</span></p>
+                </div>
+                <div class="g-step group" data-step="1">
+                    <span class="text-4xl font-black opacity-20 group-hover:opacity-100 transition-opacity">1</span>
+                    <p class="text-lg font-medium">Thing you can <span class="text-teal-400">TASTE</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool 3: Emergency Contact -->
+        <div class="mt-24 p-8 bg-red-500/10 border border-red-500/20 rounded-3xl text-center">
+            <h3 class="text-xl font-bold text-red-400 mb-2">Need to talk to someone?</h3>
+            <p class="text-sm opacity-70 mb-6">If you are in immediate danger, please reach out to a professional.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="tel:9152987821" class="px-6 py-2 bg-red-500 text-white font-bold rounded-full text-sm">Call Helpline (iCall)</a>
+                <a href="/archives" class="px-6 py-2 border border-slate-700 font-bold rounded-full text-sm">Crisis Resources</a>
+            </div>
+        </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+    @reference "../styles/global.css";
+
+    .g-step {
+        @apply flex items-center gap-6 p-6 bg-slate-800/50 border border-slate-800 rounded-2xl cursor-pointer hover:bg-slate-800 transition-all;
+    }
+    .g-step.completed {
+        @apply border-teal-500/50 bg-teal-500/5;
+    }
+    .g-step.completed span {
+        @apply opacity-100 text-teal-400;
+    }
+</style>
+
+<script is:inline>
+    // --- Breathing Logic ---
+    let bInterval;
+    let bStep = 0;
+    const bSteps = [
+        { text: "Inhale", scale: "scale-[2.5]", opacity: "opacity-60" },
+        { text: "Hold", scale: "scale-[2.5]", opacity: "opacity-60" },
+        { text: "Exhale", scale: "scale-100", opacity: "opacity-20" },
+        { text: "Hold", scale: "scale-100", opacity: "opacity-20" }
+    ];
+
+    const pCircle = document.getElementById('p-circle');
+    const pText = document.getElementById('p-text');
+    const pBtn = document.getElementById('p-start');
+
+    function runPStep() {
+        const step = bSteps[bStep];
+        pCircle.className = `absolute size-32 bg-teal-500 rounded-full transition-all duration-[4000ms] ease-in-out ${step.scale} ${step.opacity}`;
+        pText.textContent = step.text;
+        bStep = (bStep + 1) % 4;
+    }
+
+    pBtn.addEventListener('click', () => {
+        if (bInterval) {
+            clearInterval(bInterval);
+            bInterval = null;
+            pBtn.textContent = "Resume Breathing";
+            pText.textContent = "Paused";
+            bStep = 0;
+        } else {
+            pBtn.textContent = "Stop Activity";
+            runPStep();
+            bInterval = setInterval(runPStep, 4000);
+        }
+    });
+
+    // --- Grounding Interaction ---
+    const steps = document.querySelectorAll('.g-step');
+    steps.forEach(step => {
+        step.addEventListener('click', () => {
+            step.classList.toggle('completed');
+            // Subtle haptic feel through UI
+            if (step.classList.contains('completed')) {
+                step.style.transform = 'scale(0.98)';
+                setTimeout(() => step.style.transform = 'none', 100);
+            }
+        });
+    });
+</script>

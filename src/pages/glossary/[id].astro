@@ -1,0 +1,49 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import { SITE } from "@/config";
+
+export async function getStaticPaths() {
+  const glossary = await getCollection("glossary");
+  return glossary.map(item => ({
+    params: { id: item.id },
+    props: { item },
+  }));
+}
+
+interface Props {
+  item: CollectionEntry<"glossary">;
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+
+<Layout title={`${item.data.term} | Mental Health Glossary | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle={item.data.term} pageDesc={item.data.description}>
+    
+    <div class="mt-8 flex flex-wrap gap-2">
+        {item.data.tags.map(tag => (
+            <span class="text-xs bg-muted px-3 py-1.5 rounded-full opacity-60 uppercase font-bold tracking-widest">{tag}</span>
+        ))}
+    </div>
+
+    <article class="prose dark:prose-invert max-w-none mt-12">
+        <Content />
+    </article>
+
+    <div class="mt-24 pt-12 border-t border-muted">
+        <h3 class="text-2xl font-bold mb-6">Need more clarity?</h3>
+        <p class="opacity-80 mb-8">Understanding these terms is the first step. If you're feeling overwhelmed or want to discuss how these concepts apply to you, consider booking a safe and confidential session.</p>
+        <a href="https://hellosukh.com/sukhpreet-kaur/book-a-session" class="inline-block px-8 py-3 bg-accent text-white font-bold rounded-full hover:scale-105 transition-all">
+            Book a Session
+        </a>
+    </div>
+
+  </Main>
+  <Footer />
+</Layout>
