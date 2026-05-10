@@ -1,6 +1,7 @@
 import { defineConfig, envField, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import AstroPWA from "@vite-pwa/astro";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import {
@@ -17,6 +18,46 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
+    }),
+    AstroPWA({
+      registerType: "autoUpdate",
+      manifest: {
+        name: SITE.title,
+        short_name: SITE.title,
+        description: SITE.desc,
+        theme_color: "#006cac",
+        background_color: "#fdfdfd",
+        display: "standalone",
+        start_url: "/",
+        icons: [
+          {
+            src: "/favicon.svg",
+            sizes: "any",
+            type: "image/svg+xml",
+            purpose: "any",
+          },
+          {
+            src: "/favicon.svg",
+            sizes: "any",
+            type: "image/svg+xml",
+            purpose: "maskable",
+          },
+          {
+            src: "/favicon-96x96.png",
+            sizes: "96x96",
+            type: "image/png",
+          },
+          {
+            src: "/apple-touch-icon.png",
+            sizes: "180x180",
+            type: "image/png",
+          },
+        ],
+      },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg,txt,json}"],
+        navigateFallback: "/",
+      },
     }),
   ],
   markdown: {

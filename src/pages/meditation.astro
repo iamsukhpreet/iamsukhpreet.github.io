@@ -145,6 +145,75 @@ const toolkits = [
         </div>
       </section>
 
+      <!-- Interactive Section: Live Journaling Workspace -->
+      <section id="interactive-journal" class="bg-accent/5 p-8 md:p-12 rounded-[2.5rem] border border-accent/20 scroll-mt-24">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-2">Digital Thought Dump</h2>
+                <p class="text-sm opacity-70">A private space to clear your mind. Your entries are never saved.</p>
+            </div>
+
+            <div class="bg-background/60 backdrop-blur-md p-6 rounded-3xl border border-muted shadow-inner mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-accent/70" id="prompt-label">Prompt</span>
+                    <button id="new-prompt" class="text-[10px] font-bold uppercase tracking-tighter hover:text-accent transition-colors">Shuffle Prompt ↺</button>
+                </div>
+                <p id="journal-prompt" class="text-lg font-medium mb-4 italic text-foreground/90">What is one thing weighing on your mind right now?</p>
+                
+                <textarea 
+                    id="journal-input" 
+                    placeholder="Start typing your thoughts here... no judgment, no editing."
+                    class="w-full h-48 bg-transparent border-none focus:ring-0 resize-none text-base leading-relaxed placeholder:opacity-30"
+                ></textarea>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex gap-2">
+                    <button id="release-btn" class="px-6 py-2.5 bg-accent text-white font-bold rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent/20 flex items-center gap-2">
+                        <span>✨</span> Release & Clear
+                    </button>
+                    <button id="copy-btn" class="px-6 py-2.5 bg-muted/20 border border-muted font-bold rounded-full hover:bg-muted/40 transition-all text-xs">
+                        Copy text
+                    </button>
+                </div>
+                <p id="journal-status" class="text-[10px] font-bold uppercase opacity-0 transition-opacity">Text Copied!</p>
+            </div>
+        </div>
+      </section>
+
+      <!-- Interactive Section: Gratitude Jar -->
+      <section id="gratitude-jar" class="not-prose scroll-mt-24">
+        <div class="max-w-3xl mx-auto bg-muted/10 p-8 md:p-12 rounded-[2.5rem] border border-muted/50 relative overflow-hidden">
+            <div class="text-center mb-10 relative z-10">
+                <h2 class="text-3xl font-bold mb-2">Your Gratitude Jar</h2>
+                <p class="text-sm opacity-70">Focus on the small wins. What are you thankful for right now?</p>
+            </div>
+
+            <div class="flex gap-2 mb-8 relative z-10">
+                <input 
+                    type="text" 
+                    id="gratitude-input" 
+                    placeholder="I am grateful for..." 
+                    class="flex-grow bg-background border border-muted px-6 py-3 rounded-full focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
+                />
+                <button id="add-gratitude" class="bg-accent text-white px-6 py-3 rounded-full font-bold hover:scale-105 active:scale-95 transition-all shadow-lg shadow-accent/20">
+                    Add Note
+                </button>
+            </div>
+
+            <div id="jar-container" class="flex flex-wrap justify-center gap-3 min-h-32">
+                <!-- Gratitude notes will appear here -->
+                <p id="jar-empty" class="text-sm italic opacity-40 py-10">Your jar is waiting for its first note...</p>
+            </div>
+
+            <div class="mt-8 text-center relative z-10">
+                <button id="clear-jar" class="text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity">
+                    Clear Jar & Reset
+                </button>
+            </div>
+        </div>
+      </section>
+
       <!-- Toolkit Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 not-prose">
         {toolkits.map(tool => (
@@ -289,12 +358,128 @@ const toolkits = [
             recText.textContent = recs[mood];
             moodRec.classList.remove('hidden');
             
-            // Scroll to the recommended tool if it exists
-            if (mood === 'anxious') window.scrollTo({ top: document.getElementById('interactive-breathing').offsetTop - 100, behavior: 'smooth' });
+            // Scroll to the recommended tool
+            const targets = {
+                anxious: 'interactive-breathing',
+                overwhelmed: 'interactive-journal',
+                distracted: 'journaling',
+                tired: 'movement',
+                calm: 'meditation'
+            };
+            const targetId = targets[mood];
+            if (targetId) {
+                window.scrollTo({ 
+                    top: document.getElementById(targetId).offsetTop - 100, 
+                    behavior: 'smooth' 
+                });
+            }
         });
     });
 
     closeRec.addEventListener('click', () => moodRec.classList.add('hidden'));
+
+    // --- Journaling Tool Logic ---
+    const prompts = [
+        "What is one thing weighing on your mind right now?",
+        "Describe your current mood as if it were weather.",
+        "What are three things you're proud of today?",
+        "If you could say anything to your future self, what would it be?",
+        "What is a challenge you've overcome recently, no matter how small?",
+        "List 5 things you can see, hear, or feel in this exact moment.",
+        "What would your life look like if you were 10% more compassionate toward yourself?"
+    ];
+
+    const jPrompt = document.getElementById('journal-prompt');
+    const jInput = document.getElementById('journal-input');
+    const shuffleBtn = document.getElementById('new-prompt');
+    const releaseBtn = document.getElementById('release-btn');
+    const copyBtn = document.getElementById('copy-btn');
+    const jStatus = document.getElementById('journal-status');
+
+    shuffleBtn.addEventListener('click', () => {
+        let newPrompt;
+        do {
+            newPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+        } while (newPrompt === jPrompt.textContent);
+        
+        jPrompt.style.opacity = '0';
+        setTimeout(() => {
+            jPrompt.textContent = newPrompt;
+            jPrompt.style.opacity = '1';
+        }, 200);
+    });
+
+    releaseBtn.addEventListener('click', () => {
+        if (!jInput.value.trim()) return;
+        
+        // "Release" animation: fade out and clear
+        jInput.style.transition = 'all 1s ease-out';
+        jInput.style.opacity = '0';
+        jInput.style.transform = 'translateY(-20px) scale(0.95)';
+        jInput.style.filter = 'blur(10px)';
+        
+        setTimeout(() => {
+            jInput.value = '';
+            jInput.style.opacity = '1';
+            jInput.style.transform = 'none';
+            jInput.style.filter = 'none';
+            
+            jStatus.textContent = "Released & Cleared ✨";
+            jStatus.classList.remove('opacity-0');
+            setTimeout(() => jStatus.classList.add('opacity-0'), 2000);
+        }, 1000);
+    });
+
+    copyBtn.addEventListener('click', () => {
+        if (!jInput.value.trim()) return;
+        navigator.clipboard.writeText(jInput.value);
+        jStatus.textContent = "Text Copied!";
+        jStatus.classList.remove('opacity-0');
+        setTimeout(() => jStatus.classList.add('opacity-0'), 2000);
+    });
+
+    // --- Gratitude Jar Logic ---
+    const gInput = document.getElementById('gratitude-input');
+    const gAddBtn = document.getElementById('add-gratitude');
+    const gContainer = document.getElementById('jar-container');
+    const gEmptyMsg = document.getElementById('jar-empty');
+    const gClearBtn = document.getElementById('clear-jar');
+
+    const colors = [
+        'bg-blue-500/10 border-blue-500/20 text-blue-700 dark:text-blue-300',
+        'bg-green-500/10 border-green-500/20 text-green-700 dark:text-green-300',
+        'bg-amber-500/10 border-amber-500/20 text-amber-700 dark:text-amber-300',
+        'bg-purple-500/10 border-purple-500/20 text-purple-700 dark:text-purple-300',
+        'bg-rose-500/10 border-rose-500/20 text-rose-700 dark:text-rose-300'
+    ];
+
+    function addGratitudeNote(text) {
+        if (!text.trim()) return;
+        
+        if (gEmptyMsg) gEmptyMsg.remove();
+        
+        const note = document.createElement('div');
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        note.className = `px-4 py-2 rounded-2xl border text-sm font-medium animate-fade-in ${color}`;
+        note.textContent = text;
+        
+        // Add a "sparkle" effect
+        note.style.boxShadow = '0 0 15px rgba(255,255,255,0.1)';
+        
+        gContainer.prepend(note);
+        gInput.value = '';
+        gInput.focus();
+    }
+
+    gAddBtn.addEventListener('click', () => addGratitudeNote(gInput.value));
+    gInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addGratitudeNote(gInput.value);
+    });
+
+    gClearBtn.addEventListener('click', () => {
+        gContainer.innerHTML = '';
+        gContainer.appendChild(gEmptyMsg);
+    });
 
     // --- Reveal on Scroll ---
     const observerOptions = { threshold: 0.1 };

@@ -90,6 +90,12 @@ const structuredData = pubDatetime
     <meta name="author" content={author} />
     {SITE.keywords && <meta name="keywords" content={SITE.keywords} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content={title} />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={title} />
@@ -221,6 +227,9 @@ const structuredData = pubDatetime
     <slot />
 
     <FloatingButtons />
+
+    <!-- PWA Service Worker Registration -->
+    <script is:inline src="/registerSW.js"></script>
 
     <!-- Load full theme logic -->
     <script src="../scripts/theme.ts"></script>
