@@ -5,6 +5,7 @@ import { SITE } from "@/config";
 export const BLOG_PATH = "src/data/blog";
 export const GLOSSARY_PATH = "src/data/glossary";
 export const QA_PATH = "src/data/qa";
+export const QUOTES_PATH = "src/data/quotes";
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/[^_]*.md", base: `./${BLOG_PATH}` }),
@@ -51,4 +52,13 @@ const qa = defineCollection({
   }),
 });
 
-export const collections = { blog, glossary, qa };
+const quotes = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: `./${QUOTES_PATH}` }),
+  schema: z.object({
+    quote: z.string(),
+    author: z.string(),
+    context: z.string(),
+  }),
+});
+
+export const collections = { blog, glossary, qa, quotes };

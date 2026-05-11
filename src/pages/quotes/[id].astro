@@ -1,0 +1,79 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import { SITE } from "@/config";
+
+export async function getStaticPaths() {
+  const quotes = await getCollection("quotes");
+  
+  // Sort or just use default order to determine prev/next
+  return quotes.map((item, index) => {
+    const prev = index > 0 ? quotes[index - 1] : null;
+    const next = index < quotes.length - 1 ? quotes[index + 1] : null;
+    
+    return {
+      params: { id: item.id },
+      props: { item, prev, next },
+    };
+  });
+}
+
+interface Props {
+  item: CollectionEntry<"quotes">;
+  prev: CollectionEntry<"quotes"> | null;
+  next: CollectionEntry<"quotes"> | null;
+}
+
+const { item, prev, next } = Astro.props;
+const { Content } = await render(item);
+---
+
+<Layout title={`Quote by ${item.data.author} | ${SITE.title}`}>
+  <Header activeNav="about" />
+  
+  <Main pageTitle="Reflection" pageDesc={item.data.context}>
+    
+    <div class="mt-8 mb-12 p-8 bg-muted/10 rounded-3xl border-l-4 border-accent relative">
+        <svg class="absolute top-4 left-4 w-12 h-12 text-accent/10" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8s-8.352 5.664-8.352 11.36c0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
+        <blockquote class="relative z-10 text-2xl md:text-3xl font-medium leading-relaxed italic text-foreground mb-6">
+            {item.data.quote}
+        </blockquote>
+        <div class="flex items-center gap-4 relative z-10">
+            <div>
+                <p class="font-bold text-lg text-accent">— {item.data.author}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="prose dark:prose-invert max-w-none mb-16">
+        <h3 class="text-xl font-bold mb-4">Why this matters:</h3>
+        <Content />
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 border-t border-muted">
+        {prev ? (
+            <a href={`/quotes/${prev.id}`} class="w-full sm:w-1/2 p-4 border border-muted rounded-xl hover:border-accent hover:bg-accent/5 transition-all flex flex-col group">
+                <span class="text-xs uppercase tracking-wider opacity-60 mb-1">&larr; Previous Quote</span>
+                <span class="font-medium group-hover:text-accent truncate">"{prev.data.quote}"</span>
+            </a>
+        ) : (
+            <div class="w-full sm:w-1/2"></div>
+        )}
+        
+        {next ? (
+            <a href={`/quotes/${next.id}`} class="w-full sm:w-1/2 p-4 border border-muted rounded-xl hover:border-accent hover:bg-accent/5 transition-all flex flex-col items-end text-right group">
+                <span class="text-xs uppercase tracking-wider opacity-60 mb-1">Next Quote &rarr;</span>
+                <span class="font-medium group-hover:text-accent truncate">"{next.data.quote}"</span>
+            </a>
+        ) : (
+            <div class="w-full sm:w-1/2"></div>
+        )}
+    </div>
+
+  </Main>
+  <Footer />
+</Layout>

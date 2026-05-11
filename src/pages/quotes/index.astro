@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import { SITE } from "@/config";
+
+const quotes = await getCollection("quotes");
+---
+
+<Layout title={`Mental Health Quotes | ${SITE.title}`}>
+  <Header activeNav="about" />
+  <Main pageTitle="Mental Health Quotes" pageDesc="Words of wisdom and context for mental well-being.">
+    
+    <div class="mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {quotes.map(item => (
+                <a href={`/quotes/${item.id}`} class="group p-6 border border-muted rounded-2xl hover:border-accent hover:shadow-lg transition-all bg-muted/5 flex flex-col justify-between h-full">
+                    <div>
+                        <blockquote class="text-xl font-medium text-accent italic mb-4">
+                            "{item.data.quote}"
+                        </blockquote>
+                        <p class="text-sm font-bold opacity-80 mb-2">— {item.data.author}</p>
+                        <p class="text-xs bg-accent/10 text-accent inline-block px-2 py-1 rounded-full font-bold uppercase tracking-widest mb-4">{item.data.context}</p>
+                    </div>
+                    <div class="mt-auto pt-4 border-t border-muted/30 text-sm opacity-60 group-hover:opacity-100 transition-opacity flex items-center justify-between">
+                        <span>Read explanation</span>
+                        <span>&rarr;</span>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+
+  </Main>
+  <Footer />
+</Layout>
