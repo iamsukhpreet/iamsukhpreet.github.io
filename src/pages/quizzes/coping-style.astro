@@ -112,6 +112,7 @@ const results = {
 </Layout>
 
 <script is:inline define:vars={{ results, totalSteps: questions.length }}>
+    // @ts-nocheck
     const steps = document.querySelectorAll('.quiz-step');
     const progressBar = document.getElementById('progress');
     const resultSection = document.getElementById('result-section');

@@ -38,7 +38,7 @@ const structuredData = pubDatetime
       "@type": "BlogPosting",
       mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": canonicalURL.href,
+        "@id": typeof canonicalURL === "string" ? canonicalURL : canonicalURL.href,
       },
       headline: `${title}`,
       image: `${socialImageURL}`,
