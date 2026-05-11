@@ -54,23 +54,23 @@ const { Content } = await render(item);
     </div>
 
     <!-- Navigation -->
-    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 border-t border-muted">
+    <div class="flex flex-col sm:flex-row justify-between gap-4 pt-8 border-t border-muted">
         {prev ? (
-            <a href={`/quotes/${prev.id}`} class="w-full sm:w-1/2 p-4 border border-muted rounded-xl hover:border-accent hover:bg-accent/5 transition-all flex flex-col group">
+            <a href={`/quotes/${prev.id}`} class="flex-1 min-w-0 p-4 border border-muted rounded-xl hover:border-accent hover:bg-accent/5 transition-all flex flex-col group">
                 <span class="text-xs uppercase tracking-wider opacity-60 mb-1">&larr; Previous Quote</span>
-                <span class="font-medium group-hover:text-accent truncate">"{prev.data.quote}"</span>
+                <span class="font-medium group-hover:text-accent line-clamp-2">"{prev.data.quote}"</span>
             </a>
         ) : (
-            <div class="w-full sm:w-1/2"></div>
+            <div class="flex-1"></div>
         )}
         
         {next ? (
-            <a href={`/quotes/${next.id}`} class="w-full sm:w-1/2 p-4 border border-muted rounded-xl hover:border-accent hover:bg-accent/5 transition-all flex flex-col items-end text-right group">
+            <a href={`/quotes/${next.id}`} class="flex-1 min-w-0 p-4 border border-muted rounded-xl hover:border-accent hover:bg-accent/5 transition-all flex flex-col items-end text-right group">
                 <span class="text-xs uppercase tracking-wider opacity-60 mb-1">Next Quote &rarr;</span>
-                <span class="font-medium group-hover:text-accent truncate">"{next.data.quote}"</span>
+                <span class="font-medium group-hover:text-accent line-clamp-2">"{next.data.quote}"</span>
             </a>
         ) : (
-            <div class="w-full sm:w-1/2"></div>
+            <div class="flex-1"></div>
         )}
     </div>
 
