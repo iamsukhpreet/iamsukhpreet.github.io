@@ -27,11 +27,19 @@ const blog = defineCollection({
 
 const glossary = defineCollection({
   loader: glob({ pattern: "**/*.md", base: `./${GLOSSARY_PATH}` }),
-  schema: z.object({
-    term: z.string(),
-    description: z.string(),
-    tags: z.array(z.string()).default([]),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      term: z.string(),
+      description: z.string(),
+      tags: z.array(z.string()).default([]),
+      image: image().optional(),
+      visualAid: z
+        .object({
+          type: z.enum(["simple", "pulse", "flip"]),
+          content: z.any().optional(),
+        })
+        .optional(),
+    }),
 });
 
 const qa = defineCollection({

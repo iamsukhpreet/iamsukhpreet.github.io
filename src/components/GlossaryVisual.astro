@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  term: string;
+  image?: any;
+  visualAid?: {
+    type: "simple" | "pulse" | "flip";
+    content?: any;
+  };
+}
+
+const { term, image, visualAid } = Astro.props;
+---
+
+<div class="glossary-visual-container my-8">
+  {visualAid?.type === "flip" ? (
+    <div class="flip-card w-full h-64 cursor-pointer group perspective-1000">
+      <div class="relative w-full h-full transition-transform duration-500 preserve-3d group-hover:rotate-y-180">
+        <div class="absolute inset-0 backface-hidden rounded-2xl overflow-hidden shadow-lg border border-muted">
+          {image ? (
+            <Image src={image} alt={term} class="w-full h-full object-cover" />
+          ) : (
+            <div class="w-full h-full bg-accent/10 flex items-center justify-center p-6 text-center">
+              <span class="text-3xl font-bold text-accent">{term}</span>
+            </div>
+          )}
+        </div>
+        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-accent text-white rounded-2xl p-8 flex flex-col items-center justify-center text-center shadow-lg">
+          <h4 class="text-xl font-bold mb-4">Did you know?</h4>
+          <p class="text-lg">{visualAid.content || "Click to learn more about this concept."}</p>
+        </div>
+      </div>
+    </div>
+  ) : visualAid?.type === "pulse" ? (
+    <div class="relative rounded-2xl overflow-hidden shadow-lg border border-muted">
+      {image && <Image src={image} alt={term} class="w-full h-auto" />}
+      {!image && <div class="w-full h-64 bg-accent/5 flex items-center justify-center font-bold text-accent/40 uppercase tracking-widest">{term}</div>}
+      
+      {visualAid.content?.map((point: any) => (
+        <div 
+          class="absolute group cursor-pointer" 
+          style={`top: ${point.y}%; left: ${point.x}%;`}
+        >
+          <div class="relative flex items-center justify-center">
+            <span class="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-accent opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-accent border-2 border-white"></span>
+          </div>
+          <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-48 p-3 bg-white dark:bg-zinc-800 text-sm rounded-lg shadow-xl border border-muted opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+            {point.label}
+            <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-8 border-transparent border-t-white dark:border-t-zinc-800"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div class="simple-image rounded-2xl overflow-hidden shadow-lg border border-muted transition-transform hover:scale-[1.02]">
+      {image && <Image src={image} alt={term} class="w-full h-auto" />}
+      {!image && <div class="w-full h-48 bg-accent/5 flex items-center justify-center text-accent/20 font-black text-4xl uppercase tracking-tighter">{term}</div>}
+    </div>
+  )}
+</div>
+
+<style>
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+</style>

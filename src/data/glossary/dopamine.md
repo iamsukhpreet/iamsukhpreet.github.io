@@ -2,6 +2,9 @@
 term: "Dopamine"
 description: "A neurotransmitter associated with feelings of pleasure, satisfaction, and motivation."
 tags: ['Biology', 'Reward']
+visualAid:
+  type: "flip"
+  content: "The 'Reward Center': Dopamine is what makes you feel good when you achieve a goal, eat a tasty meal, or receive a notification. It's the brain's way of saying 'That was good, do it again!'"
 ---
 
 A neurotransmitter associated with feelings of pleasure, satisfaction, and motivation.

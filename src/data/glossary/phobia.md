@@ -2,6 +2,10 @@
 term: "Phobia"
 description: "An extreme or irrational fear of or aversion to something."
 tags: ['Anxiety', 'Fear']
+image: ../../assets/img/phobia.webp
+visualAid:
+  type: "flip"
+  content: "Did you know? Phobias are often more than just 'fear'. They can cause physical symptoms like dizziness, nausea, and even panic attacks when just thinking about the trigger."
 ---
 
 An extreme or irrational fear of or aversion to something.
