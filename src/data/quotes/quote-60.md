@@ -1,7 +1,8 @@
 ---
-quote: "Anything that’s human is mentionable, and anything that is mentionable can be more manageable. (Reflection 5)"
-author: "Fred Rogers"
-context: "Compassion"
+quote: "Our life is frittered away by detail. Simplify, simplify. (Insight 3)"
+author: "Henry David Thoreau"
+context: "Simplicity"
+tags: ["mindfulness","balance","inner-peace","random"]
 ---
 
-Speaking openly about our fears and struggles diminishes their power over us. Connection and communication are powerful tools for managing distress. This variation emphasizes the importance of these concepts in our daily mental health practices and ongoing journey of self-discovery.
+Reducing the complexity and distractions in our lives allows us to focus on what truly matters and find inner calm. As we explore the depths of simplicity, we find new layers of meaning in our daily lives. This reflection 3 encourages us to look closer at our own journey.

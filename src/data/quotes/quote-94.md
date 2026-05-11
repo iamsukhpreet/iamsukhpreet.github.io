@@ -1,7 +1,8 @@
 ---
-quote: "When we are no longer able to change a situation, we are challenged to change ourselves. (Reflection 9)"
-author: "Viktor Frankl"
-context: "Meaning"
+quote: "It does not matter how slowly you go as long as you do not stop. (Insight 5)"
+author: "Confucius"
+context: "Persistence"
+tags: ["resilience","motivation","growth","random"]
 ---
 
-In the face of unchangeable circumstances, our ultimate freedom lies in our ability to choose our attitude and adapt internally. This variation emphasizes the importance of these concepts in our daily mental health practices and ongoing journey of self-discovery.
+Consistent, gradual progress is often more sustainable and effective than short bursts of effort followed by burnout. As we explore the depths of persistence, we find new layers of meaning in our daily lives. This reflection 5 encourages us to look closer at our own journey.

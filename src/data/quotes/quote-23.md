@@ -1,7 +1,8 @@
 ---
-quote: "You may encounter many defeats, but you must not be defeated. (Reflection 2)"
+quote: "You may encounter many defeats, but you must not be defeated. (Insight 2)"
 author: "Maya Angelou"
 context: "Overcoming"
+tags: ["resilience","motivation","strength","random"]
 ---
 
-Setbacks are a natural part of life, but they do not have to define our ultimate outcome. Resilience is the choice to keep moving forward. This variation emphasizes the importance of these concepts in our daily mental health practices and ongoing journey of self-discovery.
+Setbacks are a natural part of life, but they do not have to define our ultimate outcome. Resilience is the choice to keep moving forward. As we explore the depths of overcoming, we find new layers of meaning in our daily lives. This reflection 2 encourages us to look closer at our own journey.

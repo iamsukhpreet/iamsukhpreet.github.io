@@ -1,7 +1,8 @@
 ---
-quote: "Although the world is full of suffering, it is also full of the overcoming of it. (Reflection 2)"
+quote: "Although the world is full of suffering, it is also full of the overcoming of it. (Insight 2)"
 author: "Helen Keller"
 context: "Perseverance"
+tags: ["resilience","hope","healing","random"]
 ---
 
-While pain is an undeniable reality of the human experience, so too is our remarkable capacity to heal, recover, and triumph over adversity. This variation emphasizes the importance of these concepts in our daily mental health practices and ongoing journey of self-discovery.
+While pain is an undeniable reality of the human experience, so too is our remarkable capacity to heal, recover, and triumph over adversity. As we explore the depths of perseverance, we find new layers of meaning in our daily lives. This reflection 2 encourages us to look closer at our own journey.

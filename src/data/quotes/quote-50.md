@@ -1,7 +1,8 @@
 ---
-quote: "Anything that’s human is mentionable, and anything that is mentionable can be more manageable. (Reflection 4)"
+quote: "Anything that’s human is mentionable, and anything that is mentionable can be more manageable. (Insight 3)"
 author: "Fred Rogers"
 context: "Compassion"
+tags: ["stigma","childhood","relationships","random"]
 ---
 
-Speaking openly about our fears and struggles diminishes their power over us. Connection and communication are powerful tools for managing distress. This variation emphasizes the importance of these concepts in our daily mental health practices and ongoing journey of self-discovery.
+Speaking openly about our fears and struggles diminishes their power over us. Connection and communication are powerful tools for managing distress. As we explore the depths of compassion, we find new layers of meaning in our daily lives. This reflection 3 encourages us to look closer at our own journey.

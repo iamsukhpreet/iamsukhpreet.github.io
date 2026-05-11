@@ -1,7 +1,8 @@
 ---
-quote: "Although the world is full of suffering, it is also full of the overcoming of it. (Reflection 7)"
-author: "Helen Keller"
-context: "Perseverance"
+quote: "Be the change that you wish to see in the world. (Insight 4)"
+author: "Mahatma Gandhi"
+context: "Change"
+tags: ["motivation","growth","courage","random"]
 ---
 
-While pain is an undeniable reality of the human experience, so too is our remarkable capacity to heal, recover, and triumph over adversity. This variation emphasizes the importance of these concepts in our daily mental health practices and ongoing journey of self-discovery.
+Personal transformation is often the most effective way to inspire and facilitate broader positive change in our communities. As we explore the depths of change, we find new layers of meaning in our daily lives. This reflection 4 encourages us to look closer at our own journey.

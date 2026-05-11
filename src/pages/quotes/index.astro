@@ -7,28 +7,73 @@ import Main from "@/layouts/Main.astro";
 import { SITE } from "@/config";
 
 const quotes = await getCollection("quotes");
+
+// Get all unique tags and sort them by frequency (trending)
+const tagCounts: Record<string, number> = {};
+quotes.forEach(quote => {
+  quote.data.tags?.forEach(tag => {
+    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+  });
+});
+
+const trendingTags = Object.entries(tagCounts)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 21) // Get top 21 (including random)
+  .map(([tag]) => tag);
+
+// Ensure 'random' is in the list and maybe at the start
+const finalTags = trendingTags.includes("random") 
+  ? ["random", ...trendingTags.filter(t => t !== "random")]
+  : ["random", ...trendingTags.slice(0, 20)];
+
 ---
 
 <Layout title={`Mental Health Quotes | ${SITE.title}`}>
   <Header activeNav="about" />
   <Main pageTitle="Mental Health Quotes" pageDesc="Words of wisdom and context for mental well-being.">
     
+    <!-- Tag Filter -->
+    <div class="mt-8 mb-12">
+        <h2 class="text-lg font-bold mb-4 opacity-80 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5 4 4"/><path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13"/><path d="m8 18 2 2"/><path d="M14.7 10.3 21.3 17a2.41 2.41 0 0 1 0 3.4l-2.6 2.6a2.41 2.41 0 0 1-3.4 0L8.7 16.3"/><path d="m16 19 2-2"/></svg>
+            Filter by Theme
+        </h2>
+        <div class="flex flex-wrap gap-2" id="tag-filters">
+            {finalTags.map(tag => (
+                <button 
+                    data-tag={tag}
+                    class="px-4 py-2 rounded-full border border-muted hover:border-accent hover:bg-accent/5 transition-all text-sm font-medium capitalize tag-btn"
+                    class:list={[{ "bg-accent text-white border-accent": tag === "random" }]}
+                >
+                    {tag}
+                </button>
+            ))}
+        </div>
+    </div>
+
     <div class="mt-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="quotes-grid">
             {quotes.map(item => (
-                <a href={`/quotes/${item.id}`} class="group p-6 border border-muted rounded-2xl hover:border-accent hover:shadow-lg transition-all bg-muted/5 flex flex-col justify-between h-full">
+                <div 
+                    class="quote-card group p-6 border border-muted rounded-2xl hover:border-accent hover:shadow-lg transition-all bg-muted/5 flex flex-col justify-between h-full"
+                    data-tags={JSON.stringify(item.data.tags)}
+                >
                     <div>
                         <blockquote class="text-xl font-medium text-accent italic mb-4">
                             "{item.data.quote}"
                         </blockquote>
                         <p class="text-sm font-bold opacity-80 mb-2">— {item.data.author}</p>
-                        <p class="text-xs bg-accent/10 text-accent inline-block px-2 py-1 rounded-full font-bold uppercase tracking-widest mb-4">{item.data.context}</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            {item.data.tags?.filter(t => t !== 'random').slice(0, 3).map(tag => (
+                                <span class="text-[10px] bg-accent/10 text-accent px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">{tag}</span>
+                            ))}
+                        </div>
                     </div>
-                    <div class="mt-auto pt-4 border-t border-muted/30 text-sm opacity-60 group-hover:opacity-100 transition-opacity flex items-center justify-between">
+                    <a href={`/quotes/${item.id}`} class="mt-auto pt-4 border-t border-muted/30 text-sm opacity-60 group-hover:opacity-100 transition-opacity flex items-center justify-between">
                         <span>Read explanation</span>
                         <span>&rarr;</span>
-                    </div>
-                </a>
+                    </a>
+                </div>
             ))}
         </div>
     </div>
@@ -36,3 +81,48 @@ const quotes = await getCollection("quotes");
   </Main>
   <Footer />
 </Layout>
+
+<script>
+    const setupFilters = () => {
+        const buttons = document.querySelectorAll('.tag-btn');
+        const cards = document.querySelectorAll('.quote-card');
+        const quotesGrid = document.querySelector('#quotes-grid');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const selectedTag = btn.getAttribute('data-tag');
+
+                // Update UI for buttons
+                buttons.forEach(b => {
+                    b.classList.remove('bg-accent', 'text-white', 'border-accent');
+                    b.classList.add('border-muted');
+                });
+                btn.classList.add('bg-accent', 'text-white', 'border-accent');
+                btn.classList.remove('border-muted');
+
+                // Filter cards
+                let visibleCount = 0;
+                cards.forEach(card => {
+                    const tags = JSON.parse(card.getAttribute('data-tags') || '[]');
+                    if (selectedTag === 'random' || tags.includes(selectedTag)) {
+                        (card as HTMLElement).style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        (card as HTMLElement).style.display = 'none';
+                    }
+                });
+
+                // Scroll to top of grid
+                if (quotesGrid) {
+                    window.scrollTo({ top: (quotesGrid as HTMLElement).offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+        });
+    };
+
+    // Run on page load
+    setupFilters();
+
+    // Run on view transitions
+    document.addEventListener("astro:after-swap", setupFilters);
+</script>

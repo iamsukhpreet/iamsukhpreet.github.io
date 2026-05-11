@@ -58,6 +58,7 @@ const quotes = defineCollection({
     quote: z.string(),
     author: z.string(),
     context: z.string(),
+    tags: z.array(z.string()).default(["random"]),
   }),
 });
 

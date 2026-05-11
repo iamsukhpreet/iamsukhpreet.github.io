@@ -1,7 +1,8 @@
 ---
-quote: "You may encounter many defeats, but you must not be defeated. (Reflection 9)"
-author: "Maya Angelou"
-context: "Overcoming"
+quote: "Very little is needed to make a happy life; it is all within yourself, in your way of thinking. (Insight 5)"
+author: "Marcus Aurelius"
+context: "Stoicism"
+tags: ["acceptance","perspective","strength","random"]
 ---
 
-Setbacks are a natural part of life, but they do not have to define our ultimate outcome. Resilience is the choice to keep moving forward. This variation emphasizes the importance of these concepts in our daily mental health practices and ongoing journey of self-discovery.
+Our internal mindset and perceptions have a far greater impact on our well-being than any external circumstances. As we explore the depths of stoicism, we find new layers of meaning in our daily lives. This reflection 5 encourages us to look closer at our own journey.
