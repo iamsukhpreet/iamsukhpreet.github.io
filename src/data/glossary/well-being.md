@@ -1,6 +1,6 @@
 ---
 term: "Well-being"
-description: "The state of being comfortable, healthy, or happy."
+description: "Psychological definition and mental health impact of well being: The state of being comfortable, healthy, or happy."
 tags: ['Wellness', 'Goal']
 ---
 

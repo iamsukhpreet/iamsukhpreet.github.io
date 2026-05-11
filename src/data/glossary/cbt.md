@@ -1,6 +1,6 @@
 ---
 term: "CBT"
-description: "Cognitive Behavioral Therapy helps you manage problems by changing the way you think and behave."
+description: "Psychological definition and mental health impact of cbt: Cognitive Behavioral Therapy helps you manage problems by changing the way you think and behave."
 tags: ['Therapy', 'Treatment']
 ---
 

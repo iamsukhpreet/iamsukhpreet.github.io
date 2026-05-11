@@ -1,6 +1,6 @@
 ---
 term: "Toxic Positivity"
-description: "The belief that no matter how dire or difficult a situation is, people should maintain a positive mindset."
+description: "Psychological definition and mental health impact of toxic positivity: The belief that no matter how dire or difficult a situation is, people should maintain a positive mindset."
 tags: ['Social', 'Emotional Health']
 ---
 

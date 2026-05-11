@@ -83,3 +83,10 @@ Understanding your mental health is a proactive step toward well-being. The GHQ-
 ✨ **Happy Diwali** ✨
 
 May this Diwali bring you peace, joy, and the inner calm that fills your life with light and positivity. Wishing you a Diwali filled with happiness, health, and cherished moments with loved ones. Let's celebrate togetherness, mindfulness, and the light within each of us. Happy Diwali!
+
+
+---
+### Explore More Mental Health Resources
+- **[Mental Health Glossary](/glossary):** Explore our comprehensive plain-English guide to psychological terms to better understand mental health concepts.
+- **[Words of Wisdom](/quotes):** Find inspiration and daily reflection in our collection of mental health quotes.
+- **[Community Q&A](/qa):** Read common questions about therapy and mental well-being, or ask your own anonymously.

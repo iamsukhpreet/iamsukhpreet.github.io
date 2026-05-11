@@ -4,7 +4,8 @@ const currentUrlPath = Astro.url.pathname.replace(/\/+$/, "");
 
 // Get url array from path
 // eg: /tags/tailwindcss => ['tags', 'tailwindcss']
-const breadcrumbList = currentUrlPath.split("/").slice(1);
+const originalBreadcrumbList = currentUrlPath.split("/").slice(1);
+const breadcrumbList = [...originalBreadcrumbList];
 
 // if breadcrumb is Home > Posts > 1 <etc>
 // replace Posts with Posts (page number)
@@ -21,6 +22,30 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     `${breadcrumbList[1]} ${Number(breadcrumbList[2]) === 1 ? "" : "(page " + breadcrumbList[2] + ")"}`
   );
 }
+
+// Generate JSON-LD Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: Astro.url.origin,
+    },
+    ...originalBreadcrumbList.map((breadcrumb, index) => {
+      // Build the path progressively for each breadcrumb step
+      const path = "/" + originalBreadcrumbList.slice(0, index + 1).join("/");
+      return {
+        "@type": "ListItem",
+        position: index + 2,
+        name: decodeURIComponent(breadcrumb),
+        item: new URL(path, Astro.url.origin).href,
+      };
+    }),
+  ],
+};
 ---
 
 <nav class="app-layout mt-8 mb-1" aria-label="breadcrumb">
@@ -55,3 +80,9 @@ if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
     }
   </ul>
 </nav>
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(breadcrumbSchema)}
+/>

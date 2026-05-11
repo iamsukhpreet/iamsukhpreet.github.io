@@ -1,6 +1,6 @@
 ---
 term: "Fight or Flight"
-description: "A physiological reaction that occurs in response to a perceived harmful event, attack, or threat to survival."
+description: "Psychological definition and mental health impact of fight or flight: A physiological reaction that occurs in response to a perceived harmful event, attack, or threat to survival."
 tags: ['Evolution', 'Stress']
 ---
 

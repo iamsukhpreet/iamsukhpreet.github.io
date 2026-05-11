@@ -1,6 +1,6 @@
 ---
 term: "Psychotherapy"
-description: "The treatment of mental disorder by psychological rather than medical means."
+description: "Psychological definition and mental health impact of psychotherapy: The treatment of mental disorder by psychological rather than medical means."
 tags: ['Therapy', 'Clinical']
 ---
 

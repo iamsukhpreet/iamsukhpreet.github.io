@@ -1,6 +1,6 @@
 ---
 term: "Trauma"
-description: "An emotional response to a terrible event like an accident, rape, or natural disaster."
+description: "Psychological definition and mental health impact of trauma: An emotional response to a terrible event like an accident, rape, or natural disaster."
 tags: ['Clinical', 'Trauma']
 ---
 

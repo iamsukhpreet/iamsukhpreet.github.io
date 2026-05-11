@@ -1,6 +1,6 @@
 ---
 term: "Self-Esteem"
-description: "How we value and perceive ourselves; it's based on our opinions and beliefs about ourselves."
+description: "Psychological definition and mental health impact of self esteem: How we value and perceive ourselves; it's based on our opinions and beliefs about ourselves."
 tags: ['Self-Perception', 'Emotional Health']
 ---
 

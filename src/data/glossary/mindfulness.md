@@ -1,6 +1,6 @@
 ---
 term: "Mindfulness"
-description: "The practice of being fully present and engaged in the moment, aware of thoughts and feelings without judgment."
+description: "Psychological definition and mental health impact of mindfulness: The practice of being fully present and engaged in the moment, aware of thoughts and feelings without judgment."
 tags: ['Coping Mechanisms', 'Wellness']
 ---
 

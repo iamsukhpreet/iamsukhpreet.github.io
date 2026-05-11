@@ -86,3 +86,10 @@ Understanding that these feelings are a natural part of the post-festival phase 
 - Start your day with work motivational thoughts.
 
 Remember, post-festival depression is temporary, and with time and self-care, you’ll soon feel re-energized.
+
+
+---
+### Explore More Mental Health Resources
+- **[Mental Health Glossary](/glossary):** Explore our comprehensive plain-English guide to psychological terms to better understand mental health concepts.
+- **[Words of Wisdom](/quotes):** Find inspiration and daily reflection in our collection of mental health quotes.
+- **[Community Q&A](/qa):** Read common questions about therapy and mental well-being, or ask your own anonymously.

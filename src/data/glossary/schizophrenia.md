@@ -1,6 +1,6 @@
 ---
 term: "Schizophrenia"
-description: "A serious mental disorder in which people interpret reality abnormally."
+description: "Psychological definition and mental health impact of schizophrenia: A serious mental disorder in which people interpret reality abnormally."
 tags: ['Clinical', 'Chronic']
 ---
 

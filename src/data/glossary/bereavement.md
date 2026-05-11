@@ -1,6 +1,6 @@
 ---
 term: "Bereavement"
-description: "The period of grief and mourning after a death."
+description: "Psychological definition and mental health impact of bereavement: The period of grief and mourning after a death."
 tags: ['Loss', 'Clinical']
 ---
 

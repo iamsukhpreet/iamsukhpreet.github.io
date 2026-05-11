@@ -1,6 +1,6 @@
 ---
 term: "Cortisol"
-description: "The body's main stress hormone, which works with certain parts of your brain to control your mood, motivation, and fear."
+description: "Psychological definition and mental health impact of cortisol: The body's main stress hormone, which works with certain parts of your brain to control your mood, motivation, and fear."
 tags: ['Biology', 'Stress']
 ---
 

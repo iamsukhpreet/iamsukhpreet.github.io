@@ -1,6 +1,6 @@
 ---
 term: "Anxiety"
-description: "A natural response to stress characterized by feelings of tension, worried thoughts, and physical changes like increased blood pressure."
+description: "Psychological definition and mental health impact of anxiety: A natural response to stress characterized by feelings of tension, worried thoughts, and physical changes like increased blood pressure."
 tags: ["Common Symptoms", "Emotional Health"]
 image: ../../assets/img/stress_image.webp
 visualAid:

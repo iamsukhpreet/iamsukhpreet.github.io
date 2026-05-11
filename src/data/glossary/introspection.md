@@ -1,6 +1,6 @@
 ---
 term: "Introspection"
-description: "The examination of one's own conscious thoughts and feelings."
+description: "Psychological definition and mental health impact of introspection: The examination of one's own conscious thoughts and feelings."
 tags: ['Self-Discovery', 'Psychology']
 ---
 

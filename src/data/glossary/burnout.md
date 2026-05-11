@@ -1,6 +1,6 @@
 ---
 term: "Burnout"
-description: "A state of emotional, physical, and mental exhaustion caused by excessive and prolonged stress."
+description: "Psychological definition and mental health impact of burnout: A state of emotional, physical, and mental exhaustion caused by excessive and prolonged stress."
 tags: ["Workplace Wellness", "Stress Management"]
 image: ../../assets/img/calm.webp
 visualAid:

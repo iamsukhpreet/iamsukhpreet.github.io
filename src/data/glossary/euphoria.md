@@ -1,6 +1,6 @@
 ---
 term: "Euphoria"
-description: "An experience or affect of pleasure or excitement and intense feelings of well-being and happiness."
+description: "Psychological definition and mental health impact of euphoria: An experience or affect of pleasure or excitement and intense feelings of well-being and happiness."
 tags: ['Mood', 'Emotions']
 ---
 

@@ -1,6 +1,6 @@
 ---
 term: "Serotonin"
-description: "A neurotransmitter that contributes to feelings of well-being and happiness."
+description: "Psychological definition and mental health impact of serotonin: A neurotransmitter that contributes to feelings of well-being and happiness."
 tags: ['Biology', 'Mood']
 ---
 

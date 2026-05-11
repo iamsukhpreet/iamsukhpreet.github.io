@@ -1,6 +1,6 @@
 ---
 term: "Panic Attack"
-description: "A sudden episode of intense fear that triggers severe physical reactions when there is no real danger."
+description: "Psychological definition and mental health impact of panic attack: A sudden episode of intense fear that triggers severe physical reactions when there is no real danger."
 tags: ['Anxiety', 'Emergency']
 ---
 

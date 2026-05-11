@@ -20,6 +20,21 @@ interface Props {
 
 const { item } = Astro.props;
 const { Content } = await render(item);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: item.data.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.data.summary,
+      },
+    },
+  ],
+};
 ---
 
 <Layout title={`${item.data.question} | Community Q&A | ${SITE.title}`}>
@@ -53,3 +68,9 @@ const { Content } = await render(item);
   </Main>
   <Footer />
 </Layout>
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(faqSchema)}
+/>

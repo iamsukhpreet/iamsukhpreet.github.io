@@ -1,6 +1,6 @@
 ---
 term: "Self-Care"
-description: "Activities and practices we engage in on a regular basis to reduce stress and enhance our well-being."
+description: "Psychological definition and mental health impact of self care: Activities and practices we engage in on a regular basis to reduce stress and enhance our well-being."
 tags: ['Wellness', 'Lifestyle']
 ---
 

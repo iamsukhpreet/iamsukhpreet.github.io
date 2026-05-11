@@ -1,6 +1,6 @@
 ---
 term: "Boundaries"
-description: "The physical, emotional, and mental limits we set to protect ourselves from being manipulated, used, or violated by others."
+description: "Psychological definition and mental health impact of boundaries: The physical, emotional, and mental limits we set to protect ourselves from being manipulated, used, or violated by others."
 tags: ['Self-Care', 'Relationships']
 ---
 

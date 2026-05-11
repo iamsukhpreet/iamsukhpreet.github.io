@@ -1,6 +1,6 @@
 ---
 term: "Phobia"
-description: "An extreme or irrational fear of or aversion to something."
+description: "Psychological definition and mental health impact of phobia: An extreme or irrational fear of or aversion to something."
 tags: ['Anxiety', 'Fear']
 image: ../../assets/img/phobia.webp
 visualAid:

@@ -1,6 +1,6 @@
 ---
 term: "Empathy"
-description: "The capacity to understand or feel what another person is experiencing from within their frame of reference."
+description: "Psychological definition and mental health impact of empathy: The capacity to understand or feel what another person is experiencing from within their frame of reference."
 tags: ['Social Skills', 'Emotional Intelligence']
 ---
 

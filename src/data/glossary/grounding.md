@@ -1,6 +1,6 @@
 ---
 term: "Grounding"
-description: "Strategies that help you detach from emotional pain and stay connected to the present."
+description: "Psychological definition and mental health impact of grounding: Strategies that help you detach from emotional pain and stay connected to the present."
 tags: ['Coping Mechanisms', 'Anxiety']
 ---
 

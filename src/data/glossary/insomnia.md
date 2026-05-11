@@ -1,6 +1,6 @@
 ---
 term: "Insomnia"
-description: "A common sleep disorder that can make it hard to fall asleep, hard to stay asleep, or cause you to wake up too early."
+description: "Psychological definition and mental health impact of insomnia: A common sleep disorder that can make it hard to fall asleep, hard to stay asleep, or cause you to wake up too early."
 tags: ['Health', 'Sleep']
 ---
 

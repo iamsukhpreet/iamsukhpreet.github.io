@@ -1,6 +1,6 @@
 ---
 term: "Resilience"
-description: "The ability to mentally or emotionally cope with a crisis or to return to pre-crisis status quickly."
+description: "Psychological definition and mental health impact of resilience: The ability to mentally or emotionally cope with a crisis or to return to pre-crisis status quickly."
 tags: ['Coping Mechanisms', 'Strengths']
 ---
 

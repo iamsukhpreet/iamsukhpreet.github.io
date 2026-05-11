@@ -1,6 +1,6 @@
 ---
 term: "Counseling"
-description: "Professional guidance in resolving personal, social, or psychological problems."
+description: "Psychological definition and mental health impact of counseling: Professional guidance in resolving personal, social, or psychological problems."
 tags: ['Support', 'Therapy']
 ---
 

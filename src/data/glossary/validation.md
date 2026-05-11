@@ -1,6 +1,6 @@
 ---
 term: "Validation"
-description: "The process of learning about, understanding, and expressing acceptance of another person's emotional experience."
+description: "Psychological definition and mental health impact of validation: The process of learning about, understanding, and expressing acceptance of another person's emotional experience."
 tags: ['Relationships', 'Communication']
 ---
 

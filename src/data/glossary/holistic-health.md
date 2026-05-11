@@ -1,6 +1,6 @@
 ---
 term: "Holistic Health"
-description: "An approach to wellness that simultaneously addresses the physical, mental, emotional, social, and spiritual components of health."
+description: "Psychological definition and mental health impact of holistic health: An approach to wellness that simultaneously addresses the physical, mental, emotional, social, and spiritual components of health."
 tags: ['Wellness', 'Integration']
 ---
 

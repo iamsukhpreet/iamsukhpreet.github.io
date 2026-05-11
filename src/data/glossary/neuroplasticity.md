@@ -1,6 +1,6 @@
 ---
 term: "Neuroplasticity"
-description: "The brain's ability to reorganize itself by forming new neural connections throughout life."
+description: "Psychological definition and mental health impact of neuroplasticity: The brain's ability to reorganize itself by forming new neural connections throughout life."
 tags: ['Science', 'Brain Health']
 ---
 

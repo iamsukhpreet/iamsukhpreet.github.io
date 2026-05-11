@@ -1,6 +1,6 @@
 ---
 term: "Grief"
-description: "A natural response to losing someone or something that's important to you."
+description: "Psychological definition and mental health impact of grief: A natural response to losing someone or something that's important to you."
 tags: ['Loss', 'Emotional Health']
 ---
 

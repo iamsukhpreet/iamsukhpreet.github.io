@@ -1,6 +1,6 @@
 ---
 term: "Dopamine"
-description: "A neurotransmitter associated with feelings of pleasure, satisfaction, and motivation."
+description: "Psychological definition and mental health impact of dopamine: A neurotransmitter associated with feelings of pleasure, satisfaction, and motivation."
 tags: ['Biology', 'Reward']
 visualAid:
   type: "flip"

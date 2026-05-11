@@ -1,6 +1,6 @@
 ---
 term: "Imposter Syndrome"
-description: "Doubting your abilities and feeling like a fraud despite your accomplishments."
+description: "Psychological definition and mental health impact of imposter syndrome: Doubting your abilities and feeling like a fraud despite your accomplishments."
 tags: ['Self-Perception', 'Workplace']
 ---
 

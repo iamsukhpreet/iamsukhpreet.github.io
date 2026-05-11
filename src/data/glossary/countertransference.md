@@ -1,6 +1,6 @@
 ---
 term: "Countertransference"
-description: "The redirection of a psychotherapist's feelings toward a client."
+description: "Psychological definition and mental health impact of countertransference: The redirection of a psychotherapist's feelings toward a client."
 tags: ['Therapy', 'Professional']
 ---
 

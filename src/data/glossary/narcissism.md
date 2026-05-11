@@ -1,6 +1,6 @@
 ---
 term: "Narcissism"
-description: "Self-centeredness arising from failure to distinguish the self from external objects."
+description: "Psychological definition and mental health impact of narcissism: Self-centeredness arising from failure to distinguish the self from external objects."
 tags: ['Personality', 'Relationships']
 ---
 

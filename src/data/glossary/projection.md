@@ -1,6 +1,6 @@
 ---
 term: "Projection"
-description: "A defense mechanism in which the human ego defends itself against unconscious impulses by denying their existence in themselves while attributing them to others."
+description: "Psychological definition and mental health impact of projection: A defense mechanism in which the human ego defends itself against unconscious impulses by denying their existence in themselves while attributing them to others."
 tags: ['Defense Mechanisms', 'Psychology']
 ---
 

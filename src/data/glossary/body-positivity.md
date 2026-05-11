@@ -1,6 +1,6 @@
 ---
 term: "Body Positivity"
-description: "The assertion that all people deserve to have a positive body image, regardless of how society and the popular culture view ideal shape, size, and appearance."
+description: "Psychological definition and mental health impact of body positivity: The assertion that all people deserve to have a positive body image, regardless of how society and the popular culture view ideal shape, size, and appearance."
 tags: ['Wellness', 'Self-Perception']
 ---
 

@@ -1,6 +1,6 @@
 ---
 term: "ADHD"
-description: "Attention-Deficit/Hyperactivity Disorder is a chronic condition including attention difficulty and impulsiveness."
+description: "Psychological definition and mental health impact of adhd: Attention-Deficit/Hyperactivity Disorder is a chronic condition including attention difficulty and impulsiveness."
 tags: ['Neurodevelopmental', 'Clinical']
 ---
 

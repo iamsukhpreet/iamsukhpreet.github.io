@@ -1,6 +1,6 @@
 ---
 term: "Dissociation"
-description: "A mental process that causes a lack of connection in a person’s thoughts, memory and sense of identity."
+description: "Psychological definition and mental health impact of dissociation: A mental process that causes a lack of connection in a person’s thoughts, memory and sense of identity."
 tags: ['Trauma', 'Clinical']
 ---
 

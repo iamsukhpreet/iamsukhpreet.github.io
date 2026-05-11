@@ -1,6 +1,6 @@
 ---
 term: "Transference"
-description: "The redirection of feelings and desires, especially of those unconsciously retained from childhood, toward a new object."
+description: "Psychological definition and mental health impact of transference: The redirection of feelings and desires, especially of those unconsciously retained from childhood, toward a new object."
 tags: ['Therapy', 'Relationships']
 ---
 

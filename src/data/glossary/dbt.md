@@ -1,6 +1,6 @@
 ---
 term: "DBT"
-description: "Dialectical Behavior Therapy provides clients with new skills to manage painful emotions and decrease conflict in relationships."
+description: "Psychological definition and mental health impact of dbt: Dialectical Behavior Therapy provides clients with new skills to manage painful emotions and decrease conflict in relationships."
 tags: ['Therapy', 'Treatment']
 ---
 

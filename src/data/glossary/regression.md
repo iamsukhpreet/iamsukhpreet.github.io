@@ -1,6 +1,6 @@
 ---
 term: "Regression"
-description: "A defense mechanism leading to the temporary or long-term reversion of the ego to an earlier stage of development."
+description: "Psychological definition and mental health impact of regression: A defense mechanism leading to the temporary or long-term reversion of the ego to an earlier stage of development."
 tags: ['Defense Mechanisms', 'Psychology']
 ---
 

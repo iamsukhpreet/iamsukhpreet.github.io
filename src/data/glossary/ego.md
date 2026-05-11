@@ -1,6 +1,6 @@
 ---
 term: "Ego"
-description: "The organized part of the personality structure that includes defensive, perceptual, intellectual-cognitive, and executive functions."
+description: "Psychological definition and mental health impact of ego: The organized part of the personality structure that includes defensive, perceptual, intellectual-cognitive, and executive functions."
 tags: ['Psychology', 'Self']
 ---
 

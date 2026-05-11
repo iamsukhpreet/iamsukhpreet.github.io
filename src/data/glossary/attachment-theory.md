@@ -1,6 +1,6 @@
 ---
 term: "Attachment Theory"
-description: "A psychological model describing the dynamics of long-term and short-term interpersonal relationships."
+description: "Psychological definition and mental health impact of attachment theory: A psychological model describing the dynamics of long-term and short-term interpersonal relationships."
 tags: ['Relationships', 'Psychology']
 ---
 

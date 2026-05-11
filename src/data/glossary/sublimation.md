@@ -1,6 +1,6 @@
 ---
 term: "Sublimation"
-description: "A mature type of defense mechanism where socially unacceptable impulses are transformed into socially acceptable actions."
+description: "Psychological definition and mental health impact of sublimation: A mature type of defense mechanism where socially unacceptable impulses are transformed into socially acceptable actions."
 tags: ['Defense Mechanisms', 'Psychology']
 ---
 

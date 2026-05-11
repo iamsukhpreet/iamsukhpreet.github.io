@@ -1,6 +1,6 @@
 ---
 term: "Catharsis"
-description: "The process of releasing, and thereby providing relief from, strong or repressed emotions."
+description: "Psychological definition and mental health impact of catharsis: The process of releasing, and thereby providing relief from, strong or repressed emotions."
 tags: ['Therapy', 'Emotional Release']
 ---
 

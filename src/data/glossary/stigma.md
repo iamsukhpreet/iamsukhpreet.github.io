@@ -1,6 +1,6 @@
 ---
 term: "Stigma"
-description: "A set of negative and often unfair beliefs that a society or group of people has about something."
+description: "Psychological definition and mental health impact of stigma: A set of negative and often unfair beliefs that a society or group of people has about something."
 tags: ['Society', 'Awareness']
 ---
 

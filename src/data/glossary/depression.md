@@ -1,6 +1,6 @@
 ---
 term: "Depression"
-description: "A persistent feeling of sadness and loss of interest in activities once enjoyed."
+description: "Psychological definition and mental health impact of depression: A persistent feeling of sadness and loss of interest in activities once enjoyed."
 tags: ['Mood Disorders', 'Clinical']
 ---
 

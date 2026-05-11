@@ -1,6 +1,6 @@
 ---
 term: "Self-Compassion"
-description: "Treating oneself with kindness, care and understanding when facing suffering or perceived inadequacy."
+description: "Psychological definition and mental health impact of self compassion: Treating oneself with kindness, care and understanding when facing suffering or perceived inadequacy."
 tags: ['Wellness', 'Self-Care']
 ---
 

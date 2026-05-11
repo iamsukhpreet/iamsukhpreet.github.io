@@ -1,6 +1,6 @@
 ---
 term: "Dysphoria"
-description: "A profound state of unease or dissatisfaction."
+description: "Psychological definition and mental health impact of dysphoria: A profound state of unease or dissatisfaction."
 tags: ['Mood', 'Emotions']
 ---
 

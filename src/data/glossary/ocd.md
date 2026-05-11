@@ -1,6 +1,6 @@
 ---
 term: "OCD"
-description: "Obsessive-Compulsive Disorder is a pattern of unwanted thoughts and fears (obsessions) that lead you to do repetitive behaviors (compulsions)."
+description: "Psychological definition and mental health impact of ocd: Obsessive-Compulsive Disorder is a pattern of unwanted thoughts and fears (obsessions) that lead you to do repetitive behaviors (compulsions)."
 tags: ['Anxiety', 'Clinical']
 ---
 

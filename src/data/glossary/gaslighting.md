@@ -1,6 +1,6 @@
 ---
 term: "Gaslighting"
-description: "A form of psychological manipulation in which a person or group covertly sows seeds of doubt in a targeted individual."
+description: "Psychological definition and mental health impact of gaslighting: A form of psychological manipulation in which a person or group covertly sows seeds of doubt in a targeted individual."
 tags: ['Relationships', 'Abuse']
 ---
 

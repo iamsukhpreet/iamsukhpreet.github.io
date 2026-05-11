@@ -1,6 +1,6 @@
 ---
 term: "Superego"
-description: "The ethical component of the personality and provides the moral standards by which the ego operates."
+description: "Psychological definition and mental health impact of superego: The ethical component of the personality and provides the moral standards by which the ego operates."
 tags: ['Psychology', 'Ethics']
 ---
 
