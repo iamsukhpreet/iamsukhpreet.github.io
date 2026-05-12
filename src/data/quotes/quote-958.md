@@ -1,8 +1,0 @@
----
-quote: "Happiness is when what you think, what you say, and what you do are in harmony. (Reflection 958)"
-author: "Mahatma Gandhi"
-context: "Change"
-tags: ["motivation","growth","courage","random"]
----
-
-Integrity is the alignment of our internal and external worlds. Strength is not the absence of struggle, but the persistence through it. In this 958th step of our journey, we find that change requires consistent practice and patience.
