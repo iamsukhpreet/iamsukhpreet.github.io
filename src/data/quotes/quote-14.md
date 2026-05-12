@@ -5,4 +5,4 @@ context: "Persistence"
 tags: ["resilience","motivation","growth","random"]
 ---
 
-Consistent, gradual progress is often more sustainable and effective than short bursts of effort followed by burnout.
+Gradual progress is more sustainable than short bursts of effort. Wisdom is often found in the quiet moments of self-reflection. In this 14th step of our journey, we find that persistence requires consistent practice and patience.

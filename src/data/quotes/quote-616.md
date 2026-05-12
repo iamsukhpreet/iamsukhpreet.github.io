@@ -1,8 +1,8 @@
 ---
-quote: "You must do the thing you think you cannot do. (Insight 31)"
-author: "Eleanor Roosevelt"
-context: "Courage"
-tags: ["courage","strength","motivation","random"]
+quote: "Gratitude is the healthiest of all human emotions. (Reflection 616)"
+author: "Zig Ziglar"
+context: "Gratitude"
+tags: ["gratitude","motivation","perspective","random"]
 ---
 
-Facing our fears directly is the most effective way to build genuine self-confidence and expand our capabilities. As we explore the depths of courage, we find new layers of meaning in our daily lives. This reflection 31 encourages us to look closer at our own journey.
+Focusing on what we are thankful for creates a positive cycle of abundance. Every day offers a new opportunity to embody these values. In this 616th step of our journey, we find that gratitude requires consistent practice and patience.

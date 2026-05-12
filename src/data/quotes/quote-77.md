@@ -1,8 +1,8 @@
 ---
-quote: "Happiness is not something ready made. It comes from your own actions. (Insight 4)"
-author: "Dalai Lama"
-context: "Happiness"
-tags: ["gratitude","relationships","inner-peace","random"]
+quote: "Gratitude unlocks the fullness of life. It turns what we have into enough, and more. (Reflection 77)"
+author: "Melody Beattie"
+context: "Gratitude"
+tags: ["gratitude","acceptance","inner-peace","random"]
 ---
 
-True contentment is a byproduct of how we choose to live, interact with others, and manage our own minds. As we explore the depths of happiness, we find new layers of meaning in our daily lives. This reflection 4 encourages us to look closer at our own journey.
+By practicing gratitude, we find contentment in our current circumstances. Healing is a journey that begins with a single moment of clarity. In this 77th step of our journey, we find that gratitude requires consistent practice and patience.

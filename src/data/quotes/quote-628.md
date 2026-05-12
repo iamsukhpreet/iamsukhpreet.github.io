@@ -1,8 +1,8 @@
 ---
-quote: "Although the world is full of suffering, it is also full of the overcoming of it. (Insight 32)"
-author: "Helen Keller"
-context: "Perseverance"
-tags: ["resilience","hope","healing","random"]
+quote: "I am my best work - a series of road maps, reports, recipes, redundant prayers, and bills. (Reflection 628)"
+author: "Audre Lorde"
+context: "Self-Care"
+tags: ["self-care","work","balance","random"]
 ---
 
-While pain is an undeniable reality of the human experience, so too is our remarkable capacity to heal, recover, and triumph over adversity. As we explore the depths of perseverance, we find new layers of meaning in our daily lives. This reflection 32 encourages us to look closer at our own journey.
+We are constantly evolving and building our own path. Strength is not the absence of struggle, but the persistence through it. In this 628th step of our journey, we find that self-care requires consistent practice and patience.

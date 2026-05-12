@@ -1,8 +1,8 @@
 ---
-quote: "The wound is the place where the Light enters you. (Insight 47)"
-author: "Rumi"
-context: "Healing"
-tags: ["healing","hope","perspective","random"]
+quote: "I can be changed by what happens to me. But I refuse to be reduced by it. (Reflection 925)"
+author: "Maya Angelou"
+context: "Resilience"
+tags: ["resilience","motivation","strength","random"]
 ---
 
-Our deepest pains and traumas can eventually become the very sources of our greatest wisdom, compassion, and spiritual awakening. As we explore the depths of healing, we find new layers of meaning in our daily lives. This reflection 47 encourages us to look closer at our own journey.
+Resilience is the choice to keep moving forward despite the obstacles. Integrating this thought into your routine fosters resilience. In this 925th step of our journey, we find that resilience requires consistent practice and patience.

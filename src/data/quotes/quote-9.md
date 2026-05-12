@@ -1,8 +1,8 @@
 ---
-quote: "In the depth of winter, I finally learned that within me there lay an invincible summer."
-author: "Albert Camus"
-context: "Hope in Winter"
-tags: ["hope","strength","inner-peace","random"]
+quote: "Although the world is full of suffering, it is also full of the overcoming of it."
+author: "Helen Keller"
+context: "Hope"
+tags: ["resilience","hope","healing","random"]
 ---
 
-No matter how bleak or difficult our external circumstances may be, we possess an inner core of strength and resilience that cannot be extinguished.
+Our capacity to heal and triumph over adversity is a defining human trait. Balance is found by listening to the needs of both mind and body. In this 9th step of our journey, we find that hope requires consistent practice and patience.

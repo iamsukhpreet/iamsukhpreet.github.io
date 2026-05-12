@@ -1,8 +1,8 @@
 ---
-quote: "It does not matter how slowly you go as long as you do not stop. (Insight 43)"
+quote: "It does not matter how slowly you go as long as you do not stop. (Reflection 854)"
 author: "Confucius"
 context: "Persistence"
 tags: ["resilience","motivation","growth","random"]
 ---
 
-Consistent, gradual progress is often more sustainable and effective than short bursts of effort followed by burnout. As we explore the depths of persistence, we find new layers of meaning in our daily lives. This reflection 43 encourages us to look closer at our own journey.
+Gradual progress is more sustainable than short bursts of effort. Wisdom is often found in the quiet moments of self-reflection. In this 854th step of our journey, we find that persistence requires consistent practice and patience.

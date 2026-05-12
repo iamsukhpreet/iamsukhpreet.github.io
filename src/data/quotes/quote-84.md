@@ -1,8 +1,8 @@
 ---
-quote: "When we are no longer able to change a situation, we are challenged to change ourselves. (Insight 5)"
-author: "Viktor Frankl"
-context: "Meaning"
-tags: ["perspective","acceptance","growth","random"]
+quote: "The purpose of our lives is to be happy. (Reflection 84)"
+author: "Dalai Lama"
+context: "Happiness"
+tags: ["gratitude","relationships","inner-peace","random"]
 ---
 
-In the face of unchangeable circumstances, our ultimate freedom lies in our ability to choose our attitude and adapt internally. As we explore the depths of meaning, we find new layers of meaning in our daily lives. This reflection 5 encourages us to look closer at our own journey.
+Kindness toward others is a direct path to personal joy. Wisdom is often found in the quiet moments of self-reflection. In this 84th step of our journey, we find that happiness requires consistent practice and patience.

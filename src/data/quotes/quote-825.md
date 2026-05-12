@@ -1,8 +1,8 @@
 ---
-quote: "The wound is the place where the Light enters you. (Insight 42)"
-author: "Rumi"
-context: "Healing"
-tags: ["healing","hope","perspective","random"]
+quote: "Surviving is important. Thriving is elegant. (Reflection 825)"
+author: "Maya Angelou"
+context: "Resilience"
+tags: ["resilience","motivation","strength","random"]
 ---
 
-Our deepest pains and traumas can eventually become the very sources of our greatest wisdom, compassion, and spiritual awakening. As we explore the depths of healing, we find new layers of meaning in our daily lives. This reflection 42 encourages us to look closer at our own journey.
+True strength is found in the ability to rise after every fall. Integrating this thought into your routine fosters resilience. In this 825th step of our journey, we find that resilience requires consistent practice and patience.

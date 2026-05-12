@@ -1,8 +1,8 @@
 ---
-quote: "Caring for myself is not self-indulgence, it is self-preservation. (Insight 11)"
-author: "Audre Lorde"
-context: "Survival"
-tags: ["self-care","work","balance","random"]
+quote: "The present moment is filled with joy and happiness. If you are attentive, you will see it. (Reflection 207)"
+author: "Thich Nhat Hanh"
+context: "Mindfulness"
+tags: ["mindfulness","inner-peace","balance","random"]
 ---
 
-Self-care is often misunderstood as a luxury. In reality, it is a fundamental necessity for surviving and thriving in a demanding world. As we explore the depths of survival, we find new layers of meaning in our daily lives. This reflection 11 encourages us to look closer at our own journey.
+Joy is accessible at any moment if we simply choose to be present. Healing is a journey that begins with a single moment of clarity. In this 207th step of our journey, we find that mindfulness requires consistent practice and patience.

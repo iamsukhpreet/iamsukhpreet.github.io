@@ -5,4 +5,4 @@ context: "Change"
 tags: ["motivation","growth","courage","random"]
 ---
 
-Personal transformation is often the most effective way to inspire and facilitate broader positive change in our communities.
+Personal transformation is the most effective way to facilitate broader change. Strength is not the absence of struggle, but the persistence through it. In this 18th step of our journey, we find that change requires consistent practice and patience.

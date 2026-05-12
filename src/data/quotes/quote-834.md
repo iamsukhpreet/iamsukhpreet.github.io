@@ -1,8 +1,8 @@
 ---
-quote: "It does not matter how slowly you go as long as you do not stop. (Insight 42)"
+quote: "The man who moves a mountain begins by carrying away small stones. (Reflection 834)"
 author: "Confucius"
 context: "Persistence"
 tags: ["resilience","motivation","growth","random"]
 ---
 
-Consistent, gradual progress is often more sustainable and effective than short bursts of effort followed by burnout. As we explore the depths of persistence, we find new layers of meaning in our daily lives. This reflection 42 encourages us to look closer at our own journey.
+Great achievements are built on the foundation of consistent daily habits. Wisdom is often found in the quiet moments of self-reflection. In this 834th step of our journey, we find that persistence requires consistent practice and patience.

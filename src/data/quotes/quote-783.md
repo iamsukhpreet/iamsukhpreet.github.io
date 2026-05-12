@@ -1,8 +1,8 @@
 ---
-quote: "You may encounter many defeats, but you must not be defeated. (Insight 40)"
-author: "Maya Angelou"
-context: "Overcoming"
-tags: ["resilience","motivation","strength","random"]
+quote: "Very little is needed to make a happy life; it is all within yourself. (Reflection 783)"
+author: "Marcus Aurelius"
+context: "Stoicism"
+tags: ["acceptance","perspective","strength","random"]
 ---
 
-Setbacks are a natural part of life, but they do not have to define our ultimate outcome. Resilience is the choice to keep moving forward. As we explore the depths of overcoming, we find new layers of meaning in our daily lives. This reflection 40 encourages us to look closer at our own journey.
+Our internal mindset has a far greater impact than external circumstances. Small shifts in perspective can create monumental changes in well-being. In this 783rd step of our journey, we find that stoicism requires consistent practice and patience.

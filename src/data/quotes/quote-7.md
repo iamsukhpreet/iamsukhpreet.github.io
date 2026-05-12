@@ -1,8 +1,8 @@
 ---
-quote: "Caring for myself is not self-indulgence, it is self-preservation."
-author: "Audre Lorde"
-context: "Survival"
-tags: ["self-care","work","balance","random"]
+quote: "Smile, breathe, and go slowly."
+author: "Thich Nhat Hanh"
+context: "Mindfulness"
+tags: ["mindfulness","inner-peace","balance","random"]
 ---
 
-Self-care is often misunderstood as a luxury. In reality, it is a fundamental necessity for surviving and thriving in a demanding world.
+In a fast-paced world, the simple act of slowing down can restore mental balance. Healing is a journey that begins with a single moment of clarity. In this 7th step of our journey, we find that mindfulness requires consistent practice and patience.

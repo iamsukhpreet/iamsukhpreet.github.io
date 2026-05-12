@@ -1,8 +1,8 @@
 ---
-quote: "Although the world is full of suffering, it is also full of the overcoming of it. (Insight 3)"
-author: "Helen Keller"
-context: "Perseverance"
-tags: ["resilience","hope","healing","random"]
+quote: "When I dare to be powerful, to use my strength in the service of my vision, then it becomes less and less important whether I am afraid. (Reflection 48)"
+author: "Audre Lorde"
+context: "Self-Care"
+tags: ["self-care","work","balance","random"]
 ---
 
-While pain is an undeniable reality of the human experience, so too is our remarkable capacity to heal, recover, and triumph over adversity. As we explore the depths of perseverance, we find new layers of meaning in our daily lives. This reflection 3 encourages us to look closer at our own journey.
+Power comes from aligning our actions with our values, regardless of fear. Strength is not the absence of struggle, but the persistence through it. In this 48th step of our journey, we find that self-care requires consistent practice and patience.

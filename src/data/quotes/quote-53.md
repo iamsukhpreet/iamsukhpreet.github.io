@@ -1,8 +1,8 @@
 ---
-quote: "Very little is needed to make a happy life; it is all within yourself, in your way of thinking. (Insight 3)"
-author: "Marcus Aurelius"
-context: "Stoicism"
-tags: ["acceptance","perspective","strength","random"]
+quote: "Silence is a source of great strength. (Reflection 53)"
+author: "Lao Tzu"
+context: "Harmony"
+tags: ["mindfulness","balance","inner-peace","random"]
 ---
 
-Our internal mindset and perceptions have a far greater impact on our well-being than any external circumstances. As we explore the depths of stoicism, we find new layers of meaning in our daily lives. This reflection 3 encourages us to look closer at our own journey.
+In quietness, we find the clarity needed for true power. Small shifts in perspective can create monumental changes in well-being. In this 53rd step of our journey, we find that harmony requires consistent practice and patience.

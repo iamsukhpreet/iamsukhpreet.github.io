@@ -1,8 +1,8 @@
 ---
-quote: "You must do the thing you think you cannot do. (Insight 3)"
-author: "Eleanor Roosevelt"
-context: "Courage"
-tags: ["courage","strength","motivation","random"]
+quote: "Positive thinking will let you do everything better than negative thinking will. (Reflection 56)"
+author: "Zig Ziglar"
+context: "Gratitude"
+tags: ["gratitude","motivation","perspective","random"]
 ---
 
-Facing our fears directly is the most effective way to build genuine self-confidence and expand our capabilities. As we explore the depths of courage, we find new layers of meaning in our daily lives. This reflection 3 encourages us to look closer at our own journey.
+Optimism is a practical tool for improving performance and health. Every day offers a new opportunity to embody these values. In this 56th step of our journey, we find that gratitude requires consistent practice and patience.

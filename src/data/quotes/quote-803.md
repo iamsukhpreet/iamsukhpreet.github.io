@@ -1,8 +1,8 @@
 ---
-quote: "You may encounter many defeats, but you must not be defeated. (Insight 41)"
-author: "Maya Angelou"
-context: "Overcoming"
-tags: ["resilience","motivation","strength","random"]
+quote: "The happiness of your life depends upon the quality of your thoughts. (Reflection 803)"
+author: "Marcus Aurelius"
+context: "Stoicism"
+tags: ["acceptance","perspective","strength","random"]
 ---
 
-Setbacks are a natural part of life, but they do not have to define our ultimate outcome. Resilience is the choice to keep moving forward. As we explore the depths of overcoming, we find new layers of meaning in our daily lives. This reflection 41 encourages us to look closer at our own journey.
+Disciplining the mind leads to lasting tranquility. Small shifts in perspective can create monumental changes in well-being. In this 803rd step of our journey, we find that stoicism requires consistent practice and patience.

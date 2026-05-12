@@ -1,8 +1,8 @@
 ---
-quote: "Be the change that you wish to see in the world. (Insight 10)"
+quote: "Be the change that you wish to see in the world. (Reflection 198)"
 author: "Mahatma Gandhi"
 context: "Change"
 tags: ["motivation","growth","courage","random"]
 ---
 
-Personal transformation is often the most effective way to inspire and facilitate broader positive change in our communities. As we explore the depths of change, we find new layers of meaning in our daily lives. This reflection 10 encourages us to look closer at our own journey.
+Personal transformation is the most effective way to facilitate broader change. Strength is not the absence of struggle, but the persistence through it. In this 198th step of our journey, we find that change requires consistent practice and patience.

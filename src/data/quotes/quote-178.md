@@ -1,8 +1,8 @@
 ---
-quote: "Be the change that you wish to see in the world. (Insight 9)"
+quote: "Happiness is when what you think, what you say, and what you do are in harmony. (Reflection 178)"
 author: "Mahatma Gandhi"
 context: "Change"
 tags: ["motivation","growth","courage","random"]
 ---
 
-Personal transformation is often the most effective way to inspire and facilitate broader positive change in our communities. As we explore the depths of change, we find new layers of meaning in our daily lives. This reflection 9 encourages us to look closer at our own journey.
+Integrity is the alignment of our internal and external worlds. Strength is not the absence of struggle, but the persistence through it. In this 178th step of our journey, we find that change requires consistent practice and patience.

@@ -1,8 +1,8 @@
 ---
-quote: "When we are no longer able to change a situation, we are challenged to change ourselves. (Insight 46)"
-author: "Viktor Frankl"
-context: "Meaning"
-tags: ["perspective","acceptance","growth","random"]
+quote: "Happiness is not something ready made. It comes from your own actions. (Reflection 904)"
+author: "Dalai Lama"
+context: "Happiness"
+tags: ["gratitude","relationships","inner-peace","random"]
 ---
 
-In the face of unchangeable circumstances, our ultimate freedom lies in our ability to choose our attitude and adapt internally. As we explore the depths of meaning, we find new layers of meaning in our daily lives. This reflection 46 encourages us to look closer at our own journey.
+True contentment is a byproduct of how we choose to live. Wisdom is often found in the quiet moments of self-reflection. In this 904th step of our journey, we find that happiness requires consistent practice and patience.

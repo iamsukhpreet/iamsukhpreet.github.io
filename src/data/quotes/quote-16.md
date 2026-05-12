@@ -1,8 +1,8 @@
 ---
-quote: "You must do the thing you think you cannot do."
-author: "Eleanor Roosevelt"
-context: "Courage"
-tags: ["courage","strength","motivation","random"]
+quote: "Gratitude is the healthiest of all human emotions."
+author: "Zig Ziglar"
+context: "Gratitude"
+tags: ["gratitude","motivation","perspective","random"]
 ---
 
-Facing our fears directly is the most effective way to build genuine self-confidence and expand our capabilities.
+Focusing on what we are thankful for creates a positive cycle of abundance. Every day offers a new opportunity to embody these values. In this 16th step of our journey, we find that gratitude requires consistent practice and patience.

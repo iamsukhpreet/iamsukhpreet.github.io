@@ -1,8 +1,8 @@
 ---
-quote: "You must do the thing you think you cannot do. (Insight 35)"
-author: "Eleanor Roosevelt"
-context: "Courage"
-tags: ["courage","strength","motivation","random"]
+quote: "Your attitude, not your aptitude, will determine your altitude. (Reflection 696)"
+author: "Zig Ziglar"
+context: "Gratitude"
+tags: ["gratitude","motivation","perspective","random"]
 ---
 
-Facing our fears directly is the most effective way to build genuine self-confidence and expand our capabilities. As we explore the depths of courage, we find new layers of meaning in our daily lives. This reflection 35 encourages us to look closer at our own journey.
+Our mindset is the primary driver of our success and well-being. Every day offers a new opportunity to embody these values. In this 696th step of our journey, we find that gratitude requires consistent practice and patience.

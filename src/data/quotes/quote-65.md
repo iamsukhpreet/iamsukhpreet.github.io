@@ -1,8 +1,8 @@
 ---
-quote: "The wound is the place where the Light enters you. (Insight 4)"
-author: "Rumi"
-context: "Healing"
-tags: ["healing","hope","perspective","random"]
+quote: "You may encounter many defeats, but you must not be defeated. (Reflection 65)"
+author: "Maya Angelou"
+context: "Resilience"
+tags: ["resilience","motivation","strength","random"]
 ---
 
-Our deepest pains and traumas can eventually become the very sources of our greatest wisdom, compassion, and spiritual awakening. As we explore the depths of healing, we find new layers of meaning in our daily lives. This reflection 4 encourages us to look closer at our own journey.
+Setbacks are a natural part of life, but they do not have to define our ultimate outcome. Integrating this thought into your routine fosters resilience. In this 65th step of our journey, we find that resilience requires consistent practice and patience.

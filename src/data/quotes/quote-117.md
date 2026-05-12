@@ -1,8 +1,8 @@
 ---
-quote: "Happiness is not something ready made. It comes from your own actions. (Insight 6)"
-author: "Dalai Lama"
-context: "Happiness"
-tags: ["gratitude","relationships","inner-peace","random"]
+quote: "Gratitude turns denial into acceptance, chaos to order, confusion to clarity. (Reflection 117)"
+author: "Melody Beattie"
+context: "Gratitude"
+tags: ["gratitude","acceptance","inner-peace","random"]
 ---
 
-True contentment is a byproduct of how we choose to live, interact with others, and manage our own minds. As we explore the depths of happiness, we find new layers of meaning in our daily lives. This reflection 6 encourages us to look closer at our own journey.
+The act of being thankful is a powerful tool for emotional regulation. Healing is a journey that begins with a single moment of clarity. In this 117th step of our journey, we find that gratitude requires consistent practice and patience.

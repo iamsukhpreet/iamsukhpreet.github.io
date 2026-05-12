@@ -1,8 +1,8 @@
 ---
-quote: "Very little is needed to make a happy life; it is all within yourself, in your way of thinking."
-author: "Marcus Aurelius"
-context: "Stoicism"
-tags: ["acceptance","perspective","strength","random"]
+quote: "Nature does not hurry, yet everything is accomplished."
+author: "Lao Tzu"
+context: "Harmony"
+tags: ["mindfulness","balance","inner-peace","random"]
 ---
 
-Our internal mindset and perceptions have a far greater impact on our well-being than any external circumstances.
+Finding our natural rhythm leads to a more balanced existence. Small shifts in perspective can create monumental changes in well-being. In this 13th step of our journey, we find that harmony requires consistent practice and patience.

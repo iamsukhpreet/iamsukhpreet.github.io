@@ -1,8 +1,8 @@
 ---
-quote: "Knowing your own darkness is the best method for dealing with the darknesses of other people."
-author: "Carl Jung"
-context: "Self-Awareness"
-tags: ["identity","inner-peace","growth","random"]
+quote: "When we are no longer able to change a situation, we are challenged to change ourselves."
+author: "Viktor Frankl"
+context: "Meaning"
+tags: ["perspective","acceptance","growth","random"]
 ---
 
-Self-awareness and acknowledging our own shadow self is crucial for developing true empathy and understanding others' struggles.
+Our ultimate freedom lies in our ability to choose our attitude. Consider how this truth applies to your current challenges. In this 2nd step of our journey, we find that meaning requires consistent practice and patience.

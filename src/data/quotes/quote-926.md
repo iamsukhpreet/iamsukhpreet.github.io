@@ -1,8 +1,8 @@
 ---
-quote: "Smile, breathe, and go slowly. (Insight 47)"
-author: "Thich Nhat Hanh"
-context: "Mindfulness"
-tags: ["mindfulness","inner-peace","balance","random"]
+quote: "Don't be satisfied with stories, how things have gone with others. Unfold your own myth. (Reflection 926)"
+author: "Rumi"
+context: "Healing"
+tags: ["healing","hope","perspective","random"]
 ---
 
-In a fast-paced world, the simple act of slowing down, breathing, and being present can dramatically reduce stress and restore mental balance. As we explore the depths of mindfulness, we find new layers of meaning in our daily lives. This reflection 47 encourages us to look closer at our own journey.
+Healing is an internal process of rediscovering your own narrative. Every day offers a new opportunity to embody these values. In this 926th step of our journey, we find that healing requires consistent practice and patience.

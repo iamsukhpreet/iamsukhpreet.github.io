@@ -1,8 +1,8 @@
 ---
-quote: "Our life is frittered away by detail. Simplify, simplify. (Insight 37)"
-author: "Henry David Thoreau"
-context: "Simplicity"
-tags: ["mindfulness","balance","inner-peace","random"]
+quote: "Vulnerability sounds like truth and feels like courage. (Reflection 740)"
+author: "Brené Brown"
+context: "Vulnerability"
+tags: ["vulnerability","courage","growth","random"]
 ---
 
-Reducing the complexity and distractions in our lives allows us to focus on what truly matters and find inner calm. As we explore the depths of simplicity, we find new layers of meaning in our daily lives. This reflection 37 encourages us to look closer at our own journey.
+True connection requires the willingness to be seen. This insight reminds us that our internal world shapes our reality. In this 740th step of our journey, we find that vulnerability requires consistent practice and patience.

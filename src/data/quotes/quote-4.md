@@ -1,8 +1,8 @@
 ---
-quote: "When we are no longer able to change a situation, we are challenged to change ourselves."
-author: "Viktor Frankl"
-context: "Meaning"
-tags: ["perspective","acceptance","growth","random"]
+quote: "Happiness is not something ready made. It comes from your own actions."
+author: "Dalai Lama"
+context: "Happiness"
+tags: ["gratitude","relationships","inner-peace","random"]
 ---
 
-In the face of unchangeable circumstances, our ultimate freedom lies in our ability to choose our attitude and adapt internally.
+True contentment is a byproduct of how we choose to live. Wisdom is often found in the quiet moments of self-reflection. In this 4th step of our journey, we find that happiness requires consistent practice and patience.

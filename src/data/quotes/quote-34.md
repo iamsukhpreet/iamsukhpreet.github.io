@@ -1,8 +1,8 @@
 ---
-quote: "It does not matter how slowly you go as long as you do not stop. (Insight 2)"
+quote: "Our greatest glory is not in never falling, but in rising every time we fall. (Reflection 34)"
 author: "Confucius"
 context: "Persistence"
 tags: ["resilience","motivation","growth","random"]
 ---
 
-Consistent, gradual progress is often more sustainable and effective than short bursts of effort followed by burnout. As we explore the depths of persistence, we find new layers of meaning in our daily lives. This reflection 2 encourages us to look closer at our own journey.
+Success is defined by our ability to recover and continue. Wisdom is often found in the quiet moments of self-reflection. In this 34th step of our journey, we find that persistence requires consistent practice and patience.
