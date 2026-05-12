@@ -1,8 +1,11 @@
 ---
 quote: "Life is like a box of chocolates. You never know what you're gonna get."
 author: "Forrest Gump (Forrest Gump)"
+quote_hi: "जीवन चॉकलेट के डिब्बे की तरह है। आपको कभी नहीं पता कि आपको क्या मिलने वाला है।"
+author_hi: "फॉरेस्ट गम्प (फॉरेस्ट गम्प)"
+reflection_hi: "अनिश्चितता अस्तित्व का एक अंतर्निहित हिस्सा है जिसे डर के बजाय जिज्ञासा के साथ मिलना चाहिए। अप्रत्याशित को गले लगाना हमें मिलने वाले विभिन्न अनुभवों में आनंद खोजने की अनुमति देता है।"
 context: "Media Wisdom"
 tags: ["Uncertainty","Adaptability","Joy","random"]
 ---
 
-Uncertainty is an inherent part of existence that should be met with curiosity rather than fear. Embracing the unexpected allows us to find joy in the variety of experiences we encounter.
+Life is like a box of chocolates. You never know what you're gonna get.

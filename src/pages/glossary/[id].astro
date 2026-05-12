@@ -5,6 +5,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Main from "@/layouts/Main.astro";
 import GlossaryVisual from "@/components/GlossaryVisual.astro";
+import BilingualToggle from "@/components/BilingualToggle.astro";
 import { SITE } from "@/config";
 
 export async function getStaticPaths() {
@@ -27,6 +28,13 @@ const { Content } = await render(item);
   <Header activeNav="about" />
   <Main pageTitle={item.data.term} pageDesc={item.data.description}>
     
+    <BilingualToggle />
+
+    <div data-lang="hi" class="hidden">
+        <h1 class="text-4xl font-bold mb-2">{item.data.term_hi}</h1>
+        <p class="text-xl opacity-70 italic mb-8">{item.data.description_hi}</p>
+    </div>
+
     <div class="mt-8 flex flex-wrap gap-2">
         {item.data.tags.map(tag => (
             <span class="text-xs bg-muted px-3 py-1.5 rounded-full opacity-60 uppercase font-bold tracking-widest">{tag}</span>
@@ -42,7 +50,14 @@ const { Content } = await render(item);
     )}
 
     <article class="prose dark:prose-invert max-w-none mt-12">
-        <Content />
+        <div data-lang="en">
+            <Content />
+        </div>
+        {item.data.description_hi && (
+            <div data-lang="hi" class="hidden">
+                <p>{item.data.description_hi}</p>
+            </div>
+        )}
     </article>
 
     <div class="mt-24 pt-12 border-t border-muted">

@@ -1,6 +1,9 @@
 ---
 quote: "Genius is nothing more nor less than childhood recovered at will."
 author: "Charles Baudelaire"
+quote_hi: "प्रतिभा इच्छानुसार बचपन को पुनः प्राप्त करने के अलावा और कुछ नहीं है।"
+author_hi: "चार्ल्स बौडेलेयर"
+reflection_hi: "उपयोग और आदत के बोझ से मुक्त होकर दुनिया को ताज़ा आँखों से देखने की क्षमता सभी महान कला और विचार का मूल है।"
 context: "undefined"
 tags: ["genius","youth","perspective","random"]
 ---

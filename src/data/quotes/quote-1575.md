@@ -1,6 +1,9 @@
 ---
 quote: "I am the herald of the Great King."
 author: "St. Francis of Assisi"
+quote_hi: "मैं महान राजा का अग्रदूत हूँ।"
+author_hi: "असीसी के सेंट फ्रांसिस"
+reflection_hi: "'पवित्र मूर्ख' होना एक उच्च तर्क की सेवा करना है जिसे दुनिया पागलपन कहती है। यह उस प्यार के लिए हास्यास्पद होने का साहस है जो परंपरा से परे है।"
 context: "undefined"
 tags: ["folly","love","courage","random"]
 ---

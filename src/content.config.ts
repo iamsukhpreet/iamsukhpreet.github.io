@@ -31,7 +31,9 @@ const glossary = defineCollection({
   schema: ({ image }) =>
     z.object({
       term: z.string(),
+      term_hi: z.string().optional(),
       description: z.string(),
+      description_hi: z.string().optional(),
       tags: z.array(z.string()).default([]),
       image: image().optional(),
       visualAid: z
@@ -56,9 +58,13 @@ const quotes = defineCollection({
   loader: glob({ pattern: "**/*.md", base: `./${QUOTES_PATH}` }),
   schema: z.object({
     quote: z.string(),
+    quote_hi: z.string().optional(),
     author: z.string(),
+    author_hi: z.string().optional(),
     context: z.string(),
+    context_hi: z.string().optional(),
     tags: z.array(z.string()).default(["random"]),
+    reflection_hi: z.string().optional(),
   }),
 });
 
