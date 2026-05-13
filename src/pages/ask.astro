@@ -14,13 +14,13 @@ import { SITE } from "@/config";
         <div class="prose dark:prose-invert mb-12">
             <p>Ever wondered if what you're feeling is "normal"? You're not alone. Submit your question below. We select the most common and impactful questions to answer publicly on our <a href="/community-qa">Community Board</a>.</p>
             <ul>
-                <li><strong>Anonymous</strong>: We don't collect names or emails.</li>
+                <li><strong>Private & Confidential</strong>: Your identity is protected and never shared.</li>
                 <li><strong>Professional</strong>: Every answer is written by a certified counselor.</li>
                 <li><strong>Safe</strong>: This is a judgment-free space.</li>
             </ul>
         </div>
 
-        <form action="https://formspree.io/f/xoqgzpny" method="POST" class="space-y-6 bg-muted/20 p-8 rounded-[2rem] border border-muted">
+        <div class="space-y-6 bg-muted/20 p-8 rounded-[2rem] border border-muted">
             <div>
                 <label for="question" class="block text-sm font-bold uppercase tracking-widest mb-2 opacity-70">Your Question</label>
                 <textarea 
@@ -42,12 +42,33 @@ import { SITE } from "@/config";
                 ></textarea>
             </div>
 
-            <button type="submit" class="w-full py-4 bg-accent text-white font-bold rounded-full hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-accent/20">
-                Submit Question
+            <button id="submit-button" class="w-full py-4 bg-accent text-white font-bold rounded-full hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-accent/20">
+                Send Question via Email
             </button>
-            <p class="text-[10px] text-center opacity-40 uppercase font-bold tracking-tighter">By submitting, you agree that your question (anonymized) may be published.</p>
-        </form>
+            <p class="text-[10px] text-center opacity-40 uppercase font-bold tracking-tighter">Clicking submit will open your email client. By sending, you agree that your question (anonymized) may be published.</p>
+        </div>
     </div>
+
+    <script is:inline>
+        const submitBtn = document.getElementById("submit-button");
+        const questionInput = document.getElementById("question");
+        const contextInput = document.getElementById("context");
+
+        submitBtn?.addEventListener("click", () => {
+            const question = questionInput?.value;
+            const context = contextInput?.value;
+
+            if (!question) {
+                alert("Please enter your question first.");
+                return;
+            }
+
+            const subject = encodeURIComponent("Community Board Question");
+            const body = encodeURIComponent(`Question:\n${question}\n\nContext:\n${context || "No context provided."}`);
+            
+            window.location.href = `mailto:support@iamsukhpreet.com?subject=${subject}&body=${body}`;
+        });
+    </script>
 
   </Main>
   <Footer />
