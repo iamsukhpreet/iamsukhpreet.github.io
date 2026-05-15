@@ -1,0 +1,137 @@
+---
+---
+
+<div class="pattern-memory-container p-4 bg-muted/10 rounded-xl border border-muted select-none">
+  <div class="flex justify-between items-center mb-4">
+    <h3 class="text-lg font-bold">Pattern Memory</h3>
+    <div id="pattern-score" class="text-sm font-mono bg-muted px-2 py-1 rounded">Level: 1</div>
+  </div>
+  
+  <p class="text-sm opacity-80 mb-4">Focus your mind by repeating the sequence. Helps break anxious thought patterns.</p>
+
+  <div class="grid grid-cols-2 gap-4 max-w-[250px] mx-auto">
+    <button id="pad-0" class="pad w-24 h-24 rounded-lg bg-red-500/40 border-4 border-red-500/20 transition-all duration-150 active:scale-95 disabled:cursor-not-allowed" aria-label="Red pad"></button>
+    <button id="pad-1" class="pad w-24 h-24 rounded-lg bg-blue-500/40 border-4 border-blue-500/20 transition-all duration-150 active:scale-95 disabled:cursor-not-allowed" aria-label="Blue pad"></button>
+    <button id="pad-2" class="pad w-24 h-24 rounded-lg bg-green-500/40 border-4 border-green-500/20 transition-all duration-150 active:scale-95 disabled:cursor-not-allowed" aria-label="Green pad"></button>
+    <button id="pad-3" class="pad w-24 h-24 rounded-lg bg-yellow-500/40 border-4 border-yellow-500/20 transition-all duration-150 active:scale-95 disabled:cursor-not-allowed" aria-label="Yellow pad"></button>
+  </div>
+
+  <div class="mt-6 flex flex-col items-center">
+    <button id="start-pattern" class="px-6 py-2 bg-accent text-white rounded-full font-bold hover:opacity-90 transition-all">
+      Start Game
+    </button>
+    <p id="pattern-message" class="mt-2 text-sm font-medium text-accent h-5"></p>
+  </div>
+</div>
+
+<style>
+  .pad.active {
+    filter: brightness(1.5);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px currentColor;
+  }
+  
+  .pad-0.active { color: #ef4444; }
+  .pad-1.active { color: #3b82f6; }
+  .pad-2.active { color: #22c55e; }
+  .pad-3.active { color: #eab308; }
+</style>
+
+<script>
+  function setupPatternMemory() {
+    const pads = [
+      document.getElementById('pad-0'),
+      document.getElementById('pad-1'),
+      document.getElementById('pad-2'),
+      document.getElementById('pad-3')
+    ] as (HTMLButtonElement | null)[];
+    
+    const startBtn = document.getElementById('start-pattern') as HTMLButtonElement | null;
+    const scoreDisplay = document.getElementById('pattern-score');
+    const messageDisplay = document.getElementById('pattern-message');
+
+    let sequence: number[] = [];
+    let userSequence: number[] = [];
+    let isPlaying = false;
+    let isWaitingForInput = false;
+
+    async function flashPad(index: number) {
+      const pad = pads[index];
+      if (!pad) return;
+      pad.classList.add('active', `pad-${index}`);
+      await new Promise(r => setTimeout(r, 400));
+      pad.classList.remove('active', `pad-${index}`);
+      await new Promise(r => setTimeout(r, 200));
+    }
+
+    async function playSequence() {
+      isWaitingForInput = false;
+      if (messageDisplay) messageDisplay.textContent = "Watch closely...";
+      for (const index of sequence) {
+        await flashPad(index);
+      }
+      isWaitingForInput = true;
+      if (messageDisplay) messageDisplay.textContent = "Your turn!";
+    }
+
+    function resetGame() {
+      sequence = [];
+      userSequence = [];
+      isPlaying = false;
+      isWaitingForInput = false;
+      if (scoreDisplay) scoreDisplay.textContent = "Level: 1";
+      if (startBtn) {
+        startBtn.textContent = "Start Game";
+        startBtn.classList.remove('hidden');
+      }
+    }
+
+    async function nextLevel() {
+      userSequence = [];
+      sequence.push(Math.floor(Math.random() * 4));
+      if (scoreDisplay) scoreDisplay.textContent = `Level: ${sequence.length}`;
+      await new Promise(r => setTimeout(r, 800));
+      await playSequence();
+    }
+
+    async function handlePadClick(index: number) {
+      if (!isWaitingForInput) return;
+
+      userSequence.push(index);
+      const pad = pads[index];
+      if (pad) {
+        pad.classList.add('active', `pad-${index}`);
+        setTimeout(() => pad.classList.remove('active', `pad-${index}`), 200);
+      }
+
+      const currentStep = userSequence.length - 1;
+      if (userSequence[currentStep] !== sequence[currentStep]) {
+        if (messageDisplay) messageDisplay.textContent = "Game Over! Try again.";
+        isWaitingForInput = false;
+        setTimeout(resetGame, 1500);
+        return;
+      }
+
+      if (userSequence.length === sequence.length) {
+        if (messageDisplay) messageDisplay.textContent = "Correct!";
+        isWaitingForInput = false;
+        await nextLevel();
+      }
+    }
+
+    startBtn?.addEventListener('click', () => {
+      if (isPlaying) return;
+      isPlaying = true;
+      startBtn.classList.add('hidden');
+      nextLevel();
+    });
+
+    pads.forEach((pad, index) => {
+      pad?.addEventListener('click', () => handlePadClick(index));
+    });
+  }
+
+  setupPatternMemory();
+  document.addEventListener('astro:after-swap', setupPatternMemory);
+</script>

@@ -1,0 +1,58 @@
+---
+---
+
+<div class="bubble-wrap-container p-4 bg-muted/10 rounded-xl border border-muted select-none">
+  <div class="flex justify-between items-center mb-4">
+    <h3 class="text-lg font-bold">Bubble Wrap</h3>
+    <button id="reset-bubbles" class="px-3 py-1 bg-accent text-white rounded hover:opacity-90 text-sm transition-all">
+      Reset All
+    </button>
+  </div>
+  
+  <p class="text-sm opacity-80 mb-4">Satisfying pops to help relieve stress and provide a tactile distraction.</p>
+
+  <div id="bubble-grid" class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2">
+    {Array.from({ length: 40 }).map((_) => (
+      <div 
+        class="bubble w-8 h-8 rounded-full bg-accent/30 border-2 border-accent/50 cursor-pointer transition-all duration-150 active:scale-90 hover:bg-accent/40"
+        aria-label="Pop bubble"
+      ></div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .bubble.popped {
+    background-color: transparent !important;
+    border-color: rgba(var(--color-accent), 0.2);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: scale(0.9);
+    cursor: default;
+  }
+  
+  :global(.dark) .bubble.popped {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+</style>
+
+<script>
+  function setupBubbleWrap() {
+    const bubbles = document.querySelectorAll('.bubble');
+    const resetBtn = document.getElementById('reset-bubbles');
+
+    bubbles.forEach(bubble => {
+      bubble.addEventListener('click', () => {
+        if (!bubble.classList.contains('popped')) {
+          bubble.classList.add('popped');
+        }
+      });
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      bubbles.forEach(bubble => bubble.classList.remove('popped'));
+    });
+  }
+
+  setupBubbleWrap();
+  document.addEventListener('astro:after-swap', setupBubbleWrap);
+</script>

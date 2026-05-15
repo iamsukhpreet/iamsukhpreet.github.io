@@ -1,0 +1,103 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import CrisisSupport from "@/components/CrisisSupport.astro";
+import BubbleWrap from "@/components/games/BubbleWrap.astro";
+import PatternMemory from "@/components/games/PatternMemory.astro";
+import ColorMatch from "@/components/games/ColorMatch.astro";
+import { SITE } from "@/config";
+
+---
+
+<Layout 
+  title={`Instant Relief Games | ${SITE.title}`}
+  description="Simple, client-side games for immediate distraction and focus during moments of stress or anxiety."
+>
+  <Header />
+  <Main pageTitle="Instant Relief Games" pageDesc="Simple tools to help ground you and provide immediate distraction.">
+    
+    <div class="prose dark:prose-invert max-w-none mt-8">
+      <p>If you're feeling overwhelmed, anxious, or just need a moment to step away from your thoughts, these simple games can help provide a focused distraction and bring you back to the present moment.</p>
+    </div>
+
+    <div class="mt-12">
+      <!-- Game Selector Tabs -->
+      <div class="flex flex-wrap gap-2 mb-8 border-b border-muted pb-4">
+        <button 
+          data-game-tab="bubble" 
+          class="game-tab-btn px-4 py-2 rounded-lg bg-accent text-white font-medium transition-all"
+        >
+          Bubble Wrap
+        </button>
+        <button 
+          data-game-tab="pattern" 
+          class="game-tab-btn px-4 py-2 rounded-lg bg-muted/20 hover:bg-muted/40 font-medium transition-all"
+        >
+          Pattern Memory
+        </button>
+        <button 
+          data-game-tab="color" 
+          class="game-tab-btn px-4 py-2 rounded-lg bg-muted/20 hover:bg-muted/40 font-medium transition-all"
+        >
+          Color Match
+        </button>
+      </div>
+
+      <!-- Game Containers -->
+      <div id="game-display" class="min-h-[400px]">
+        <div id="game-bubble" class="game-content">
+          <BubbleWrap />
+        </div>
+        <div id="game-pattern" class="game-content hidden">
+          <PatternMemory />
+        </div>
+        <div id="game-color" class="game-content hidden">
+          <ColorMatch />
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-muted/50">
+      <h2 class="text-2xl font-bold mb-4">Need more help?</h2>
+      <p class="mb-8 opacity-80">If these games aren't enough and you're in a crisis, please reach out for immediate support.</p>
+      <CrisisSupport />
+    </div>
+  </Main>
+  <Footer />
+</Layout>
+
+<script>
+  function setupGameTabs() {
+    const tabs = document.querySelectorAll('.game-tab-btn');
+    const contents = document.querySelectorAll('.game-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-game-tab');
+
+        // Update buttons
+        tabs.forEach(t => {
+          t.classList.remove('bg-accent', 'text-white');
+          t.classList.add('bg-muted/20');
+        });
+        tab.classList.add('bg-accent', 'text-white');
+        tab.classList.remove('bg-muted/20');
+
+        // Update content
+        contents.forEach(content => {
+          if (content.id === `game-${target}`) {
+            content.classList.remove('hidden');
+          } else {
+            content.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  // Initialize
+  setupGameTabs();
+  document.addEventListener('astro:after-swap', setupGameTabs);
+</script>

@@ -1,0 +1,112 @@
+---
+---
+
+<div class="color-match-container p-4 bg-muted/10 rounded-xl border border-muted select-none">
+  <div class="flex justify-between items-center mb-4">
+    <h3 class="text-lg font-bold">Color Match</h3>
+    <div id="color-score" class="text-sm font-mono bg-muted px-2 py-1 rounded">Streak: 0</div>
+  </div>
+  
+  <p class="text-sm opacity-80 mb-4">Match the <strong>ink color</strong>, not the word. A fast-paced cognitive distraction.</p>
+
+  <div class="flex flex-col items-center justify-center py-8 min-h-[150px]">
+    <div id="target-word" class="text-5xl font-black uppercase tracking-widest transition-all transform duration-200">
+      READY?
+    </div>
+  </div>
+
+  <div id="color-buttons" class="grid grid-cols-2 gap-3 mt-4">
+    <button data-color="red" class="color-btn px-4 py-3 bg-red-500 text-white rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all">RED</button>
+    <button data-color="blue" class="color-btn px-4 py-3 bg-blue-500 text-white rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all">BLUE</button>
+    <button data-color="green" class="color-btn px-4 py-3 bg-green-500 text-white rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all">GREEN</button>
+    <button data-color="yellow" class="color-btn px-4 py-3 bg-yellow-400 text-black rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all">YELLOW</button>
+  </div>
+
+  <div class="mt-6 flex justify-center">
+    <button id="start-color-match" class="px-8 py-2 bg-accent text-white rounded-full font-bold hover:opacity-90 transition-all">
+      Start
+    </button>
+  </div>
+</div>
+
+<script>
+  function setupColorMatch() {
+    const targetWord = document.getElementById('target-word');
+    const colorButtons = document.querySelectorAll('.color-btn');
+    const startBtn = document.getElementById('start-color-match') as HTMLButtonElement | null;
+    const scoreDisplay = document.getElementById('color-score');
+
+    const colors = [
+      { name: 'RED', class: 'text-red-500', value: 'red' },
+      { name: 'BLUE', class: 'text-blue-500', value: 'blue' },
+      { name: 'GREEN', class: 'text-green-500', value: 'green' },
+      { name: 'YELLOW', class: 'text-yellow-400', value: 'yellow' }
+    ];
+
+    let streak = 0;
+    let currentInkColorValue = '';
+    let isGameActive = false;
+
+    function nextChallenge() {
+      const wordIndex = Math.floor(Math.random() * colors.length);
+      const inkIndex = Math.floor(Math.random() * colors.length);
+      
+      const word = colors[wordIndex].name;
+      const inkColor = colors[inkIndex];
+
+      if (targetWord) {
+        // Clean up previous classes
+        colors.forEach(c => targetWord.classList.remove(c.class));
+        
+        targetWord.textContent = word;
+        targetWord.classList.add(inkColor.class);
+        currentInkColorValue = inkColor.value;
+
+        // Subtle pop animation
+        targetWord.style.transform = 'scale(1.1)';
+        setTimeout(() => { if (targetWord) targetWord.style.transform = 'scale(1)'; }, 100);
+      }
+    }
+
+    function handleButtonClick(e: Event) {
+      if (!isGameActive) return;
+
+      const currentTarget = e.currentTarget as HTMLButtonElement;
+      const selectedColor = currentTarget.getAttribute('data-color');
+      
+      if (selectedColor === currentInkColorValue) {
+        streak++;
+        if (scoreDisplay) scoreDisplay.textContent = `Streak: ${streak}`;
+        nextChallenge();
+      } else {
+        streak = 0;
+        if (scoreDisplay) scoreDisplay.textContent = `Streak: ${streak}`;
+        if (targetWord) {
+            targetWord.textContent = "WRONG!";
+            colors.forEach(c => targetWord.classList.remove(c.class));
+            targetWord.classList.add('text-accent');
+        }
+        isGameActive = false;
+        if (startBtn) {
+          startBtn.classList.remove('hidden');
+          startBtn.textContent = "Try Again";
+        }
+      }
+    }
+
+    startBtn?.addEventListener('click', () => {
+      isGameActive = true;
+      streak = 0;
+      if (scoreDisplay) scoreDisplay.textContent = `Streak: ${streak}`;
+      startBtn.classList.add('hidden');
+      nextChallenge();
+    });
+
+    colorButtons.forEach(btn => {
+      btn.addEventListener('click', handleButtonClick);
+    });
+  }
+
+  setupColorMatch();
+  document.addEventListener('astro:after-swap', setupColorMatch);
+</script>
