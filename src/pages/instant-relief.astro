@@ -73,6 +73,11 @@ import { SITE } from "@/config";
     const tabs = document.querySelectorAll('.game-tab-btn');
     const contents = document.querySelectorAll('.game-content');
 
+    if (tabs.length === 0) return;
+
+    const controller = new AbortController();
+    const { signal } = controller;
+
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         const target = tab.getAttribute('data-game-tab');
@@ -93,8 +98,13 @@ import { SITE } from "@/config";
             content.classList.add('hidden');
           }
         });
-      });
+      }, { signal });
     });
+
+    // Cleanup on navigation
+    document.addEventListener("astro:before-swap", () => {
+      controller.abort();
+    }, { once: true });
   }
 
   // Initialize

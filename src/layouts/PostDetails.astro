@@ -176,7 +176,9 @@ const nextPost =
 <script is:inline data-astro-rerun>
   /** Create a progress indicator
    *  at the top */
-  function createProgressBar() {
+  function setupScrollProgress() {
+    if (document.querySelector(".progress-container")) return;
+
     // Create the main container div
     const progressContainer = document.createElement("div");
     progressContainer.className =
@@ -190,30 +192,38 @@ const nextPost =
     // Append the progress bar to the progress container
     progressContainer.appendChild(progressBar);
 
-    // Append the progress container to the document body or any other desired parent element
+    // Append the progress container to the document body
     document.body.appendChild(progressContainer);
-  }
-  createProgressBar();
 
-  /** Update the progress bar
-   *  when user scrolls */
-  function updateScrollProgress() {
-    document.addEventListener("scroll", () => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    /** Update the progress bar
+     *  when user scrolls */
+    function updateScrollProgress() {
       const winScroll =
         document.body.scrollTop || document.documentElement.scrollTop;
       const height =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      if (document) {
-        const myBar = document.getElementById("myBar");
-        if (myBar) {
-          myBar.style.width = scrolled + "%";
-        }
+      const scrolled = (winScroll / (height || 1)) * 100;
+      
+      const myBar = document.getElementById("myBar");
+      if (myBar) {
+        myBar.style.width = scrolled + "%";
       }
-    });
+    }
+
+    document.addEventListener("scroll", updateScrollProgress, { signal });
+    
+    // Clean up on next navigation
+    document.addEventListener("astro:before-swap", () => {
+      controller.abort();
+      progressContainer.remove();
+    }, { once: true });
   }
-  updateScrollProgress();
+  
+  setupScrollProgress();
 
   /** Attaches links to headings in the document,
    *  allowing sharing of sections easily */
@@ -222,6 +232,7 @@ const nextPost =
       document.querySelectorAll("h2, h3, h4, h5, h6")
     );
     for (const heading of headings) {
+      if (heading.querySelector('.heading-link')) continue;
       heading.classList.add("group");
       const link = document.createElement("a");
       link.className =
@@ -244,6 +255,8 @@ const nextPost =
     const codeBlocks = Array.from(document.querySelectorAll("pre"));
 
     for (const codeBlock of codeBlocks) {
+      if (codeBlock.querySelector('.copy-code')) continue;
+      
       const wrapper = document.createElement("div");
       wrapper.style.position = "relative";
 
@@ -287,9 +300,4 @@ const nextPost =
     }
   }
   attachCopyButtons();
-
-  /* Go to page start after page swap */
-  document.addEventListener("astro:after-swap", () =>
-    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
-  );
 </script>

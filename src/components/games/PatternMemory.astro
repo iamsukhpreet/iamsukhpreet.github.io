@@ -171,6 +171,13 @@
       // Use pointerdown for snappier feel
       pad?.addEventListener('pointerdown', () => handlePadClick(index));
     });
+
+    // Cleanup on navigation
+    document.addEventListener("astro:before-swap", () => {
+      if (audioCtx && audioCtx.state !== 'closed') {
+        audioCtx.close();
+      }
+    }, { once: true });
   }
 
   setupPatternMemory();

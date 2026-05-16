@@ -131,6 +131,13 @@
       // Use pointerdown for snappier feel
       btn.addEventListener('pointerdown', handleButtonClick);
     });
+
+    // Cleanup on navigation
+    document.addEventListener("astro:before-swap", () => {
+      if (audioCtx && audioCtx.state !== 'closed') {
+        audioCtx.close();
+      }
+    }, { once: true });
   }
 
   setupColorMatch();

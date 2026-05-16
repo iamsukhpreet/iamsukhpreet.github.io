@@ -90,52 +90,63 @@ import { SITE } from "@/config";
     }
 </style>
 
-<script is:inline>
-    // --- Breathing Logic ---
-    let bInterval;
-    let bStep = 0;
-    const bSteps = [
-        { text: "Inhale", scale: "scale-[2.5]", opacity: "opacity-60" },
-        { text: "Hold", scale: "scale-[2.5]", opacity: "opacity-60" },
-        { text: "Exhale", scale: "scale-100", opacity: "opacity-20" },
-        { text: "Hold", scale: "scale-100", opacity: "opacity-20" }
-    ];
+<script is:inline data-astro-rerun>
+    function setupPanicRelief() {
+        // --- Breathing Logic ---
+        let bInterval;
+        let bStep = 0;
+        const bSteps = [
+            { text: "Inhale", scale: "scale-[2.5]", opacity: "opacity-60" },
+            { text: "Hold", scale: "scale-[2.5]", opacity: "opacity-60" },
+            { text: "Exhale", scale: "scale-100", opacity: "opacity-20" },
+            { text: "Hold", scale: "scale-100", opacity: "opacity-20" }
+        ];
 
-    const pCircle = document.getElementById('p-circle');
-    const pText = document.getElementById('p-text');
-    const pBtn = document.getElementById('p-start');
+        const pCircle = document.getElementById('p-circle');
+        const pText = document.getElementById('p-text');
+        const pBtn = document.getElementById('p-start');
 
-    function runPStep() {
-        const step = bSteps[bStep];
-        pCircle.className = `absolute size-32 bg-teal-500 rounded-full transition-all duration-[4000ms] ease-in-out ${step.scale} ${step.opacity}`;
-        pText.textContent = step.text;
-        bStep = (bStep + 1) % 4;
+        if (pBtn && pCircle && pText) {
+            function runPStep() {
+                const step = bSteps[bStep];
+                pCircle.className = `absolute size-32 bg-teal-500 rounded-full transition-all duration-[4000ms] ease-in-out ${step.scale} ${step.opacity}`;
+                pText.textContent = step.text;
+                bStep = (bStep + 1) % 4;
+            }
+
+            pBtn.addEventListener('click', () => {
+                if (bInterval) {
+                    clearInterval(bInterval);
+                    bInterval = null;
+                    pBtn.textContent = "Resume Breathing";
+                    pText.textContent = "Paused";
+                    bStep = 0;
+                } else {
+                    pBtn.textContent = "Stop Activity";
+                    runPStep();
+                    bInterval = setInterval(runPStep, 4000);
+                }
+            });
+        }
+
+        // --- Grounding Interaction ---
+        const steps = document.querySelectorAll('.g-step');
+        steps.forEach(step => {
+            step.addEventListener('click', () => {
+                step.classList.toggle('completed');
+                // Subtle haptic feel through UI
+                if (step.classList.contains('completed')) {
+                    (step as HTMLElement).style.transform = 'scale(0.98)';
+                    setTimeout(() => (step as HTMLElement).style.transform = 'none', 100);
+                }
+            });
+        });
+
+        // Cleanup on navigation
+        document.addEventListener("astro:before-swap", () => {
+          if (bInterval) clearInterval(bInterval);
+        }, { once: true });
     }
 
-    pBtn.addEventListener('click', () => {
-        if (bInterval) {
-            clearInterval(bInterval);
-            bInterval = null;
-            pBtn.textContent = "Resume Breathing";
-            pText.textContent = "Paused";
-            bStep = 0;
-        } else {
-            pBtn.textContent = "Stop Activity";
-            runPStep();
-            bInterval = setInterval(runPStep, 4000);
-        }
-    });
-
-    // --- Grounding Interaction ---
-    const steps = document.querySelectorAll('.g-step');
-    steps.forEach(step => {
-        step.addEventListener('click', () => {
-            step.classList.toggle('completed');
-            // Subtle haptic feel through UI
-            if (step.classList.contains('completed')) {
-                step.style.transform = 'scale(0.98)';
-                setTimeout(() => step.style.transform = 'none', 100);
-            }
-        });
-    });
+    setupPanicRelief();
 </script>

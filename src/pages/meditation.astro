@@ -294,7 +294,8 @@ const toolkits = [
     }
 </style>
 
-<script is:inline>
+<script is:inline data-astro-rerun>
+  function setupMeditation() {
     // --- Live Breathing Tool Logic ---
     let breathingInterval;
     let currentStep = 0;
@@ -310,33 +311,35 @@ const toolkits = [
     const startBtn = document.getElementById('start-breathing');
     const indicators = document.querySelectorAll('.breath-indicator');
 
-    function runBreathStep() {
-        const step = steps[currentStep];
-        
-        // Update UI
-        circle.className = `absolute size-32 bg-accent rounded-full transition-all duration-[4000ms] ease-in-out ${step.scale} ${step.opacity}`;
-        bText.textContent = step.text;
-        
-        indicators.forEach((ind, i) => {
-            ind.classList.toggle('active', i === currentStep);
-        });
+    if (startBtn && circle && bText) {
+        function runBreathStep() {
+            const step = steps[currentStep];
+            
+            // Update UI
+            circle.className = `absolute size-32 bg-accent rounded-full transition-all duration-[4000ms] ease-in-out ${step.scale} ${step.opacity}`;
+            bText.textContent = step.text;
+            
+            indicators.forEach((ind, i) => {
+                ind.classList.toggle('active', i === currentStep);
+            });
 
-        currentStep = (currentStep + 1) % 4;
-    }
-
-    startBtn.addEventListener('click', () => {
-        if (breathingInterval) {
-            clearInterval(breathingInterval);
-            breathingInterval = null;
-            startBtn.textContent = "Start Activity";
-            bText.textContent = "Ready?";
-            currentStep = 0;
-        } else {
-            startBtn.textContent = "Stop Activity";
-            runBreathStep();
-            breathingInterval = setInterval(runBreathStep, 4000);
+            currentStep = (currentStep + 1) % 4;
         }
-    });
+
+        startBtn.addEventListener('click', () => {
+            if (breathingInterval) {
+                clearInterval(breathingInterval);
+                breathingInterval = null;
+                startBtn.textContent = "Start Activity";
+                bText.textContent = "Ready?";
+                currentStep = 0;
+            } else {
+                startBtn.textContent = "Stop Activity";
+                runBreathStep();
+                breathingInterval = setInterval(runBreathStep, 4000);
+            }
+        });
+    }
 
     // --- Mood Tracker Logic ---
     const moodBtns = document.querySelectorAll('.mood-btn');
@@ -376,7 +379,7 @@ const toolkits = [
         });
     });
 
-    closeRec.addEventListener('click', () => moodRec.classList.add('hidden'));
+    if (closeRec) closeRec.addEventListener('click', () => moodRec.classList.add('hidden'));
 
     // --- Journaling Tool Logic ---
     const prompts = [
@@ -396,47 +399,53 @@ const toolkits = [
     const copyBtn = document.getElementById('copy-btn');
     const jStatus = document.getElementById('journal-status');
 
-    shuffleBtn.addEventListener('click', () => {
-        let newPrompt;
-        do {
-            newPrompt = prompts[Math.floor(Math.random() * prompts.length)];
-        } while (newPrompt === jPrompt.textContent);
-        
-        jPrompt.style.opacity = '0';
-        setTimeout(() => {
-            jPrompt.textContent = newPrompt;
-            jPrompt.style.opacity = '1';
-        }, 200);
-    });
-
-    releaseBtn.addEventListener('click', () => {
-        if (!jInput.value.trim()) return;
-        
-        // "Release" animation: fade out and clear
-        jInput.style.transition = 'all 1s ease-out';
-        jInput.style.opacity = '0';
-        jInput.style.transform = 'translateY(-20px) scale(0.95)';
-        jInput.style.filter = 'blur(10px)';
-        
-        setTimeout(() => {
-            jInput.value = '';
-            jInput.style.opacity = '1';
-            jInput.style.transform = 'none';
-            jInput.style.filter = 'none';
+    if (shuffleBtn && jPrompt) {
+        shuffleBtn.addEventListener('click', () => {
+            let newPrompt;
+            do {
+                newPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+            } while (newPrompt === jPrompt.textContent);
             
-            jStatus.textContent = "Released & Cleared ✨";
+            jPrompt.style.opacity = '0';
+            setTimeout(() => {
+                jPrompt.textContent = newPrompt;
+                jPrompt.style.opacity = '1';
+            }, 200);
+        });
+    }
+
+    if (releaseBtn && jInput && jStatus) {
+        releaseBtn.addEventListener('click', () => {
+            if (!jInput.value.trim()) return;
+            
+            // "Release" animation: fade out and clear
+            jInput.style.transition = 'all 1s ease-out';
+            jInput.style.opacity = '0';
+            jInput.style.transform = 'translateY(-20px) scale(0.95)';
+            jInput.style.filter = 'blur(10px)';
+            
+            setTimeout(() => {
+                jInput.value = '';
+                jInput.style.opacity = '1';
+                jInput.style.transform = 'none';
+                jInput.style.filter = 'none';
+                
+                jStatus.textContent = "Released & Cleared ✨";
+                jStatus.classList.remove('opacity-0');
+                setTimeout(() => jStatus.classList.add('opacity-0'), 2000);
+            }, 1000);
+        });
+    }
+
+    if (copyBtn && jInput && jStatus) {
+        copyBtn.addEventListener('click', () => {
+            if (!jInput.value.trim()) return;
+            navigator.clipboard.writeText(jInput.value);
+            jStatus.textContent = "Text Copied!";
             jStatus.classList.remove('opacity-0');
             setTimeout(() => jStatus.classList.add('opacity-0'), 2000);
-        }, 1000);
-    });
-
-    copyBtn.addEventListener('click', () => {
-        if (!jInput.value.trim()) return;
-        navigator.clipboard.writeText(jInput.value);
-        jStatus.textContent = "Text Copied!";
-        jStatus.classList.remove('opacity-0');
-        setTimeout(() => jStatus.classList.add('opacity-0'), 2000);
-    });
+        });
+    }
 
     // --- Gratitude Jar Logic ---
     const gInput = document.getElementById('gratitude-input');
@@ -456,7 +465,8 @@ const toolkits = [
     function addGratitudeNote(text) {
         if (!text.trim()) return;
         
-        if (gEmptyMsg) gEmptyMsg.remove();
+        const empty = document.getElementById('jar-empty');
+        if (empty) empty.remove();
         
         const note = document.createElement('div');
         const color = colors[Math.floor(Math.random() * colors.length)];
@@ -466,20 +476,25 @@ const toolkits = [
         // Add a "sparkle" effect
         note.style.boxShadow = '0 0 15px rgba(255,255,255,0.1)';
         
-        gContainer.prepend(note);
-        gInput.value = '';
-        gInput.focus();
+        if (gContainer) gContainer.prepend(note);
+        if (gInput) {
+            gInput.value = '';
+            gInput.focus();
+        }
     }
 
-    gAddBtn.addEventListener('click', () => addGratitudeNote(gInput.value));
-    gInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') addGratitudeNote(gInput.value);
-    });
+    if (gAddBtn && gInput) {
+        gAddBtn.addEventListener('click', () => addGratitudeNote(gInput.value));
+        gInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addGratitudeNote(gInput.value);
+        });
+    }
 
-    gClearBtn.addEventListener('click', () => {
-        gContainer.innerHTML = '';
-        gContainer.appendChild(gEmptyMsg);
-    });
+    if (gClearBtn && gContainer) {
+        gClearBtn.addEventListener('click', () => {
+            gContainer.innerHTML = '<p id="jar-empty" class="text-sm italic opacity-40 py-10">Your jar is waiting for its first note...</p>';
+        });
+    }
 
     // --- Reveal on Scroll ---
     const observerOptions = { threshold: 0.1 };
@@ -493,4 +508,13 @@ const toolkits = [
     }, observerOptions);
 
     document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+    // Cleanup on navigation
+    document.addEventListener("astro:before-swap", () => {
+      if (breathingInterval) clearInterval(breathingInterval);
+      observer.disconnect();
+    }, { once: true });
+  }
+
+  setupMeditation();
 </script>

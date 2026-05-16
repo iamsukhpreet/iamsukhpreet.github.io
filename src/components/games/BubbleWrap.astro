@@ -104,6 +104,13 @@
         osc.stop(audioCtx.currentTime + 0.2);
       }
     });
+
+    // Cleanup on navigation
+    document.addEventListener("astro:before-swap", () => {
+      if (audioCtx && audioCtx.state !== 'closed') {
+        audioCtx.close();
+      }
+    }, { once: true });
   }
 
   // Ensure initialization on first load and after view transitions
