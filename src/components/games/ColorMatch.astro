@@ -46,6 +46,29 @@
     let streak = 0;
     let currentInkColorValue = '';
     let isGameActive = false;
+    let audioCtx: AudioContext | null = null;
+
+    function playFeedback(isCorrect: boolean) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(isCorrect ? 880 : 110, audioCtx.currentTime);
+        
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.1);
+      } catch (e) {}
+    }
 
     function nextChallenge() {
       const wordIndex = Math.floor(Math.random() * colors.length);
@@ -75,10 +98,12 @@
       const selectedColor = currentTarget.getAttribute('data-color');
       
       if (selectedColor === currentInkColorValue) {
+        playFeedback(true);
         streak++;
         if (scoreDisplay) scoreDisplay.textContent = `Streak: ${streak}`;
         nextChallenge();
       } else {
+        playFeedback(false);
         streak = 0;
         if (scoreDisplay) scoreDisplay.textContent = `Streak: ${streak}`;
         if (targetWord) {
@@ -103,7 +128,8 @@
     });
 
     colorButtons.forEach(btn => {
-      btn.addEventListener('click', handleButtonClick);
+      // Use pointerdown for snappier feel
+      btn.addEventListener('pointerdown', handleButtonClick);
     });
   }
 

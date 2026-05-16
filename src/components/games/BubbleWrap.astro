@@ -39,20 +39,74 @@
   function setupBubbleWrap() {
     const bubbles = document.querySelectorAll('.bubble');
     const resetBtn = document.getElementById('reset-bubbles');
+    
+    // Modern Audio Context for low-latency satisfying pop
+    let audioCtx: AudioContext | null = null;
+
+    function playPopSound() {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        }
+        
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.1);
+
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.1);
+      } catch (e) {
+        // Fallback for environments where Web Audio might be restricted
+        console.warn("Web Audio not supported or blocked");
+      }
+    }
 
     bubbles.forEach(bubble => {
-      bubble.addEventListener('click', () => {
+      // Use Pointer Events for better modern touch/mouse support
+      bubble.addEventListener('pointerdown', (e) => {
         if (!bubble.classList.contains('popped')) {
           bubble.classList.add('popped');
+          playPopSound();
+          
+          // Add visual feedback
+          (bubble as HTMLElement).style.transform = 'scale(0.8)';
+          setTimeout(() => {
+            (bubble as HTMLElement).style.transform = '';
+          }, 100);
         }
       });
     });
 
     resetBtn?.addEventListener('click', () => {
       bubbles.forEach(bubble => bubble.classList.remove('popped'));
+      if (audioCtx && audioCtx.state !== 'closed') {
+        // Subtle reset sound
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.2);
+      }
     });
   }
 
+  // Ensure initialization on first load and after view transitions
   setupBubbleWrap();
   document.addEventListener('astro:after-swap', setupBubbleWrap);
 </script>

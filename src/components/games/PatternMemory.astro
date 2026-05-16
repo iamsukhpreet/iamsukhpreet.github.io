@@ -55,10 +55,36 @@
     let userSequence: number[] = [];
     let isPlaying = false;
     let isWaitingForInput = false;
+    let audioCtx: AudioContext | null = null;
+
+    const frequencies = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
+
+    function playTone(index: number) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(frequencies[index], audioCtx.currentTime);
+        
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.3);
+      } catch (e) {}
+    }
 
     async function flashPad(index: number) {
       const pad = pads[index];
       if (!pad) return;
+      playTone(index);
       pad.classList.add('active', `pad-${index}`);
       await new Promise(r => setTimeout(r, 400));
       pad.classList.remove('active', `pad-${index}`);
@@ -99,6 +125,7 @@
       if (!isWaitingForInput) return;
 
       userSequence.push(index);
+      playTone(index);
       const pad = pads[index];
       if (pad) {
         pad.classList.add('active', `pad-${index}`);
@@ -109,6 +136,19 @@
       if (userSequence[currentStep] !== sequence[currentStep]) {
         if (messageDisplay) messageDisplay.textContent = "Game Over! Try again.";
         isWaitingForInput = false;
+        
+        // Error sound
+        if (audioCtx) {
+           const osc = audioCtx.createOscillator();
+           const g = audioCtx.createGain();
+           osc.frequency.setValueAtTime(100, audioCtx.currentTime);
+           g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+           osc.connect(g);
+           g.connect(audioCtx.destination);
+           osc.start();
+           osc.stop(audioCtx.currentTime + 0.5);
+        }
+        
         setTimeout(resetGame, 1500);
         return;
       }
@@ -128,7 +168,8 @@
     });
 
     pads.forEach((pad, index) => {
-      pad?.addEventListener('click', () => handlePadClick(index));
+      // Use pointerdown for snappier feel
+      pad?.addEventListener('pointerdown', () => handlePadClick(index));
     });
   }
 
