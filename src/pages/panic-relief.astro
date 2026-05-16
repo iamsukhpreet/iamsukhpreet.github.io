@@ -136,8 +136,8 @@ import { SITE } from "@/config";
                 step.classList.toggle('completed');
                 // Subtle haptic feel through UI
                 if (step.classList.contains('completed')) {
-                    (step as HTMLElement).style.transform = 'scale(0.98)';
-                    setTimeout(() => (step as HTMLElement).style.transform = 'none', 100);
+                    step.style.transform = 'scale(0.98)';
+                    setTimeout(() => step.style.transform = 'none', 100);
                 }
             });
         });

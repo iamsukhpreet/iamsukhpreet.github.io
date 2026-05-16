@@ -25,4 +25,5 @@ for (const file of files) {
   }
 }
 
+// eslint-disable-next-line no-console
 console.log(`Appended internal SEO linking block to ${updated} blog posts.`);

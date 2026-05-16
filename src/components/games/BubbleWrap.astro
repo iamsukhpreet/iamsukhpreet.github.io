@@ -12,7 +12,7 @@
   <p class="text-sm opacity-80 mb-4">Satisfying pops to help relieve stress and provide a tactile distraction.</p>
 
   <div id="bubble-grid" class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2">
-    {Array.from({ length: 40 }).map((_) => (
+    {Array.from({ length: 40 }).map(() => (
       <div 
         class="bubble w-8 h-8 rounded-full bg-accent/30 border-2 border-accent/50 cursor-pointer transition-all duration-150 active:scale-90 hover:bg-accent/40"
         aria-label="Pop bubble"
@@ -46,7 +46,9 @@
     function playPopSound() {
       try {
         if (!audioCtx) {
-          audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const WinAudioContext = window.AudioContext || (window as any).webkitAudioContext;
+          audioCtx = new WinAudioContext();
         }
         
         if (audioCtx.state === 'suspended') {
@@ -68,15 +70,14 @@
 
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.1);
-      } catch (e) {
+      } catch {
         // Fallback for environments where Web Audio might be restricted
-        console.warn("Web Audio not supported or blocked");
       }
     }
 
     bubbles.forEach(bubble => {
       // Use Pointer Events for better modern touch/mouse support
-      bubble.addEventListener('pointerdown', (e) => {
+      bubble.addEventListener('pointerdown', () => {
         if (!bubble.classList.contains('popped')) {
           bubble.classList.add('popped');
           playPopSound();

@@ -22,4 +22,5 @@ for (const file of files) {
   fs.writeFileSync(filePath, content);
 }
 
+// eslint-disable-next-line no-console
 console.log(`Updated ${updated} glossary files with SEO descriptions.`);

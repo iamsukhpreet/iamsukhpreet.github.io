@@ -61,7 +61,11 @@
 
     function playTone(index: number) {
       try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        if (!audioCtx) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const WinAudioContext = window.AudioContext || (window as any).webkitAudioContext;
+          audioCtx = new WinAudioContext();
+        }
         if (audioCtx.state === 'suspended') audioCtx.resume();
 
         const osc = audioCtx.createOscillator();
@@ -78,7 +82,9 @@
         
         osc.start();
         osc.stop(audioCtx.currentTime + 0.3);
-      } catch (e) {}
+      } catch {
+        // Fallback
+      }
     }
 
     async function flashPad(index: number) {

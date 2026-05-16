@@ -158,8 +158,8 @@ const structuredData = pubDatetime
           />
           <script is:inline define:vars={{ id: SITE.googleAnalyticsId }}>
             window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              dataLayer.push(arguments);
+            function gtag(...args) {
+              dataLayer.push(args);
             }
             gtag("js", new Date());
             gtag("config", id);

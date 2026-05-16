@@ -101,14 +101,14 @@ const finalTags = trendingTags.includes("random")
                 btn.classList.remove('border-muted');
 
                 // Filter cards
-                let visibleCount = 0;
                 cards.forEach(card => {
-                    const tags = JSON.parse(card.getAttribute('data-tags') || '[]');
-                    if (selectedTag === 'random' || tags.includes(selectedTag)) {
-                        (card as HTMLElement).style.display = 'flex';
-                        visibleCount++;
+                    const htmlCard = card as HTMLElement;
+                    const tagsAttr = htmlCard.getAttribute('data-tags');
+                    const tags = JSON.parse(tagsAttr || '[]');
+                    if (selectedTag === 'random' || (Array.isArray(tags) && tags.includes(selectedTag))) {
+                        htmlCard.style.display = 'flex';
                     } else {
-                        (card as HTMLElement).style.display = 'none';
+                        htmlCard.style.display = 'none';
                     }
                 });
 

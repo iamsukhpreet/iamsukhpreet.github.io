@@ -1,20 +1,31 @@
 ---
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Point {
+  x: number;
+  y: number;
+  label: string;
+}
 
 interface Props {
   term: string;
-  image?: any;
+  image?: ImageMetadata;
   visualAid?: {
     type: "simple" | "pulse" | "flip";
-    content?: any;
+    content?: string | Point[];
   };
 }
 
 const { term, image, visualAid } = Astro.props;
+
+const points = (visualAid?.type === "pulse" && Array.isArray(visualAid.content)) 
+  ? (visualAid.content as Point[]) 
+  : [];
 ---
 
 <div class="glossary-visual-container my-8">
-  {visualAid?.type === "flip" ? (
+  {visualAid?.type === "flip" && (
     <div class="flip-card w-full h-64 cursor-pointer group perspective-1000">
       <div class="relative w-full h-full transition-transform duration-500 preserve-3d group-hover:rotate-y-180">
         <div class="absolute inset-0 backface-hidden rounded-2xl overflow-hidden shadow-lg border border-muted">
@@ -28,16 +39,18 @@ const { term, image, visualAid } = Astro.props;
         </div>
         <div class="absolute inset-0 backface-hidden rotate-y-180 bg-accent text-white rounded-2xl p-8 flex flex-col items-center justify-center text-center shadow-lg">
           <h4 class="text-xl font-bold mb-4">Did you know?</h4>
-          <p class="text-lg">{visualAid.content || "Click to learn more about this concept."}</p>
+          <p class="text-lg">{typeof visualAid.content === 'string' ? visualAid.content : "Click to learn more about this concept."}</p>
         </div>
       </div>
     </div>
-  ) : visualAid?.type === "pulse" ? (
+  )}
+
+  {visualAid?.type === "pulse" && (
     <div class="relative rounded-2xl overflow-hidden shadow-lg border border-muted">
       {image && <Image src={image} alt={term} class="w-full h-auto" />}
       {!image && <div class="w-full h-64 bg-accent/5 flex items-center justify-center font-bold text-accent/40 uppercase tracking-widest">{term}</div>}
       
-      {visualAid.content?.map((point: any) => (
+      {points.map((point) => (
         <div 
           class="absolute group cursor-pointer" 
           style={`top: ${point.y}%; left: ${point.x}%;`}
@@ -53,7 +66,9 @@ const { term, image, visualAid } = Astro.props;
         </div>
       ))}
     </div>
-  ) : (
+  )}
+
+  {(visualAid?.type === "simple" || !visualAid) && (
     <div class="simple-image rounded-2xl overflow-hidden shadow-lg border border-muted transition-transform hover:scale-[1.02]">
       {image && <Image src={image} alt={term} class="w-full h-auto" />}
       {!image && <div class="w-full h-48 bg-accent/5 flex items-center justify-center text-accent/20 font-black text-4xl uppercase tracking-tighter">{term}</div>}

@@ -112,57 +112,70 @@ const results = {
 </Layout>
 
 <script is:inline define:vars={{ results, totalSteps: questions.length }}>
-    // @ts-nocheck
-    const steps = document.querySelectorAll('.quiz-step');
-    const progressBar = document.getElementById('progress');
-    const resultSection = document.getElementById('result-section');
-    const scores = { active: 0, social: 0, avoidant: 0, emotional: 0 };
-    let currentStep = 0;
+    (function() {
+        const steps = document.querySelectorAll('.quiz-step');
+        const progressBar = document.getElementById('progress');
+        const resultSection = document.getElementById('result-section');
+        const scores = { active: 0, social: 0, avoidant: 0, emotional: 0 };
+        let currentStep = 0;
 
-    document.querySelectorAll('.option-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const scoreKey = btn.dataset.score;
-            scores[scoreKey]++;
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const scoreKey = btn.getAttribute('data-score');
+                if (scoreKey && scoreKey in scores) {
+                    scores[scoreKey]++;
+                }
 
-            if (currentStep < totalSteps - 1) {
-                // Next Step
-                steps[currentStep].classList.add('hidden');
-                currentStep++;
-                steps[currentStep].classList.remove('hidden');
-                progressBar.style.width = `${((currentStep) / totalSteps) * 100}%`;
-            } else {
-                // Show Result
-                progressBar.style.width = '100%';
-                showResult();
-            }
+                if (currentStep < totalSteps - 1) {
+                    // Next Step
+                    steps[currentStep].classList.add('hidden');
+                    currentStep++;
+                    steps[currentStep].classList.remove('hidden');
+                    if (progressBar) {
+                        progressBar.style.width = `${((currentStep) / totalSteps) * 100}%`;
+                    }
+                } else {
+                    // Show Result
+                    if (progressBar) progressBar.style.width = '100%';
+                    showResult();
+                }
+            });
         });
-    });
 
-    function showResult() {
-        steps.forEach(s => s.classList.add('hidden'));
-        
-        // Find top score
-        const winnerKey = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-        const result = results[winnerKey];
+        function showResult() {
+            steps.forEach(s => s.classList.add('hidden'));
+            
+            // Find top score
+            const winnerKey = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            const result = results[winnerKey];
 
-        document.getElementById('res-emoji').textContent = result.emoji;
-        document.getElementById('res-title').textContent = result.title;
-        document.getElementById('res-desc').textContent = result.desc;
-        
-        resultSection.classList.remove('hidden');
-    }
+            const resEmoji = document.getElementById('res-emoji');
+            const resTitle = document.getElementById('res-title');
+            const resDesc = document.getElementById('res-desc');
 
-    document.getElementById('share-btn').addEventListener('click', () => {
-        const title = document.getElementById('res-title').textContent;
-        const text = `I just discovered my coping style is "${title}"! Take the quiz on Sukhpreet Kaur's mental health platform.`;
-        const url = window.location.href;
-
-        if (navigator.share) {
-            navigator.share({ title, text, url });
-        } else {
-            // Fallback: Copy to clipboard
-            navigator.clipboard.writeText(`${text} ${url}`);
-            alert("Result link copied! Share it on your favorite platform.");
+            if (resEmoji) resEmoji.textContent = result.emoji;
+            if (resTitle) resTitle.textContent = result.title;
+            if (resDesc) resDesc.textContent = result.desc;
+            
+            if (resultSection) resultSection.classList.remove('hidden');
         }
-    });
+
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', () => {
+                const resTitle = document.getElementById('res-title');
+                const title = resTitle ? resTitle.textContent : '';
+                const text = `I just discovered my coping style is "${title}"! Take the quiz on Sukhpreet Kaur's mental health platform.`;
+                const url = window.location.href;
+
+                if (navigator.share) {
+                    navigator.share({ title, text, url });
+                } else {
+                    // Fallback: Copy to clipboard
+                    navigator.clipboard.writeText(`${text} ${url}`);
+                    alert("Result link copied! Share it on your favorite platform.");
+                }
+            });
+        }
+    })();
 </script>
