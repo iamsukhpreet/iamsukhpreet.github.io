@@ -3,23 +3,28 @@
 
 <div class="color-match-container p-4 bg-muted/10 rounded-xl border border-muted select-none">
   <div class="flex justify-between items-center mb-4">
-    <h3 class="text-lg font-bold">Color Match</h3>
+    <div class="flex flex-col">
+      <h3 class="text-lg font-bold">Color Match</h3>
+      <div id="color-level" class="text-xs font-mono uppercase tracking-wider text-accent">Level 1: 2 Colors</div>
+    </div>
     <div id="color-score" class="text-sm font-mono bg-muted px-2 py-1 rounded">Streak: 0</div>
   </div>
   
-  <p class="text-sm opacity-80 mb-4">Match the <strong>ink color</strong>, not the word. A fast-paced cognitive distraction.</p>
+  <p class="text-sm opacity-80 mb-4">Match the <strong>ink color</strong>, not the word. Speed and variety increase with levels.</p>
 
   <div class="flex flex-col items-center justify-center py-8 min-h-[150px]">
     <div id="target-word" class="text-5xl font-black uppercase tracking-widest transition-all transform duration-200">
       READY?
     </div>
+    <div id="level-up-flash" class="hidden absolute text-accent font-black text-2xl animate-ping">LEVEL UP!</div>
   </div>
 
   <div id="color-buttons" class="grid grid-cols-2 gap-3 mt-4">
+    <!-- Buttons dynamically managed by script for variety -->
     <button data-color="red" class="color-btn px-4 py-3 bg-red-500 text-white rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all">RED</button>
     <button data-color="blue" class="color-btn px-4 py-3 bg-blue-500 text-white rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all">BLUE</button>
-    <button data-color="green" class="color-btn px-4 py-3 bg-green-500 text-white rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all">GREEN</button>
-    <button data-color="yellow" class="color-btn px-4 py-3 bg-yellow-400 text-black rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all">YELLOW</button>
+    <button data-color="green" class="color-btn px-4 py-3 bg-green-500 text-white rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all hidden">GREEN</button>
+    <button data-color="yellow" class="color-btn px-4 py-3 bg-yellow-400 text-black rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all hidden">YELLOW</button>
   </div>
 
   <div class="mt-6 flex justify-center">
@@ -35,18 +40,31 @@
     const colorButtons = document.querySelectorAll('.color-btn');
     const startBtn = document.getElementById('start-color-match') as HTMLButtonElement | null;
     const scoreDisplay = document.getElementById('color-score');
+    const levelDisplay = document.getElementById('color-level');
+    const levelFlash = document.getElementById('level-up-flash');
 
-    const colors = [
+    const allColors = [
       { name: 'RED', class: 'text-red-500', value: 'red' },
       { name: 'BLUE', class: 'text-blue-500', value: 'blue' },
       { name: 'GREEN', class: 'text-green-500', value: 'green' },
-      { name: 'YELLOW', class: 'text-yellow-400', value: 'yellow' }
+      { name: 'YELLOW', class: 'text-yellow-400', value: 'yellow' },
+      { name: 'PURPLE', class: 'text-purple-500', value: 'purple' }, // Bonus level color
+      { name: 'ORANGE', class: 'text-orange-500', value: 'orange' } // Bonus level color
     ];
 
     let streak = 0;
+    let currentLevel = 1;
     let currentInkColorValue = '';
     let isGameActive = false;
     let audioCtx: AudioContext | null = null;
+
+    const levelConfigs = [
+        { streak: 0, colors: 2, label: "Level 1: Duo" },
+        { streak: 5, colors: 3, label: "Level 2: Trio" },
+        { streak: 12, colors: 4, label: "Level 3: Quad" },
+        { streak: 20, colors: 5, label: "Level 4: Penta" },
+        { streak: 30, colors: 6, label: "Level 5: HEX" }
+    ];
 
     function playFeedback(isCorrect: boolean) {
       try {
@@ -56,42 +74,51 @@
           audioCtx = new WinAudioContext();
         }
         if (audioCtx.state === 'suspended') audioCtx.resume();
-
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-        
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(isCorrect ? 880 : 110, audioCtx.currentTime);
-        
+        osc.frequency.setValueAtTime(isCorrect ? 880 + (currentLevel * 50) : 110, audioCtx.currentTime);
         gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-        
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        
         osc.start();
         osc.stop(audioCtx.currentTime + 0.1);
-      } catch {
-        // Fallback
-      }
+      } catch {}
+    }
+
+    function updateLevel() {
+        const nextConfig = levelConfigs.find((c, i) => i > currentLevel - 1 && streak >= c.streak);
+        if (nextConfig) {
+            currentLevel = levelConfigs.indexOf(nextConfig) + 1;
+            if (levelDisplay) levelDisplay.textContent = nextConfig.label;
+            if (levelFlash) {
+                levelFlash.classList.remove('hidden');
+                setTimeout(() => levelFlash.classList.add('hidden'), 1000);
+            }
+            // Show/Hide buttons based on level
+            colorButtons.forEach((btn, i) => {
+                if (i < nextConfig.colors) btn.classList.remove('hidden');
+                else btn.classList.add('hidden');
+            });
+        }
     }
 
     function nextChallenge() {
-      const wordIndex = Math.floor(Math.random() * colors.length);
-      const inkIndex = Math.floor(Math.random() * colors.length);
+      const config = levelConfigs[currentLevel - 1];
+      const activeColors = allColors.slice(0, config.colors);
       
-      const word = colors[wordIndex].name;
-      const inkColor = colors[inkIndex];
+      const wordIndex = Math.floor(Math.random() * activeColors.length);
+      const inkIndex = Math.floor(Math.random() * activeColors.length);
+      
+      const word = activeColors[wordIndex].name;
+      const inkColor = activeColors[inkIndex];
 
       if (targetWord) {
-        // Clean up previous classes
-        colors.forEach(c => targetWord.classList.remove(c.class));
-        
+        allColors.forEach(c => targetWord.classList.remove(c.class));
         targetWord.textContent = word;
         targetWord.classList.add(inkColor.class);
         currentInkColorValue = inkColor.value;
-
-        // Subtle pop animation
         targetWord.style.transform = 'scale(1.1)';
         setTimeout(() => { if (targetWord) targetWord.style.transform = 'scale(1)'; }, 100);
       }
@@ -99,7 +126,6 @@
 
     function handleButtonClick(e: Event) {
       if (!isGameActive) return;
-
       const currentTarget = e.currentTarget as HTMLButtonElement;
       const selectedColor = currentTarget.getAttribute('data-color');
       
@@ -107,14 +133,13 @@
         playFeedback(true);
         streak++;
         if (scoreDisplay) scoreDisplay.textContent = `Streak: ${streak}`;
+        updateLevel();
         nextChallenge();
       } else {
         playFeedback(false);
-        streak = 0;
-        if (scoreDisplay) scoreDisplay.textContent = `Streak: ${streak}`;
         if (targetWord) {
             targetWord.textContent = "WRONG!";
-            colors.forEach(c => targetWord.classList.remove(c.class));
+            allColors.forEach(c => targetWord.classList.remove(c.class));
             targetWord.classList.add('text-accent');
         }
         isGameActive = false;
@@ -128,17 +153,24 @@
     startBtn?.addEventListener('click', () => {
       isGameActive = true;
       streak = 0;
+      currentLevel = 1;
       if (scoreDisplay) scoreDisplay.textContent = `Streak: ${streak}`;
+      if (levelDisplay) levelDisplay.textContent = levelConfigs[0].label;
+      
+      // Reset buttons to level 1
+      colorButtons.forEach((btn, i) => {
+          if (i < levelConfigs[0].colors) btn.classList.remove('hidden');
+          else btn.classList.add('hidden');
+      });
+
       startBtn.classList.add('hidden');
       nextChallenge();
     });
 
     colorButtons.forEach(btn => {
-      // Use pointerdown for snappier feel
       btn.addEventListener('pointerdown', handleButtonClick);
     });
 
-    // Cleanup on navigation
     document.addEventListener("astro:before-swap", () => {
       if (audioCtx && audioCtx.state !== 'closed') {
         audioCtx.close();

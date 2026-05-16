@@ -3,21 +3,23 @@
 
 <div class="bubble-wrap-container p-4 bg-muted/10 rounded-xl border border-muted select-none">
   <div class="flex justify-between items-center mb-4">
-    <h3 class="text-lg font-bold">Bubble Wrap</h3>
+    <div class="flex flex-col">
+      <h3 class="text-lg font-bold">Bubble Wrap</h3>
+      <div id="bubble-level" class="text-xs font-mono uppercase tracking-wider text-accent">Level 1: 4x4</div>
+    </div>
     <button id="reset-bubbles" class="px-3 py-1 bg-accent text-white rounded hover:opacity-90 text-sm transition-all">
-      Reset All
+      Reset Game
     </button>
   </div>
   
-  <p class="text-sm opacity-80 mb-4">Satisfying pops to help relieve stress and provide a tactile distraction.</p>
+  <p class="text-sm opacity-80 mb-4">Pop them all to reach the next level. A simple path to focus.</p>
 
-  <div id="bubble-grid" class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2">
-    {Array.from({ length: 40 }).map(() => (
-      <div 
-        class="bubble w-8 h-8 rounded-full bg-accent/30 border-2 border-accent/50 cursor-pointer transition-all duration-150 active:scale-90 hover:bg-accent/40"
-        aria-label="Pop bubble"
-      ></div>
-    ))}
+  <div id="bubble-grid" class="grid gap-2 mx-auto justify-center transition-all duration-500">
+    <!-- Bubbles injected by script -->
+  </div>
+  
+  <div id="level-complete" class="hidden mt-4 text-center animate-bounce text-accent font-bold">
+    Level Complete! Next one coming up...
   </div>
 </div>
 
@@ -33,14 +35,36 @@
   :global(.dark) .bubble.popped {
     border-color: rgba(255, 255, 255, 0.1);
   }
+
+  .bubble {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .bubble {
+        width: 2rem;
+        height: 2rem;
+    }
+  }
 </style>
 
 <script>
   function setupBubbleWrap() {
-    const bubbles = document.querySelectorAll('.bubble');
+    const grid = document.getElementById('bubble-grid');
+    const levelDisplay = document.getElementById('bubble-level');
     const resetBtn = document.getElementById('reset-bubbles');
+    const completionMsg = document.getElementById('level-complete');
     
-    // Modern Audio Context for low-latency satisfying pop
+    let currentLevel = 1;
+    const levels = [
+      { size: 4, label: "4x4" },
+      { size: 5, label: "5x5" },
+      { size: 6, label: "6x6" },
+      { size: 8, label: "8x8" },
+      { size: 10, label: "10x10" }
+    ];
+
     let audioCtx: AudioContext | null = null;
 
     function playPopSound() {
@@ -50,60 +74,74 @@
           const WinAudioContext = window.AudioContext || (window as any).webkitAudioContext;
           audioCtx = new WinAudioContext();
         }
-        
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
-
         oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+        oscillator.frequency.setValueAtTime(150 + (currentLevel * 20), audioCtx.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.1);
-
         gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-
         oscillator.connect(gainNode);
         gainNode.connect(audioCtx.destination);
-
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.1);
-      } catch {
-        // Fallback for environments where Web Audio might be restricted
+      } catch {}
+    }
+
+    function checkLevelCompletion() {
+        const popped = document.querySelectorAll('.bubble.popped').length;
+        const total = document.querySelectorAll('.bubble').length;
+        
+        if (popped === total && total > 0) {
+            if (completionMsg) completionMsg.classList.remove('hidden');
+            setTimeout(() => {
+                if (currentLevel < levels.length) {
+                    currentLevel++;
+                    initLevel();
+                } else {
+                    // Final level cleared
+                    if (levelDisplay) levelDisplay.textContent = "MASTER POPPER ✨";
+                    if (completionMsg) completionMsg.textContent = "You've cleared all levels! Reset to play again.";
+                }
+            }, 1500);
+        }
+    }
+
+    function initLevel() {
+      if (!grid || !levelDisplay || !completionMsg) return;
+      
+      const config = levels[currentLevel - 1];
+      grid.innerHTML = '';
+      completionMsg.classList.add('hidden');
+      levelDisplay.textContent = `Level ${currentLevel}: ${config.label}`;
+      
+      // Update grid layout
+      grid.style.gridTemplateColumns = `repeat(${config.size}, min-content)`;
+
+      for (let i = 0; i < config.size * config.size; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = "bubble rounded-full bg-accent/30 border-2 border-accent/50 cursor-pointer transition-all duration-150 active:scale-90 hover:bg-accent/40";
+        bubble.setAttribute('aria-label', 'Pop bubble');
+        
+        bubble.addEventListener('pointerdown', () => {
+          if (!bubble.classList.contains('popped')) {
+            bubble.classList.add('popped');
+            playPopSound();
+            bubble.style.transform = 'scale(0.8)';
+            setTimeout(() => { bubble.style.transform = ''; }, 100);
+            checkLevelCompletion();
+          }
+        });
+        
+        grid.appendChild(bubble);
       }
     }
 
-    bubbles.forEach(bubble => {
-      // Use Pointer Events for better modern touch/mouse support
-      bubble.addEventListener('pointerdown', () => {
-        if (!bubble.classList.contains('popped')) {
-          bubble.classList.add('popped');
-          playPopSound();
-          
-          // Add visual feedback
-          (bubble as HTMLElement).style.transform = 'scale(0.8)';
-          setTimeout(() => {
-            (bubble as HTMLElement).style.transform = '';
-          }, 100);
-        }
-      });
-    });
-
     resetBtn?.addEventListener('click', () => {
-      bubbles.forEach(bubble => bubble.classList.remove('popped'));
-      if (audioCtx && audioCtx.state !== 'closed') {
-        // Subtle reset sound
-        const osc = audioCtx.createOscillator();
-        const g = audioCtx.createGain();
-        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
-        osc.connect(g);
-        g.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.2);
-      }
+      currentLevel = 1;
+      if (completionMsg) completionMsg.textContent = "Level Complete! Next one coming up...";
+      initLevel();
     });
 
     // Cleanup on navigation
@@ -112,9 +150,11 @@
         audioCtx.close();
       }
     }, { once: true });
+
+    // Start first level
+    initLevel();
   }
 
-  // Ensure initialization on first load and after view transitions
   setupBubbleWrap();
   document.addEventListener('astro:after-swap', setupBubbleWrap);
 </script>

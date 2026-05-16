@@ -3,11 +3,14 @@
 
 <div class="pattern-memory-container p-4 bg-muted/10 rounded-xl border border-muted select-none">
   <div class="flex justify-between items-center mb-4">
-    <h3 class="text-lg font-bold">Pattern Memory</h3>
-    <div id="pattern-score" class="text-sm font-mono bg-muted px-2 py-1 rounded">Level: 1</div>
+    <div class="flex flex-col">
+      <h3 class="text-lg font-bold">Pattern Memory</h3>
+      <div id="pattern-level-label" class="text-xs font-mono uppercase tracking-wider text-accent">Level 1: Novice</div>
+    </div>
+    <div id="pattern-score" class="text-sm font-mono bg-muted px-2 py-1 rounded">Score: 0</div>
   </div>
   
-  <p class="text-sm opacity-80 mb-4">Focus your mind by repeating the sequence. Helps break anxious thought patterns.</p>
+  <p class="text-sm opacity-80 mb-4">Focus your mind by repeating the sequence. Speed increases every 3 levels.</p>
 
   <div class="grid grid-cols-2 gap-4 max-w-[250px] mx-auto">
     <button id="pad-0" class="pad w-24 h-24 rounded-lg bg-red-500/40 border-4 border-red-500/20 transition-all duration-150 active:scale-95 disabled:cursor-not-allowed" aria-label="Red pad"></button>
@@ -16,11 +19,12 @@
     <button id="pad-3" class="pad w-24 h-24 rounded-lg bg-yellow-500/40 border-4 border-yellow-500/20 transition-all duration-150 active:scale-95 disabled:cursor-not-allowed" aria-label="Yellow pad"></button>
   </div>
 
-  <div class="mt-6 flex flex-col items-center">
+  <div class="mt-6 flex flex-col items-center min-h-[100px] justify-center">
     <button id="start-pattern" class="px-6 py-2 bg-accent text-white rounded-full font-bold hover:opacity-90 transition-all">
       Start Game
     </button>
-    <p id="pattern-message" class="mt-2 text-sm font-medium text-accent h-5"></p>
+    <p id="pattern-message" class="mt-2 text-sm font-medium text-accent h-5 text-center"></p>
+    <div id="level-complete-pattern" class="hidden mt-2 text-accent font-bold animate-bounce">LEVEL UP!</div>
   </div>
 </div>
 
@@ -49,13 +53,24 @@
     
     const startBtn = document.getElementById('start-pattern') as HTMLButtonElement | null;
     const scoreDisplay = document.getElementById('pattern-score');
+    const levelLabel = document.getElementById('pattern-level-label');
     const messageDisplay = document.getElementById('pattern-message');
+    const levelUpMsg = document.getElementById('level-complete-pattern');
 
     let sequence: number[] = [];
     let userSequence: number[] = [];
     let isPlaying = false;
     let isWaitingForInput = false;
+    let currentLevel = 1;
     let audioCtx: AudioContext | null = null;
+
+    const levelConfigs = [
+        { tier: 1, speed: 400, delay: 200, label: "Level 1: Novice" },
+        { tier: 4, speed: 300, delay: 150, label: "Level 2: Apprentice" },
+        { tier: 7, speed: 200, delay: 100, label: "Level 3: Adept" },
+        { tier: 10, speed: 150, delay: 75, label: "Level 4: Expert" },
+        { tier: 13, speed: 100, delay: 50, label: "Level 5: Master" }
+    ];
 
     const frequencies = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
 
@@ -67,41 +82,39 @@
           audioCtx = new WinAudioContext();
         }
         if (audioCtx.state === 'suspended') audioCtx.resume();
-
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-        
         osc.type = 'sine';
         osc.frequency.setValueAtTime(frequencies[index], audioCtx.currentTime);
-        
         gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-        
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        
         osc.start();
         osc.stop(audioCtx.currentTime + 0.3);
-      } catch {
-        // Fallback
-      }
+      } catch {}
     }
 
-    async function flashPad(index: number) {
+    async function flashPad(index: number, config: any) {
       const pad = pads[index];
       if (!pad) return;
       playTone(index);
       pad.classList.add('active', `pad-${index}`);
-      await new Promise(r => setTimeout(r, 400));
+      await new Promise(r => setTimeout(r, config.speed));
       pad.classList.remove('active', `pad-${index}`);
-      await new Promise(r => setTimeout(r, 200));
+      await new Promise(r => setTimeout(r, config.delay));
     }
 
     async function playSequence() {
       isWaitingForInput = false;
       if (messageDisplay) messageDisplay.textContent = "Watch closely...";
+      
+      // Get current config based on level
+      const config = [...levelConfigs].reverse().find(c => currentLevel >= c.tier) || levelConfigs[0];
+      if (levelLabel) levelLabel.textContent = config.label;
+
       for (const index of sequence) {
-        await flashPad(index);
+        await flashPad(index, config);
       }
       isWaitingForInput = true;
       if (messageDisplay) messageDisplay.textContent = "Your turn!";
@@ -112,7 +125,9 @@
       userSequence = [];
       isPlaying = false;
       isWaitingForInput = false;
-      if (scoreDisplay) scoreDisplay.textContent = "Level: 1";
+      currentLevel = 1;
+      if (scoreDisplay) scoreDisplay.textContent = "Score: 0";
+      if (levelLabel) levelLabel.textContent = levelConfigs[0].label;
       if (startBtn) {
         startBtn.textContent = "Start Game";
         startBtn.classList.remove('hidden');
@@ -122,7 +137,21 @@
     async function nextLevel() {
       userSequence = [];
       sequence.push(Math.floor(Math.random() * 4));
-      if (scoreDisplay) scoreDisplay.textContent = `Level: ${sequence.length}`;
+      
+      const newLevel = sequence.length;
+      const config = [...levelConfigs].reverse().find(c => newLevel >= c.tier) || levelConfigs[0];
+      const tierIndex = levelConfigs.indexOf(config);
+      const oldTier = [...levelConfigs].reverse().find(c => currentLevel >= c.tier) || levelConfigs[0];
+      const oldTierIndex = levelConfigs.indexOf(oldTier);
+
+      if (tierIndex > oldTierIndex && levelUpMsg) {
+          levelUpMsg.classList.remove('hidden');
+          setTimeout(() => levelUpMsg.classList.add('hidden'), 1500);
+      }
+
+      currentLevel = newLevel;
+      if (scoreDisplay) scoreDisplay.textContent = `Score: ${currentLevel - 1}`;
+      
       await new Promise(r => setTimeout(r, 800));
       await playSequence();
     }
@@ -140,10 +169,9 @@
 
       const currentStep = userSequence.length - 1;
       if (userSequence[currentStep] !== sequence[currentStep]) {
-        if (messageDisplay) messageDisplay.textContent = "Game Over! Try again.";
+        if (messageDisplay) messageDisplay.textContent = "Game Over!";
         isWaitingForInput = false;
         
-        // Error sound
         if (audioCtx) {
            const osc = audioCtx.createOscillator();
            const g = audioCtx.createGain();
@@ -174,11 +202,9 @@
     });
 
     pads.forEach((pad, index) => {
-      // Use pointerdown for snappier feel
       pad?.addEventListener('pointerdown', () => handlePadClick(index));
     });
 
-    // Cleanup on navigation
     document.addEventListener("astro:before-swap", () => {
       if (audioCtx && audioCtx.state !== 'closed') {
         audioCtx.close();
